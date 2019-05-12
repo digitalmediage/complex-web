@@ -88,8 +88,7 @@
     "redux": "4.0.1",
     "redux-saga": "1.0.2",
     "reselect": "4.0.0",
-    "sanitize.css": "8.0.0",
-    "styled-components": "4.2.0"
+    "sanitize.css": "8.0.0"
   },
   "devDependencies": {
     "@babel/cli": "7.4.3",
@@ -109,7 +108,6 @@
     "babel-plugin-dynamic-import-node": "2.2.0",
     "babel-plugin-lodash": "3.3.4",
     "babel-plugin-react-intl": "3.0.1",
-    "babel-plugin-styled-components": "1.10.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "circular-dependency-plugin": "5.0.2",
     "compare-versions": "3.4.0",
@@ -134,7 +132,6 @@
     "imports-loader": "0.8.0",
     "jest-cli": "24.7.1",
     "jest-dom": "3.1.3",
-    "jest-styled-components": "6.3.1",
     "lint-staged": "8.1.5",
     "ngrok": "3.1.1",
     "node-plop": "0.18.0",
@@ -151,8 +148,6 @@
     "style-loader": "0.23.1",
     "stylelint": "10.0.1",
     "stylelint-config-recommended": "2.2.0",
-    "stylelint-config-styled-components": "0.1.1",
-    "stylelint-processor-styled-components": "1.6.0",
     "svg-url-loader": "2.3.2",
     "terser-webpack-plugin": "1.2.3",
     "url-loader": "1.1.2",

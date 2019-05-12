@@ -17,7 +17,7 @@ import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
-import App from 'containers/App';
+// import App from 'containers/App';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
@@ -37,6 +37,13 @@ import { translationMessages } from './i18n';
 const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
+
+// eslint-disable-next-line react/prefer-stateless-function
+class App extends React.Component {
+  render() {
+    return <div>hello</div>;
+  }
+}
 
 const render = messages => {
   ReactDOM.render(

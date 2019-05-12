@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+// eslint-disable-next-line prettier/prettier
 const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
@@ -27,6 +29,7 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   const fs = middleware.fileSystem;
 
   app.get('*', (req, res) => {
+    // eslint-disable-next-line prettier/prettier
     fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
       if (err) {
         res.sendStatus(404);
