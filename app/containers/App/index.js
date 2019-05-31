@@ -9,20 +9,30 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
-import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import SignIn from '../Authentications/SignIn';
+import SignUp from '../Authentications/SignUp';
+import ForgetPassword from '../Authentications/ForgetPassword';
 
-import GlobalStyle from '../../global-styles';
+// import GlobalStyle from '../../global-styles';
 
 export default function App() {
   return (
     <div>
+      <Helmet
+        titleTemplate="%s - React.js Boilerplate"
+        defaultTitle="React.js Boilerplate"
+      >
+        <meta name="description" content="" />
+      </Helmet>
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/sign-in" component={SignIn} />
+        <Route exact path="/sign-up" component={SignUp} />
+        <Route exact path="/forget-password" component={ForgetPassword} />
         <Route component={NotFoundPage} />
       </Switch>
-      <GlobalStyle />
     </div>
   );
 }
