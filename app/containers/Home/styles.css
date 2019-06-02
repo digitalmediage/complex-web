@@ -1,0 +1,470 @@
+.container {
+  padding-top: 80px;
+}
+
+.grayBox {
+  background-color: #E8E8E8;
+  padding: 30px 40px;
+}
+
+.informationBox {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.news {
+  background-color: #fff;
+  border-radius: 30px;
+  width: 70%;
+  min-height: 400px;
+  padding: 20px 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 20px auto;
+  padding: 5px 20px;
+}
+
+.days {
+  text-transform: uppercase;
+  color: #cbcbcb;
+  display: flex;
+  padding: 0;
+  margin: 0 0 10px;
+  font-size: 13px;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+.numbers {
+  text-transform: uppercase;
+  color: #cbcbcb;
+  display: flex;
+  font-size: 13px;
+  padding: 0;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+.numbers li {
+  width: 20px;
+  text-align: center;
+  padding: 0 4px;
+}
+
+.active {
+  background-color: #cbcbcb;
+  color: #fff;
+  border-radius: 100%;
+}
+
+.dateInfBox {
+  min-height: 250px;
+}
+
+.dateBox {
+  background-color: #F9F9F9;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 25px;
+  border-radius: 15px;
+  margin: 10px 0;
+  box-shadow: 1px 2px 3px #cfcfcf;
+}
+
+.dateTitleBox {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.reserved {
+  background-color: #61AEEB;
+  border-radius: 30px;
+  color: #fff;
+  padding: 2px 10px;
+  font-size: 11px;
+  margin-bottom: 10px;
+  width: 70px;
+  text-align: center;
+}
+
+.dateTitle {
+  margin: 0;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.secondTitle {
+  font-size: 10px;
+  color: #cbcbcb;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.dateText {
+  width: 50%;
+  font-size: 12px;
+  color: #cbcbcb;
+  padding-bottom: 4px;
+  text-align: right;
+  text-decoration: underline;
+  padding: 0;
+  margin: 0;
+}
+
+.dateText p {
+  padding: 4px;
+}
+
+.chart {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.whiteBoxChart {
+  background-color: #fff;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 40px;
+  height: 50%;
+  box-shadow: 3px 3px 10px #a3a3a3;
+}
+
+.whiteBoxChart:first-child {
+  margin-bottom: 20px;
+}
+
+.whiteBoxChart:last-child {
+  margin-top: 20px;
+}
+
+.sold {
+  font-size: 10px;
+  color: #cbcbcb;
+  font-weight: 500;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.numberChart {
+  padding-bottom: 30px;
+  border-bottom: 3px solid #ED6145;
+}
+
+.numberChartBlue {
+  padding-bottom: 30px;
+  border-bottom: 3px solid #61AEEB;
+}
+
+.number {
+  font-weight: 300;
+}
+
+.super {
+  font-size: 10px;
+  margin-left: 2px;
+  color: #cbcbcb;
+  top: -2.9em;
+  font-weight: 500;
+}
+
+.dollar {
+  font-size: 16px;
+  color: #cbcbcb;
+  left: -1em;
+  bottom: .05em;
+  font-weight: 300;
+}
+
+.timeChart {
+  padding-top: 30px;
+  display: flex;
+}
+
+.timeBox {
+  display: flex;
+  flex-direction: column;
+  width: 70px;
+}
+
+.price {
+  font-size: 10px;
+  margin: 0;
+  color: #ED6145;
+}
+
+.priceBlue {
+  font-size: 10px;
+  margin: 0;
+  color: #61AEEB;
+}
+
+.titlePrice {
+  font-size: 10px;
+  color: #cbcbcb;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+/* second section */
+
+.whiteBox {
+  padding: 30px 20px;
+}
+
+.rightBox {
+  display: flex;
+}
+
+/* tabs */
+.tabs {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.complexList {
+  padding: 30px;
+}
+
+.complex {
+  margin: 10px;
+}
+
+.complexDetails {
+  display: flex;
+}
+
+.complexImg {
+  background-image: url('../../images/building.png');
+  height: 200px;
+  width: 300px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.complexContent {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 500px;
+  position: relative;
+  padding: 10px 20px;
+}
+
+.complexContent::after {
+  content: '';
+  border-right: 1px solid #cbcbcb;
+  position: absolute;
+  right: 0;
+  height: 170px;
+  top: 15px;
+}
+
+.complexTitle {
+  color: #0852EC;
+  margin: 0;
+}
+
+.complexSecondTitle {
+  color: #cbcbcb;
+}
+
+.complexInf {
+  display: flex;
+}
+
+.complexDetailInf {
+  display: flex;
+  flex-direction: column;
+  color: #cbcbcb;
+  padding: 15px;
+  position: relative;
+}
+
+.complexDetailInf::after {
+  content: '';
+  border-right: 1px solid #cbcbcb;
+  position: absolute;
+  right: 0;
+  height: 35px;
+  top: 18px;
+}
+
+.complexDetailInf:last-child::after{
+  border-right: 0;
+}
+
+.complexDetailInf h6,
+p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.complexReserve {
+  background-color: #E8E8E8;
+  padding: 2px;
+  border-radius: 5px;
+  width: 100px;
+  margin: 15px 7px 0 0;
+  text-align: center;
+}
+
+.complexProperties {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 250px;
+  text-align: center;
+}
+
+.complexPropertiesList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.complexPropertiesImg {
+  width: 33.3%;
+  height: 50px;
+  padding: 2px;
+}
+
+.complexUpdate {
+  color: #cbcbcb;
+  padding: 10px;
+  border-bottom: 1px solid #cbcbcb;
+}
+
+.propertiesList {
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.property {
+  width: 24%;
+  box-shadow: 2px 4px 12px #cfcfcf;
+}
+
+.propertiesImg {
+  background-image: url('../../images/building.png');
+  height: 200px;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-bottom: 2px solid #0852EC;
+  position: relative;
+}
+
+.heartImg {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: none;
+}
+
+.activeHeart {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: block;
+}
+
+.propertiesDetail {
+  padding: 20px 10px;
+  border-bottom: 1px solid #cbcbcb;
+}
+
+.propertiesSecondTitle {
+  color: #cbcbcb;
+  margin-bottom: 8px;
+}
+
+.propertiesText {
+  position: relative;
+  padding-left: 7px;
+  margin-left: 7px;
+}
+
+.propertiesText::before {
+  content: '';
+  border-left: 1px solid #ED6145;
+  position: absolute;
+  left: 0;
+  height: 15px;
+  top: 2px;
+}
+
+.propertiesLocation {
+  text-transform: capitalize;
+  color: #cbcbcb;
+}
+
+.propertiesServices {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.serviceBox {
+  display: flex;
+  width: 50%;
+}
+
+.serviceImg {
+  margin-right: 10px;
+}
+
+.serviceText {
+  color: #cbcbcb;
+  text-transform: capitalize;
+}
+
+.btnBox{
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.moreBtn{
+  background-color: #0852EC;
+  padding: 5px 20px;
+  color: #fff;
+  border-radius: 30px;
+  min-width: 150px;
+}
+
+/* tabs */
+.nav-tabs .nav-item{
+  margin-bottom: 0;
+}
+
+.nav-tabs .nav-link.active {
+  color: #cbcbcb;
+  border-color: transparent;
+  border-bottom: 2px solid #61AEEB;
+  border-radius: 0;
+}
