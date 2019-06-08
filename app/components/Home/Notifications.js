@@ -4,7 +4,7 @@ import React from 'react';
 
 import styles from '../../containers/Home/styles.css';
 
-const Notifications = () => {
+const Notifications = () => (
   <div className={styles.news}>
     <div className={styles.date}>
       <ul className={styles.days}>
@@ -74,7 +74,7 @@ const Notifications = () => {
         </div>
       </div>
     </div>
-  </div>;
-};
+  </div>
+);
 
 export default Notifications;
