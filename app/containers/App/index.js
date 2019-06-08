@@ -16,6 +16,7 @@ import SignIn from '../Authentications/SignIn';
 import SignUp from '../Authentications/SignUp';
 import ForgetPassword from '../Authentications/ForgetPassword';
 import Home from '../Home';
+import Complex from '../Complex';
 
 // import GlobalStyle from '../../global-styles';
 
@@ -30,6 +31,7 @@ export default function App() {
       </Helmet>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/complex" component={Complex} />
         <Route exact path="/sign-in" component={SignIn} />
         <Route exact path="/sign-up" component={SignUp} />
         <Route exact path="/forget-password" component={ForgetPassword} />

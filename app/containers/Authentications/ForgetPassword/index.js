@@ -9,8 +9,8 @@ import React from 'react';
 
 import { Helmet } from 'react-helmet';
 
-import globalStyle from '../../../assets/global-styles/bootstrap.min.css';
-// import styles from './styles.css';
+// eslint-disable-next-line import/no-unresolved
+import globalStyle from 'bs';
 
 export default function ForgetPassword() {
   return (
@@ -19,7 +19,7 @@ export default function ForgetPassword() {
         <title>Forget Password Page</title>
         <meta name="description" content="this is Forget Password page" />
       </Helmet>
-      <div className={globalStyle.container}>Forget Password page</div>
+      <div className={globalStyle['pt-5']}>Forget Password page</div>
     </article>
   );
 }

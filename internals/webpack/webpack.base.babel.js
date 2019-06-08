@@ -39,6 +39,7 @@ module.exports = options => ({
             loader: 'css-loader',
             options: {
               modules: true,
+              localIdentName: '[local]',
             },
           },
         ],
@@ -124,6 +125,12 @@ module.exports = options => ({
     }),
   ]),
   resolve: {
+    alias: {
+      bs: path.resolve(
+        process.cwd(),
+        'app/assets/global-styles/bootstrap.min.css',
+      ),
+    },
     modules: ['node_modules', 'app'],
     extensions: ['.js', '.jsx', '.react.js'],
     mainFields: ['browser', 'jsnext:main', 'main'],
