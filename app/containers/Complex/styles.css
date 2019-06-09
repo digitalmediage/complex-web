@@ -1,0 +1,112 @@
+.complexContainer {
+  background-color:#f0eeee;
+  min-height: 100vh;
+}
+
+.complexContentSpace{
+  margin-top: 100px;
+}
+
+.complexWhiteBox{
+  background: #fff;
+  box-shadow: 2px 4px 12px #cfcfcf;
+  min-height: 300px;
+  border-radius: 15px;
+  padding: 30px;
+  margin: 30px 0;
+}
+
+.mainBox{
+  display: flex;
+  justify-content: center;
+  margin: -82px auto 0;
+}
+
+.mainComplexImage{
+  border-radius: 100%;
+  width: 130px;
+  height: 130px;
+}
+
+.sampleImageBox{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+
+.sampleComplexImage{
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  border-radius: 100%;
+}
+
+.formInputImage{
+  margin: 2rem 0;
+}
+
+.moreBtn{
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.formInputManager{
+  width: 32%;
+  margin-top: 60px;
+}
+
+.editManager{
+  font-size: 12px;
+  color: #cfcfcf;
+  margin: 0;
+}
+
+.complexPropertyBox{
+  margin: 30px;
+}
+
+/* for component */
+.form-control:disabled, .form-control[readonly]{
+  background-color: transparent;
+  opacity: 1;
+  border: 0;
+  border-bottom: 1px solid #cfcfcf;
+  border-radius: 0;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 2;
+}
+
+.formInput{
+  margin: 1rem 0;
+  width: 23%;
+}
+
+.labelInput{
+  font-size: 12px;
+  color: #cfcfcf;
+  text-transform: capitalize;
+  font-weight: 400;
+ 
+}
+
+.complexInput{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.inputStyle{
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.formArea{
+  margin: 50px 0;
+  width: 100%;
+}
