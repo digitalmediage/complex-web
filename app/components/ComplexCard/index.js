@@ -1,35 +1,74 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import bs from 'bs';
 
-import image from '../../images/building.png';
+// import image from '../../images/building.png';
 require('./styles.css');
 
 class ComplexCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      banerImage: '',
+      banerDescription: '',
+    };
+  }
+
   componentDidMount() {
-    return false;
+    this.setState({
+      banerImage: this.props.properties.image,
+      banerDescription: this.props.properties.desc,
+    });
+  }
+
+  countStatusProperties(object = [], index) {
+    if (typeof object !== 'object') {
+      return null;
+    }
+    let count = 0;
+    object.properties.map(property => {
+      if (property.sale_status === index) {
+        count += 1;
+      }
+    });
+
+    return count;
+  }
+
+  changeImageHandler(img) {
+    this.setState({
+      banerImage: img.src,
+      banerDescription: img.desc,
+    });
   }
 
   render() {
+    const { properties } = this.props;
     return (
-      <div className="col-6">
+      <div className="col-12 col-md-6 pt-5">
         <div className="card">
           <div className="card-image">
             <img
-              alt="dasdas"
+              alt={this.state.banerDescription}
               className={bs['img-fluid']}
-              src="https://images.unsplash.com/photo-1464938050520-ef2270bb8ce8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1506&q=80"
+              src={this.state.banerImage}
             />
             <span className=" d-flex flex-row card-tumb mr-4">
-              <div>
-                <img alt="" src={image} className={bs['img-fluid']} />
-              </div>
-              <div>
-                <img alt="" src={image} className={bs['img-fluid']} />
-              </div>
-              <div>
-                <img alt="" src={image} className={bs['img-fluid']} />
-              </div>
+              {properties.media.images.map(img => (
+                <div
+                  onKeyPress={() => this.changeImageHandler(img)}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => this.changeImageHandler(img)}
+                >
+                  <img
+                    alt={img.desc}
+                    src={img.src}
+                    className={bs['img-fluid']}
+                  />
+                </div>
+              ))}
             </span>
           </div>
 
@@ -37,11 +76,11 @@ class ComplexCard extends React.Component {
             {/* Complex name and Views counter  */}
             <div className=" d-flex pl-2 flex-row justify-content-between card-header-title">
               <div>
-                <p>{this.props.complexName}</p>
-                <span>{this.props.subTitle}</span>
+                <p>{properties.name}</p>
+                <span>{properties.description}</span>
               </div>
               <div>
-                39&nbsp;&nbsp;
+                {properties.viewsCount}&nbsp;&nbsp;
                 <i className="fontIcon icon-eye">&#xe800;</i>
               </div>
             </div>
@@ -49,26 +88,28 @@ class ComplexCard extends React.Component {
             {/* Complex Tag  */}
             <div className="d-flex flex-row pt-4 justify-content-center">
               <div className="infoTag">
-                <p>{this.props.reservedCount} reserved</p>
+                <p>
+                  {this.countStatusProperties(properties, 'reserved')} reserved
+                </p>
               </div>
 
               <div className="infoTag">
-                <p>{this.props.reservedCount} reserved</p>
+                <p>{this.countStatusProperties(properties, 'sold')} Sold</p>
               </div>
 
               <div className="infoTag">
-                <p>{this.props.reservedCount} reserved</p>
+                <p>{this.countStatusProperties(properties, 'left')} Left</p>
               </div>
             </div>
 
             {/* Complex properties */}
             <div className="d-flex pt-5 pl-4 textLite">Properties</div>
             <div className="d-flex pt-3 flex-wrap pl-4 flex-row">
-              {this.props.properties.map(_property => (
+              {properties.properties.map(_property => (
                 <div className="card-properties_img">
                   <img
-                    alt={_property.alt || ' '}
-                    src={_property.image}
+                    alt={_property.banerImage.alt}
+                    src={_property.banerImage.src}
                     className="img-fluid"
                   />
                 </div>
@@ -79,19 +120,22 @@ class ComplexCard extends React.Component {
             <div className="d-flex flex-row pt-3 justify-content-center">
               <div className="d-flex flex-column complex-options px-3">
                 <div>Build Year</div>
-                <div>12/03/1999</div>
+                <div>{properties.buildYear}</div>
               </div>
               <div className="d-flex flex-column complex-options px-3">
                 <div>Cadastra</div>
-                <div>45433524</div>
+                <div>{properties.cadastra}</div>
               </div>
               <div className="d-flex flex-column complex-options px-3">
                 <div>Charge Fee</div>
-                <div>$ 4433</div>
+                <div>
+                  {' '}
+                  {properties.currency} {properties.chargeFee}
+                </div>
               </div>
               <div className="d-flex flex-column complex-options px-3">
                 <div>City</div>
-                <div>Tehran</div>
+                <div>{properties.city}</div>
               </div>
             </div>
           </div>
