@@ -45,12 +45,14 @@ class Complex extends React.Component {
             </div>
           </div>
 
-          <div className={classnames(bs.row, bs['pt-5'])}>
-            <ComplexCard
-              complexName="Complex Name"
-              subTitle="this is subtitle and some more text"
-              properties={this.state.properties || []}
-            />
+          <div className={classnames(bs.row, bs['py-5'])}>
+            {this.state.properties.map(_property => (
+              <ComplexCard
+                complexName="Complex Name"
+                subTitle="this is subtitle and some more text"
+                properties={_property}
+              />
+            ))}
           </div>
         </div>
       </section>
