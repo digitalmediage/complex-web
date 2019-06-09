@@ -49,9 +49,9 @@ export default function Complex() {
             </div>
           </div>
           <div className={classnames(bs['col-sm-12'], bs['col-md-8'])}>
-            <div className={styles.moreBtn}>
+            {/* <div className={styles.moreBtn}>
               
-            </div>
+            </div> */}
             <div className={classnames('complexWhiteBox')}>
               <div className={classnames("form-group")}>
                 <label className={styles.labelInput}>Address</label>
