@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React from 'react';
 
@@ -6,7 +7,6 @@ class ErrorBoundary extends React.Component {
     super(props);
     this.state = {
       hasError: false,
-      errorInfo: null,
     };
   }
 
@@ -21,7 +21,6 @@ class ErrorBoundary extends React.Component {
     // You can also log the error to an error reporting service
     this.setState({
       hasError: true,
-      errorInfo: info,
     });
     console.log(error, info);
   }
@@ -32,7 +31,6 @@ class ErrorBoundary extends React.Component {
       return (
         <React.Fragment>
           <h1> Something went wrong. </h1>;
-          <h2> Error Information : {this.state.errorInfo} </h2>
         </React.Fragment>
       );
     }
