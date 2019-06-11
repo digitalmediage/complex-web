@@ -4,6 +4,11 @@
 import React from 'react';
 
 import getCurrentWeek from '../../utils/helper/GetCurrentWeek';
+import NotificationBox from '../NotificationBox';
+
+// Fake Data
+import NotificationsData from '../../faker/Notifications';
+
 import styles from '../../containers/Home/styles.css';
 
 class Notifications extends React.Component {
@@ -58,38 +63,14 @@ class Notifications extends React.Component {
           </ul>
         </div>
         <div className={styles.dateInfBox}>
-          <div className={styles.dateBox}>
-            <div className={styles.dateTitleBox}>
-              <p className={styles.reserved}>Reserved</p>
-              <p className={styles.dateTitle}>Property Name</p>
-              <p className={styles.secondTitle}>Reserved</p>
-            </div>
-            <div className={styles.dateText}>
-              <p>18 April 2019</p>
-            </div>
-          </div>
-
-          <div className={styles.dateBox}>
-            <div className={styles.dateTitleBox}>
-              <p className={styles.reserved}>Reserved</p>
-              <p className={styles.dateTitle}>Property Name</p>
-              <p className={styles.secondTitle}>Reserved</p>
-            </div>
-            <div className={styles.dateText}>
-              <p>18 April 2019</p>
-            </div>
-          </div>
-
-          <div className={styles.dateBox}>
-            <div className={styles.dateTitleBox}>
-              <p className={styles.reserved}>Reserved</p>
-              <p className={styles.dateTitle}>Property Name</p>
-              <p className={styles.secondTitle}>Reserved</p>
-            </div>
-            <div className={styles.dateText}>
-              <p>18 April 2019</p>
-            </div>
-          </div>
+          {NotificationsData.map(n => (
+            <NotificationBox
+              status={n.status}
+              title={n.title}
+              desc={n.desc}
+              date={n.date}
+            />
+          ))}
         </div>
       </div>
     );

@@ -54,8 +54,18 @@
   list-style-type: none;
 }
 
+.numbers li:hover {
+  border:1px solid #cbcbcb;
+  transition: all 0.4s ease-in-out;
+}
+
 .numbers li {
-  width: 20px;
+  width: 30px;
+  height: 30px;
+  line-height: 29px;
+  border-radius: 100%;
+  cursor: pointer;
+  transition: all 1s ease;
   text-align: center;
   padding: 0 4px;
 }
@@ -63,11 +73,14 @@
 .active {
   background-color: #cbcbcb;
   color: #fff;
-  border-radius: 100%;
 }
 
 .dateInfBox {
   min-height: 250px;
+  max-height: 370px;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 }
 
 .dateBox {
