@@ -16,8 +16,13 @@ import Notifications from '../../components/Home/Notifications';
 import Chart from '../../components/Chart';
 import Tab from '../../components/tabs/index';
 import ComplexItem from '../../components/ComplexItem';
-import PropertiesList from '../../components/PropertiesList';
+import PropertyIteam from '../../components/PropertyIteam';
 import Error from '../../components/Errors';
+
+// Fake data
+import fakerData from '../../faker/ChartData';
+
+
 
 
 export default function SignIn() {
@@ -41,12 +46,15 @@ export default function SignIn() {
                 dayBalance="400"
                 yearBalance="300"
                 monthBalance="343"
+                fakerData={fakerData()}
+                color="red"
               />
               <Chart
                 title="Sold"
                 dayBalance="400"
                 yearBalance="300"
                 monthBalance="343"
+                fakerData={fakerData()}
               />
             </div>
           </div>
@@ -65,8 +73,11 @@ export default function SignIn() {
                     lastUpdate = "2016/03/01"
                   />
                 </div>
-                <div label="Properties">
-                  <PropertiesList />
+                <div className="d-flex flex-row flex-wrap" label="Properties">
+                  <PropertyIteam />
+                  <PropertyIteam />
+                  <PropertyIteam />
+                  <PropertyIteam />
                 </div>
               </Tab>
             </div>

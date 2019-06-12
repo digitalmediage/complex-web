@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import LineChart from './Chart/LineChart';
 
 import styles from '../containers/Home/styles.css';
 
@@ -16,6 +17,9 @@ class componentName extends Component {
               <sup className={styles.super}>Day</sup>
               <sub className={styles.dollar}>$</sub>
             </h1>
+          </div>
+          <div>
+            <LineChart color={this.props.color} data={this.props.fakerData} />
           </div>
           <div className={styles.timeChart}>
             <div className={styles.timeBox}>

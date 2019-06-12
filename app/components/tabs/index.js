@@ -45,7 +45,7 @@ class Tabs extends React.Component {
             );
           })}
         </ol>
-        <div className="tab-content">
+        <div className="tab-content d-flex flex-row flex-wrap">
           {children.map(child => {
             if (child.props.label !== activeTab) return undefined;
             return child.props.children;

@@ -8,9 +8,9 @@ import likeBlack from '../../images/like-black.png';
 import bed from '../../images/bed.png';
 import bathtub from '../../images/bathtub.png';
 
-const PropertiesList = () => (
-  <div className={styles.propertiesList}>
-    <div className={styles.property}>
+const PropertyIteam = () => (
+  <React.Fragment>
+    <div className={cx(styles.property, 'mr-3 mt-5')}>
       <div className={styles.propertiesImg}>
         <img className={styles.heartImg} alt="img" src={likeBlack} />
         <img
@@ -48,7 +48,7 @@ const PropertiesList = () => (
         </div>
       </div>
     </div>
-  </div>
+  </React.Fragment>
 );
 
-export default PropertiesList;
+export default PropertyIteam;
