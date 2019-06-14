@@ -13,7 +13,7 @@ import { Helmet } from 'react-helmet';
 
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import SignIn from '../Authentications/SignIn';
-// import SignUp from '../Authentications/SignUp';
+import SignUp from '../Authentications/SignUp';
 import ForgetPassword from '../Authentications/ForgetPassword';
 import Home from '../Home';
 import Complexes from '../Complexes';
@@ -35,7 +35,7 @@ export default function App() {
         <Route path="/complex/:complexId" component={Complex} />
         <Route path="/complex" component={Complexes} />
         <Route exact path="/sign-in" component={SignIn} />
-        {/* <Route exact path="/sign-up" component={SignUp} /> */}
+        <Route exact path="/sign-up" component={SignUp} />
         <Route exact path="/forget-password" component={ForgetPassword} />
         <Route component={NotFoundPage} />
       </Switch>

@@ -48,10 +48,10 @@ export default function SignIn() {
             <button className={styles.loginBtn} variant="primary" type="submit">
               login
             </button>
-            <a href='/' className={styles.forgotText}>Forgot password?</a>
+            <a href='/forget-password' className={styles.forgotText}>Forgot password?</a>
             <div className={styles.accountBox}>
-              <a href='/' className={styles.accountText}>Dont have an account?</a>
-              <a href='/' className={styles.forgotText}>Create Account</a>
+              <p className={styles.accountText}>Dont have an account?</p>
+              <a href='/sign-up' className={styles.forgotText}>Create Account</a>
             </div>
           </form>
         </div>

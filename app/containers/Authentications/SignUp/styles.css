@@ -1,18 +1,107 @@
-.container_body {
-    background-color: edf2f4;
-}
-
-.header_title > span {
-    color:blue;
-}
-
-.sign-up-form {
-    background-color: white;
-    border-radius: 15px;
-}
-
-@media only screen and (max-width:800px) {
-    .header_title {
-        font-size: 1.5rem;
-    }
-}
+.signIn {
+    background-color: #E8E8E8;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column
+  }
+  
+  .loginTitle{
+    margin-bottom: 40px;
+  }
+  
+  .loginTitleBlue {
+    color: #0852EC;
+  }
+  
+  .login {
+    display: flex;
+    background-color: #fff;
+    height: 400px;
+    width: 800px;
+  }
+  
+  .loginImg {
+    background-color: #0852EC;
+    width: 45%;
+    height: 400px;
+    display: flex;
+  }
+  
+  .locationImg {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+  }
+  
+  .loginForm {
+    width: 55%;
+    height: 400px;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .loginInput {
+    background-color: transparent;
+    opacity: 1;
+    border: 0;
+    border-bottom: 1px solid #000;
+    border-radius: 0;
+    padding: 0;
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    line-height: 2;
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    color: #000;
+    background-clip: padding-box;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
+  
+  .loginInput:first-child {
+    margin-bottom: 25px;
+  }
+  
+  .formLogin {
+    width: 100%;
+  }
+  
+  .loginBtn {
+    width: 100%;
+    background-color: #74C1B8;
+    padding: 12px;
+    color: #fff;
+    border-radius: 5px;
+    border: 1px solid #74C1B8;
+    margin: 5px;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 12px;
+  }
+  
+  .forgotText {
+    color: #74C1B8;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  
+  .accountBox {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    align-items: center;
+  }
+  
+  .accountText {
+    color: #cfcfcf;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
