@@ -6,7 +6,7 @@ import bs from 'bs';
 import styles from './styles.css';
 import Header from '../Layout/Header';
 import building from '../../images/building.png';
-import PropertiesList from '../../components/PropertiesList';
+import PropertiesList from '../../components/PropertyIteam';
 import Error from '../../components/Errors';
 
 export default function Complex() {

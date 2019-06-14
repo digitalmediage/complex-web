@@ -28,7 +28,7 @@ class ComplexCard extends React.Component {
     }
     let count = 0;
     object.properties.map(property => {
-      if (property.sale_status === index) {
+      if (property.status === index) {
         count += 1;
       }
     });
@@ -38,15 +38,15 @@ class ComplexCard extends React.Component {
 
   changeImageHandler(img) {
     this.setState({
-      banerImage: img.src,
-      banerDescription: img.desc,
+      banerImage: img.path,
+      banerDescription: img.name,
     });
   }
 
   render() {
     const { properties } = this.props;
     return (
-      <div className="col-12 col-md-6 pt-5">
+      <div className="d-flex flex-column card-container pt-1 mb-5">
         <div className="card">
           <div className="card-image">
             <img
@@ -55,7 +55,7 @@ class ComplexCard extends React.Component {
               src={this.state.banerImage}
             />
             <span className=" d-flex flex-row card-tumb mr-4">
-              {properties.media.images.map(img => (
+              {properties.media.map(img => (
                 <div
                   onKeyPress={() => this.changeImageHandler(img)}
                   role="button"
@@ -63,8 +63,8 @@ class ComplexCard extends React.Component {
                   onClick={() => this.changeImageHandler(img)}
                 >
                   <img
-                    alt={img.desc}
-                    src={img.src}
+                    alt={img.name}
+                    src={img.path}
                     className={bs['img-fluid']}
                   />
                 </div>
@@ -77,10 +77,10 @@ class ComplexCard extends React.Component {
             <div className=" d-flex pl-2 flex-row justify-content-between card-header-title">
               <div>
                 <p>{properties.name}</p>
-                <span>{properties.description}</span>
+                <span>{properties.information}</span>
               </div>
               <div>
-                {properties.viewsCount}&nbsp;&nbsp;
+                {properties.views_count}&nbsp;&nbsp;
                 <i className="fontIcon icon-eye">&#xe800;</i>
               </div>
             </div>
@@ -108,8 +108,8 @@ class ComplexCard extends React.Component {
               {properties.properties.map(_property => (
                 <div className="card-properties_img">
                   <img
-                    alt={_property.banerImage.alt}
-                    src={_property.banerImage.src}
+                    alt={_property.baner_image.name}
+                    src={_property.baner_image.path}
                     className="img-fluid"
                   />
                 </div>
@@ -120,7 +120,7 @@ class ComplexCard extends React.Component {
             <div className="d-flex flex-row pt-3 justify-content-center">
               <div className="d-flex flex-column complex-options px-3">
                 <div>Build Year</div>
-                <div>{properties.buildYear}</div>
+                <div>{properties.build_year}</div>
               </div>
               <div className="d-flex flex-column complex-options px-3">
                 <div>Cadastra</div>
@@ -130,7 +130,7 @@ class ComplexCard extends React.Component {
                 <div>Charge Fee</div>
                 <div>
                   {' '}
-                  {properties.currency} {properties.chargeFee}
+                  {properties.currency} {properties.charge_fee.$numberDecimal}
                 </div>
               </div>
               <div className="d-flex flex-column complex-options px-3">

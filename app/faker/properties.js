@@ -1,11 +1,11 @@
 const properties = [
   {
     name: 'Complex Name',
-    description: 'this is some text for description',
-    viewsCount: '22',
-    buildYear: '12/03/1999',
+    information: 'this is some text for description',
+    views_count: '22',
+    build_year: '12/03/1999',
     cadastra: '23452353',
-    chargeFee: '300',
+    charge_fee: '300',
     city: 'Tehran',
     currency: '$',
     image:
@@ -15,12 +15,12 @@ const properties = [
       images: [
         {
           src:
-            'https://images.unsplash.com/photo-1527030280862-64139fba04ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1506&q=80',
+            'https://images.unsplash.com/photo-1489171078254-c3365d6e359f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80',
           desc: 'some descriptions ',
         },
         {
           src:
-            'https://images.unsplash.com/photo-1527030280862-64139fba04ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1506&q=80',
+            'https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80',
           desc: 'some descriptions ',
         },
         {

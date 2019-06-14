@@ -48,6 +48,10 @@
     background-color: gray;
 }
 
+.card-tumb > div img {
+  min-height:50px
+}
+
 .card-header-title > div p {
     font-size: 1.4rem;
 }
@@ -109,6 +113,10 @@
     width: 4.2rem;
     height:4.2rem;
     margin-right:6px;
+}
+
+.card-container {
+  max-width:540px;
 }
 
 
