@@ -379,13 +379,13 @@ p {
 }
 
 .property {
-  min-width: 40%;
+  width: 100%;
   box-shadow: 2px 4px 12px #cfcfcf;
 }
 
 @media only screen and (min-width:900px) {
   .property {
-    min-width: 27%;
+    width: 23%;
   }
 }
 

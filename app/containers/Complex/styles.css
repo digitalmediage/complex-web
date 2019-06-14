@@ -22,6 +22,34 @@
   margin: -82px auto 0;
 }
 
+
+.fontIconComplex{
+  margin-left: 5px;
+}
+
+.makeComplex{
+  color: #000;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.complexView{
+  display: flex;
+  justify-content: space-between;
+}
+
+.mapImage{
+  width: 100%;
+  height: 150px;
+  border-radius: 0;
+  margin-top: -45px;
+}
+
+.complexSpan{
+  font-size: 8px;
+  color: #cfcfcf;
+}
+
 .mainComplexImage{
   border-radius: 100%;
   width: 130px;
@@ -46,11 +74,72 @@
   margin: 2rem 0;
 }
 
-.moreBtn{
+.editImg{
+  position: relative;
+}
+
+.deleteIcon{
+  color: #fff;
+  font-size: 10px;
+  margin: 0;
+  background-color: #ff0000;
+  border: 1px solid #ff0000;
+  border-radius: 100%;
+  margin-left: 2px;
+  padding: 2px;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
+
+.btnFormBox{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.acceptBtn{
+  width: 150px;
+  background-color: #6DB47D;
+  padding: 3px;
+  color: #fff;
+  border-radius: 30px;
+  border: 1px solid #6DB47D;
+  margin: 5px;
+  font-size: 14px;
+
+}
+
+.cancelBtn{
+width: 150px;
+background-color: #61AEEB;
+padding: 3px;
+border: 1px solid #61AEEB;
+color: #fff;
+border-radius: 30px;
+margin: 5px;
+font-size: 14px;
+
+}
+
+.editBoxBtn{
   display: flex;
   width: 100%;
   justify-content: flex-end;
   align-items: center;
+}
+
+.editIcon{
+  color: #cfcfcf;
+  font-size: 14px;
+  margin: 0;
+}
+
+.editBtn{
+  border: 1px solid #cfcfcf;
+  border-radius: 100%;
+  margin-left: 2px;
 }
 
 .formInputManager{
