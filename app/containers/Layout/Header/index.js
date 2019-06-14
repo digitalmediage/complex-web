@@ -30,7 +30,7 @@ class Header extends React.Component {
             <Link to="/complex">Complexes</Link>
           </li>
           <li>
-            <a href="/">Properties</a>
+            <a href="/property">Properties</a>
           </li>
           <li>
             <a href="/">Managers</a>

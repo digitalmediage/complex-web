@@ -22,6 +22,12 @@
   width: 800px;
 }
 
+@media only screen and (max-width:900px) {
+  .login{
+    width: 100%;
+  }
+}
+
 .loginImg {
   background-color: #0852EC;
   width: 45%;

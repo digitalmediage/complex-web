@@ -135,7 +135,10 @@ export default function Complex() {
                     </div>
                     <a href="/" className={styles.editManager}>Edit Manager</a>
                   </div>
-                  <div className={styles.complexPropertyBox} label="Properties">
+                  <div className="d-flex flex-row flex-wrap" label="Properties">
+                    <PropertyIteam />
+                    <PropertyIteam />
+                    <PropertyIteam />
                     <PropertyIteam />
                   </div>
                   {/* edit form btn */}

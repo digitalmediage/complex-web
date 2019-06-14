@@ -3,7 +3,7 @@ footer {
   flex-shrink: 0;
 }
 
-.footer-box {
+.footerBox {
   background-color: #1E1F23;
 }
 
@@ -14,38 +14,38 @@ footer {
   padding: 40px 0;
 }
 
-.footer-social {
+.footerSocial {
   color: #6A6B6F;
   padding: 5px 0;
   font-size: 12px;
 }
 
-.social-box {
+.socialBox {
   display: flex;
   align-items: center;
   margin: 20px 0;
 }
 
-.footer-pin {
+.footerPin {
   color: #EF8722;
   font-size: 20px;
   margin-right: 10px;
 }
 
-.footer-phone {
+.footerPhone {
   color: #F14F25;
   font-size: 20px;
   transform: rotate(325deg);
   margin-right: 10px;
 }
 
-.footer-mail {
+.footerMail {
   color: #9E411B;
   font-size: 20px;
   margin-right: 10px;
 }
 
-.social-icon {
+.socialIcon {
   margin-right: 10px;
   background-color: #2E4BCB;
   border-radius: 100%;
@@ -55,7 +55,7 @@ footer {
   height: 25px;
 }
 
-.social-icon:hover {
+.socialIcon:hover {
   background-color: #EF8722;
 }
 
@@ -63,7 +63,7 @@ footer {
   padding: 4px 6px;
 }
 
-.social-box p {
+.socialBox p {
   color: #6A6B6F;
   text-transform: uppercase;
   font-size: 12px;
@@ -76,29 +76,29 @@ footer {
   padding-inline-start: 0;
 }
 
-.footer-title {
+.footerTitle {
   color: #F58B1A;
   margin-bottom: 10px;
   text-transform: uppercase;
   font-size: 14px;
 }
 
-.footer-text {
+.footerText {
   color: #fff;
   font-size: 14px;
   font-weight: 100;
 }
 
-.footer-text-box {
+.footerTextBox {
   margin: 5px 0;
 }
 
-.footer-title:hover {
+.footerTitle:hover {
   color: #F58B1A;
   margin-bottom: 10px;
 }
 
-.footer-text:hover {
+.footerText:hover {
   color: #fff;
 }
 

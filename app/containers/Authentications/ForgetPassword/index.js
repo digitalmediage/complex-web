@@ -10,7 +10,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import classnames from 'classnames';
-import styles from './styles.css';
+import styles from '../SignIn/styles.css';
 import location from '../../../images/pin.png';
 import Footer from '../../Layout/Footer';
 
