@@ -30,3 +30,12 @@
   font-size: 0.9rem;
   color:gray;
 }
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: inherit!important;
+  text-decoration: none!important;
+}

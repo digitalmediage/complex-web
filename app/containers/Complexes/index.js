@@ -1,3 +1,4 @@
+/*eslint no-underscore-dangle: "error"*/
 import React from 'react';
 import classnames from 'classnames';
 import bs from 'bs';
@@ -20,8 +21,7 @@ class Complex extends React.Component {
       this.setState({
         properties: result.data.data,
       });
-      console.log('result-');
-      console.log(result);
+      
     });
 
     // this.setState({
@@ -54,6 +54,7 @@ class Complex extends React.Component {
                 <div className="d-flex flex-wrap flex-row justify-content-between">
                   {this.state.properties.map(_property => (
                     <ComplexCard
+                      key={_property._id}
                       complexName="Complex Name"
                       subTitle="this is subtitle and some more text"
                       properties={_property}

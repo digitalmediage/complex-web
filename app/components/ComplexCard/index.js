@@ -1,7 +1,11 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-return-assign */
 /* eslint-disable array-callback-return */
 /* eslint-disable react/prop-types */
+/*eslint no-underscore-dangle: "error"*/
 import React from 'react';
 import bs from 'bs';
+import { Link } from 'react-router-dom';
 
 // import image from '../../images/building.png';
 require('./styles.css');
@@ -15,13 +19,15 @@ class ComplexCard extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.setState({
-      banerImage: this.props.properties.image,
-      banerDescription: this.props.properties.desc,
+      banerImage: this.props.properties.baner_image.path,
+      banerDescription: this.props.properties.baner_image.description,
     });
   }
 
+
+  // Calculate count of (Reserved/Sold/..) Properties in complex
   countStatusProperties(object = [], index) {
     if (typeof object !== 'object') {
       return null;
@@ -35,6 +41,7 @@ class ComplexCard extends React.Component {
 
     return count;
   }
+  
 
   changeImageHandler(img) {
     this.setState({
@@ -55,28 +62,30 @@ class ComplexCard extends React.Component {
               src={this.state.banerImage}
             />
             <span className=" d-flex flex-row card-tumb mr-4">
-              {properties.media.map(img => (
+              {properties.media.map(m => (
                 <div
-                  onKeyPress={() => this.changeImageHandler(img)}
+                  key={m._id}
+                  onKeyPress={() => this.changeImageHandler(m)}
                   role="button"
                   tabIndex={0}
-                  onClick={() => this.changeImageHandler(img)}
+                  onClick={() => this.changeImageHandler(m)}
                 >
                   <img
-                    alt={img.name}
-                    src={img.path}
+                    alt={m.name}
+                    src={m.path}
                     className={bs['img-fluid']}
                   />
                 </div>
               ))}
             </span>
           </div>
-
           <div className="d-flex flex-column card-content">
             {/* Complex name and Views counter  */}
             <div className=" d-flex pl-2 flex-row justify-content-between card-header-title">
               <div>
-                <p>{properties.name}</p>
+                <Link to={`/complex/${properties._id}`}>
+                  <p>{properties.name}</p>
+                </Link>
                 <span>{properties.information}</span>
               </div>
               <div>
@@ -98,7 +107,7 @@ class ComplexCard extends React.Component {
               </div>
 
               <div className="infoTag">
-                <p>{this.countStatusProperties(properties, 'left')} Left</p>
+                <p>{this.countStatusProperties(properties, 'available')} Available</p>
               </div>
             </div>
 
@@ -106,10 +115,12 @@ class ComplexCard extends React.Component {
             <div className="d-flex pt-5 pl-4 textLite">Properties</div>
             <div className="d-flex pt-3 flex-wrap pl-4 flex-row">
               {properties.properties.map(_property => (
-                <div className="card-properties_img">
+                <div
+                  key={_property._id}
+                  className="card-properties_img">
                   <img
-                    alt={_property.baner_image.name}
-                    src={_property.baner_image.path}
+                    alt={_property.media.baner.name}
+                    src={_property.media.baner.path}
                     className="img-fluid"
                   />
                 </div>
