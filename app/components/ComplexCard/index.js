@@ -2,7 +2,7 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable array-callback-return */
 /* eslint-disable react/prop-types */
-/*eslint no-underscore-dangle: "error"*/
+/* eslint no-underscore-dangle: "error" */
 import React from 'react';
 import bs from 'bs';
 import { Link } from 'react-router-dom';

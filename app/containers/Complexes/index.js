@@ -1,4 +1,4 @@
-/*eslint no-underscore-dangle: "error"*/
+/* eslint no-underscore-dangle: "error" */
 import React from 'react';
 import classnames from 'classnames';
 import bs from 'bs';
@@ -21,7 +21,6 @@ class Complex extends React.Component {
       this.setState({
         properties: result.data.data,
       });
-      
     });
 
     // this.setState({
