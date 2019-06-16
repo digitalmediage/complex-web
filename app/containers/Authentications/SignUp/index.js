@@ -128,18 +128,115 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import classnames from 'classnames';
-import styles from '../SignIn/styles.css';
-import location from '../../../images/pin.png';
-import Footer from '../../Layout/Footer';
+import axios from 'axios';
 
-export default function SignIn() {
-  return (
-    <article>
+// Styles
+import styles from '../SignIn/styles.css';
+import classnames from 'classnames';
+
+// Images
+import location from '../../../images/pin.png';
+
+// Components
+import Footer from '../../Layout/Footer';
+import Error from '../../../components/Errors';
+
+
+
+class SignUp extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      userName: '',
+      password: '',
+      errors: [],
+      error: false,
+    }
+  }
+
+   signUpHandler(e) {
+     e.preventDefault();     
+    console.log(this.state.userName);
+    console.log(this.state.password);
+
+    const { userName, password } = this.state;
+
+    const user = {
+      email: userName,
+      password: password,
+    };
+
+    axios.post('http://localhost:8080/v1/auth/register', {
+      email: userName,
+      password: password,
+    })
+      .then(result => {
+        console.log('result');
+        console.log(result);
+
+      })
+      .catch(error => {
+        console.log(error.response);
+        console.log(error.response);
+
+        if(error.response) {
+          const data = error.response;
+          if(data.data.errors && data.data.errors !== 0) {
+            let err = [];
+            data.data.errors.map(error => {
+              console.log('error');
+              console.log(error);
+              err.push(error);
+            });
+
+            this.setState({
+              errors: err,
+            });
+
+          } else {
+            console.log('kir');
+          }
+        } else {
+          console.log('result not exist');
+        }
+      })
+  }
+
+    setInput(event, input) {
+    const value = event.target.value;
+
+    if (input === 'userName') {
+      this.setState({
+        userName: value,
+      });
+    } else {
+      this.setState({
+        password: value,
+      });
+    }
+  }
+
+  showError(errors) {
+    return (
+      <div className="danger alert">
+         {errors.messages.map(m => (
+           <span> m </span>
+         ))
+         } 
+      </div>
+    )
+  }
+
+  render() {
+    return(
+      <Error>
+      <article>
       <Helmet>
         <title>SignUp Page</title>
         <meta name="description" content="this is SignIn page" />
       </Helmet>
+      {this.state.errors !== 0 ? '-' : this.showError(this.state.errors)}
       <div className={classnames(`signIn`)}>
         <h3 className={styles.loginTitle}><span className={styles.loginTitleBlue}>SignUp</span> Geo.Properties</h3>
         <div className={styles.login}>
@@ -155,16 +252,22 @@ export default function SignIn() {
               {/* <label className={styles.labelInput}>Email</label> */}
               <input
                 type="email"
+                onBlur={e => this.setInput(e, 'userName')}
                 className={styles.loginInput}
                 placeholder="email"
               />
               <input
                 type="password"
+                onBlur={e => this.setInput(e, 'password')}
                 className={styles.loginInput}
                 placeholder="Password"
               />
             </div>
-            <button className={styles.loginBtn} variant="primary" type="submit">
+            <button
+             className={styles.loginBtn} 
+             variant="primary" 
+             onClick={(e) => this.signUpHandler(e)}
+             >
               SignUp
             </button>
           </form>
@@ -172,5 +275,10 @@ export default function SignIn() {
       </div>
       <Footer />
     </article>
-  );
+    </Error>
+    )
+  }
 }
+
+export default SignUp;
+

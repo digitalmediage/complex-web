@@ -37,6 +37,7 @@
 
 .locationImg {
   width: 100px;
+  display:none;
   height: 100px;
   margin: auto;
 }
