@@ -91,7 +91,7 @@
 
 .card .card-content > div p {
   margin: 0;
-  color: inherit;
+  color: black;
 }
 
 .card .card-content span.card-tumb {
@@ -112,6 +112,7 @@
 .card-properties_img {
     width: 4.2rem;
     height:4.2rem;
+    margin-bottom:7px;
     margin-right:6px;
 }
 

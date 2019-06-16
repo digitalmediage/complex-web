@@ -5,6 +5,7 @@
 /* eslint no-underscore-dangle: "error" */
 import React from 'react';
 import bs from 'bs';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 // import image from '../../images/building.png';
@@ -24,6 +25,10 @@ class ComplexCard extends React.Component {
       banerImage: this.props.properties.baner_image.path,
       banerDescription: this.props.properties.baner_image.description,
     });
+  }
+
+  componentDidMount() {
+    // const thisMoment = moment(createdAt).format("h:mm");
   }
 
 
@@ -112,7 +117,7 @@ class ComplexCard extends React.Component {
             </div>
 
             {/* Complex properties */}
-            <div className="d-flex pt-5 pl-4 textLite">Properties</div>
+            <div className="d-flex pt-5 pl-5 textLite">Properties</div>
             <div className="d-flex pt-3 flex-wrap pl-4 flex-row">
               {properties.properties.map(_property => (
                 <div
@@ -131,7 +136,7 @@ class ComplexCard extends React.Component {
             <div className="d-flex flex-row pt-3 justify-content-center">
               <div className="d-flex flex-column complex-options px-3">
                 <div>Build Year</div>
-                <div>{properties.build_year}</div>
+                <div>{moment(properties.build_year).format("MM/DD/YYYY")}</div>
               </div>
               <div className="d-flex flex-column complex-options px-3">
                 <div>Cadastra</div>
