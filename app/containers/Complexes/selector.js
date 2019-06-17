@@ -22,5 +22,11 @@ const makeSelectComplexes = () =>
     homeState => homeState.complexes,
   );
 
+const makeSelectLoading = () =>
+  createSelector(
+    selectComplexes,
+    homeState => homeState.loading,
+  );
+
 // export default makeSelectTes;
-export { selectComplexes, makeSelectComplexes };
+export { selectComplexes, makeSelectComplexes, makeSelectLoading };

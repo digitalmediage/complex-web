@@ -9,7 +9,7 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
-import { makeSelectComplexes } from './selector';
+import { makeSelectComplexes, makeSelectLoading } from './selector';
 import reducer from './reducer';
 import saga from './saga';
 import { requestComplex } from './actions';
@@ -24,17 +24,19 @@ import ButtonPrimary from '../../components/Button/ButtonPrimary';
 // import properties from '../../faker/properties';
 import Error from '../../components/Errors';
 
+const Loading = () => <div className="alert success">Loading .........</div>;
+
 export function Complexes({ complexes, loading, error, getComplexes }) {
   useInjectReducer({ key: 'complexes', reducer });
   useInjectSaga({ key: 'complexes', saga });
 
   useEffect(() => {
-    // When initial state username is not null, submit the form to load repos
     getComplexes();
   }, []);
 
   return (
     <Error>
+      {loading ? <Loading /> : null}
       <section className={styles.complexContainer}>
         <Header />
         <div className={classnames(bs.container, 'complexContainer')}>
@@ -87,6 +89,7 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   complexes: makeSelectComplexes(),
+  loading: makeSelectLoading(),
 });
 
 const withConnect = connect(
