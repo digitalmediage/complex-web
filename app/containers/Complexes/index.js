@@ -21,7 +21,10 @@ class Complex extends React.Component {
       this.setState({
         properties: result.data.data,
       });
+      console.log(result.data.data);
     });
+
+    
 
     // this.setState({
     //   properties,

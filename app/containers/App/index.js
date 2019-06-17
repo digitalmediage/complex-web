@@ -19,6 +19,7 @@ import Home from '../Home';
 import Complexes from '../Complexes';
 import Properties from '../Properties';
 import Complex from '../Complex';
+import Tes from '../Tes';
 
 // import GlobalStyle from '../../global-styles';
 
@@ -33,6 +34,7 @@ export default function App() {
       </Helmet>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/tes" component={Tes} />
         <Route path="/complex/:complexId" component={Complex} />
         <Route path="/complex" component={Complexes} />
         <Route path="/property" component={Properties} />
