@@ -7,7 +7,11 @@ import {complexAcc} from './actions';
 // Individual exports for testing
 
 function request(url) {
- return axios.get(url);
+ return axios.get(url)
+ .then(response => response.data)
+ .catch(err => {
+   console.log('error happen in request(AXIOS)');
+ })
 }
 
 
@@ -21,8 +25,10 @@ export function* getComplex() {
   try {
     // Call our request helper (see 'utils/request')
     // const complexs = yield call(request('http://localhost:8080/v1/complex'));
-    const complexs = yield [{a:1}]
-    yield put(complexAcc(complexs));
+    const complexs = yield request('http://localhost:8080/v1/complex');
+    console.log('complexes yield');
+    console.log(complexs);
+    yield put(complexAcc(complexs.data));
   } catch (err) {
     console.log(err);
     console.log('erroor happen in saga worker');

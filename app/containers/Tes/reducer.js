@@ -12,7 +12,7 @@ export const initialState = {
 
 /* eslint-disable default-case, no-param-reassign */
 const tesReducer = (state = initialState, action) =>
-  produce(state, (draft) => {
+  produce(state, draft => {
     switch (action.type) {
       case Get_COMPLEX:
       draft.loading = true;

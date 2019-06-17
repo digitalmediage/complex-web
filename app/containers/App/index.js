@@ -16,7 +16,7 @@ import SignIn from '../Authentications/SignIn';
 import SignUp from '../Authentications/SignUp';
 import ForgetPassword from '../Authentications/ForgetPassword';
 import Home from '../Home';
-import Complexes from '../Complexes';
+import Complexes from '../Complexes/Loadable';
 import Properties from '../Properties';
 import Complex from '../Complex';
 import Tes from '../Tes';

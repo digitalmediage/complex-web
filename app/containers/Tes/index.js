@@ -36,9 +36,9 @@ export function Tes({
       <div>
       <h1> Complex List </h1>
       { console.log(complex) }
-      { complex.map(m => (
-        <div> {m.a} </div>
-      )) }
+      {complex ? complex.map(m => (
+        <div> {m.city} </div>
+      )) : null }
       </div>
       <input type="text" />
       <button
