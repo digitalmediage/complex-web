@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /*
  *
  * Complex Reducer
@@ -30,6 +31,8 @@ const complexReducer = (state = initialState, action) =>
         draft.complexes = action.complexes;
         break;
       case COMPLEX_FETCH_ERROR:
+        // eslint-disable-next-line prettier/prettier
+        draft.errorInfo = action.error;
         draft.error = true;
         break;
       default:

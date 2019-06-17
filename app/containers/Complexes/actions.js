@@ -23,8 +23,9 @@ export function complexResult(param) {
   };
 }
 
-export function complexFetchError() {
+export function complexFetchError(error) {
   return {
     type: COMPLEX_FETCH_ERROR,
+    error,
   };
 }

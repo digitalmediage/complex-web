@@ -28,5 +28,23 @@ const makeSelectLoading = () =>
     homeState => homeState.loading,
   );
 
+const makeSelectError = () =>
+  createSelector(
+    selectComplexes,
+    homeState => homeState.error,
+  );
+
+const makeSelectErrorInfo = () =>
+  createSelector(
+    selectComplexes,
+    homeState => homeState.errorInfo,
+  );
+
 // export default makeSelectTes;
-export { selectComplexes, makeSelectComplexes, makeSelectLoading };
+export {
+  selectComplexes,
+  makeSelectComplexes,
+  makeSelectLoading,
+  makeSelectError,
+  makeSelectErrorInfo,
+};
