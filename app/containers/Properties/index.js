@@ -44,9 +44,32 @@ export function Property({
     useEffect(() => {
       _getProperties();
       _getComplexes();
+      console.log('use effect change');
     }, []);
 
-    const [filterType, setFilterType] = useState('type');
+    const [filterType, setFilterType ]= useState('type');
+    const filtersType = ['office', 'commercial', 'residence '];
+    const filtersStatus = ['reserved', 'sold', 'available '];
+    const filtersFurnish = ['black', 'white'];
+
+    const setOptions = (state) => {
+      let options = [];
+      switch (state) {
+       case 'type':
+       options = filtersType;
+       break;
+       case 'status':
+       options = filtersStatus;
+       break;
+       case 'furnish':
+       options = filtersFurnish;
+       break;
+       default :
+       options = filtersType;
+      }
+
+      return options;
+    }
 
   return (
     <Error>
@@ -81,10 +104,14 @@ export function Property({
                 </select>
               </div>
               <div className={styles.filterWidth}>
-                <select>
-                  <option onClick={() => setFilterType('type')}> Type </option>
-                  <option onClick={() => setFilterType('status')}> Sales status  </option>
-                  <option onClick={() => setFilterType('furnish')}> furnish </option>
+              {
+                  filterType
+                }
+                <select onChange={(e) => setFilterType(e.target.value)}>
+                
+                  <option value="type"> Type </option>
+                  <option value="status"> Sales status  </option>
+                  <option value="furnish"> furnish </option>
                 </select>
               </div>
               <input
@@ -96,14 +123,14 @@ export function Property({
             <div className={styles.filterBox}>
               <p className={styles.type}>Type</p>
               <div className={styles.filterText}>
+                
+                {setOptions(filterType).map(f => (
                 <div className={styles.contentText}>
-                  Apartment
+                  {f}
                   <p className={styles.circleType} />
                 </div>
-                <div className={styles.contentText}>
-                  Office
-                  <p className={styles.circleType} />
-                </div>
+                ))}
+
               </div>
             </div>
             <div className="d-flex flex-row flex-wrap" label="Properties">
