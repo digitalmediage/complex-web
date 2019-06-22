@@ -24,16 +24,16 @@ class Header extends React.Component {
         </div>
         <ul className={styles.centerBox}>
           <li>
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
             <Link to="/complex">Complexes</Link>
           </li>
           <li>
-            <a href="/property">Properties</a>
+            <Link to="/property">Properties</Link>
           </li>
           <li>
-            <a href="/">Managers</a>
+            <Link to="/manager">Manager</Link>
           </li>
           <li>
             <a href="/">News</a>

@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable no-underscore-dangle */
 /* eslint no-underscore-dangle: "error" */
 import React, { useEffect, memo, useState } from 'react';
@@ -21,10 +22,9 @@ import {
   makeSelectProperties,
   makeSelectError,
   makeSelectLoading,
-
 } from '../App/selectors';
 
-import {getProperties, getComplexes} from '../App/actions';
+import { getProperties, getComplexes } from '../App/actions';
 
 import reducer from '../App/reducer';
 import saga from './saga';
@@ -37,39 +37,38 @@ export function Property({
   _getProperties,
   _getComplexes,
 }) {
+  useInjectReducer({ key: 'global', reducer });
+  useInjectSaga({ key: 'global', saga });
 
-   useInjectReducer({ key: 'global', reducer });
-   useInjectSaga({ key: 'global', saga });
+  useEffect(() => {
+    _getProperties();
+    _getComplexes();
+    console.log('use effect change');
+  }, []);
 
-    useEffect(() => {
-      _getProperties();
-      _getComplexes();
-      console.log('use effect change');
-    }, []);
+  const [filterType, setFilterType] = useState('type');
+  const filtersType = ['office', 'commercial', 'residence '];
+  const filtersStatus = ['reserved', 'sold', 'available '];
+  const filtersFurnish = ['black', 'white'];
 
-    const [filterType, setFilterType ]= useState('type');
-    const filtersType = ['office', 'commercial', 'residence '];
-    const filtersStatus = ['reserved', 'sold', 'available '];
-    const filtersFurnish = ['black', 'white'];
-
-    const setOptions = (state) => {
-      let options = [];
-      switch (state) {
-       case 'type':
-       options = filtersType;
-       break;
-       case 'status':
-       options = filtersStatus;
-       break;
-       case 'furnish':
-       options = filtersFurnish;
-       break;
-       default :
-       options = filtersType;
-      }
-
-      return options;
+  const setOptions = state => {
+    let options = [];
+    switch (state) {
+      case 'type':
+        options = filtersType;
+        break;
+      case 'status':
+        options = filtersStatus;
+        break;
+      case 'furnish':
+        options = filtersFurnish;
+        break;
+      default:
+        options = filtersType;
     }
+
+    return options;
+  };
 
   return (
     <Error>
@@ -98,19 +97,17 @@ export function Property({
               />
               <div className={styles.filterWidth}>
                 <select>
-                  {complexes ? complexes.map(complex => (
-                    <option key={complex._id}> {complex.name} </option>
-                  )) : null}
+                  {complexes
+                    ? complexes.map(complex => (
+                        <option key={complex._id}> {complex.name} </option>
+                      ))
+                    : null}
                 </select>
               </div>
               <div className={styles.filterWidth}>
-              {
-                  filterType
-                }
-                <select onChange={(e) => setFilterType(e.target.value)}>
-                
+                <select onChange={e => setFilterType(e.target.value)}>
                   <option value="type"> Type </option>
-                  <option value="status"> Sales status  </option>
+                  <option value="status"> Sales status </option>
                   <option value="furnish"> furnish </option>
                 </select>
               </div>
@@ -123,20 +120,22 @@ export function Property({
             <div className={styles.filterBox}>
               <p className={styles.type}>Type</p>
               <div className={styles.filterText}>
-                
                 {setOptions(filterType).map(f => (
-                <div className={styles.contentText}>
-                  {f}
-                  <p className={styles.circleType} />
-                </div>
+                  <div className={styles.contentText}>
+                    {f}
+                    <input
+                      name={filterType}
+                      type="radio"
+                      className={styles.circleType}
+                    />
+                  </div>
                 ))}
-
               </div>
             </div>
             <div className="d-flex flex-row flex-wrap" label="Properties">
-              { properties ? properties.map(property => (
-                <PropertyIteam data={property} />
-              )) : null }
+              {properties
+                ? properties.map(property => <PropertyIteam data={property} />)
+                : null}
             </div>
           </div>
         </div>
@@ -163,7 +162,6 @@ function mapDispatchToProps(dispatch) {
     dispatch,
   };
 }
-
 
 const withConnect = connect(
   mapStateToProps,

@@ -1,0 +1,58 @@
+/**
+ *
+ * Manager
+ *
+ */
+
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
+import { FormattedMessage } from 'react-intl';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
+
+// Components
+
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
+import Header from '../Layout/Header';
+
+require('./styles.css');
+
+export function Manager({}) {
+  return (
+    <div className="manager-container">
+      <Helmet>
+        <title>Manager</title>
+        <meta name="description" content="Description of Tes" />
+      </Helmet>
+      <Header />
+      <div className="container">
+        <div className="breadcrumbs pt-4">Manager</div>
+      </div>
+    </div>
+  );
+}
+
+Manager.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = createStructuredSelector({});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(Manager);

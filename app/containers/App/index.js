@@ -20,6 +20,7 @@ import Complexes from '../Complexes/Loadable';
 import Properties from '../Properties';
 import Complex from '../Complex';
 import Tes from '../Tes';
+import Manager from '../Manager/Loadable';
 
 // import GlobalStyle from '../../global-styles';
 
@@ -38,9 +39,11 @@ export default function App() {
         <Route path="/complex/:complexId" component={Complex} />
         <Route path="/complex" component={Complexes} />
         <Route path="/property" component={Properties} />
-        <Route exact path="/sign-in" component={SignIn} />
-        <Route exact path="/sign-up" component={SignUp} />
-        <Route exact path="/forget-password" component={ForgetPassword} />
+        <Route path="/sign-in" component={SignIn} />
+        <Route path="/sign-up" component={SignUp} />
+        <Route path="/forget-password" component={ForgetPassword} />
+        <Route path="/forget-password" component={ForgetPassword} />
+        <Route path="/manager" component={Manager} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>
