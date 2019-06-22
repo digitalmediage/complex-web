@@ -242,7 +242,7 @@
 
 /* tabs */
 .tabs {
-  max-width: 1000px;
+  width:100%;
   margin: auto;
 }
 
@@ -510,7 +510,7 @@ p {
 }
 
 .tab-content {
-  min-height: 70vh;
+  height:130%;
 }
 
 .tab-list-active {

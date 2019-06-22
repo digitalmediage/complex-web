@@ -19,3 +19,16 @@
     background-size: cover;
 }
 
+.manager-filter {
+    background-color: white;
+}
+
+.manager-filter_button {
+    border: 1px solid gray;
+    border-radius: 25px;
+    width:10.1rem;
+    height:2.3rem;
+    text-align: center;
+    color: gray;
+    font-size: 0.8rem;
+}

@@ -6,10 +6,25 @@
  *
  */
 
-import React from 'react';
+
+import React, { memo, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
+import { FormattedMessage } from 'react-intl';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
+
+
+
+// Components
+
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
 import bs from 'bs';
 import classNames from 'classnames';
+import saga from "../Properties/saga";
+import reducer from '../App/reducer';
 // import globalStyle from '../../assets/global-styles/bootstrap.min.css';
 import Header from '../Layout/Header/index';
 import Notifications from '../../components/Home/Notifications';
@@ -19,13 +34,37 @@ import ComplexItem from '../../components/ComplexItem';
 import PropertyIteam from '../../components/PropertyIteam';
 import Error from '../../components/Errors';
 
+import {
+  makeSelectComplexes,
+  makeSelectProperties,
+  makeSelectError,
+  makeSelectLoading,
+} from '../App/selectors';
+
+import { getProperties, getComplexes } from '../App/actions';
+
 // Fake data
 import fakerData from '../../faker/ChartData';
 
 
 
 
-export default function SignIn() {
+export function Home({
+  loading,
+  error,
+  complexes,
+  properties,
+  _getProperties,
+  _getComplexes,
+}) {
+
+  useInjectReducer({ key: 'global', reducer });
+  useInjectSaga({ key: 'global', saga });
+
+  useEffect(() => {
+    _getProperties();
+    _getComplexes();
+  }, []);
   return (
     <Error>
       <article>
@@ -74,10 +113,12 @@ export default function SignIn() {
                   />
                 </div>
                 <div className="d-flex flex-row flex-wrap" label="Properties">
-                  <PropertyIteam />
-                  <PropertyIteam />
-                  <PropertyIteam />
-                  <PropertyIteam />
+                  {properties && Array.isArray(properties) ? properties.map(property => (
+                    < PropertyIteam data = {
+                      property
+                    }
+                    />
+                  )) : null }
                 </div>
               </Tab>
             </div>
@@ -87,3 +128,32 @@ export default function SignIn() {
     </Error>
   );
 }
+
+Home.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = createStructuredSelector({
+  complexes: makeSelectComplexes(),
+  properties: makeSelectProperties(),
+  error: makeSelectError(),
+  loading: makeSelectLoading(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    _getProperties: () => dispatch(getProperties()),
+    _getComplexes: () => dispatch(getComplexes()),
+    dispatch,
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(Home);

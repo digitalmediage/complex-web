@@ -19,6 +19,8 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { getComplexes } from '../App/actions';
+
+import Tab from '../../components/tabs/index';
 import Header from '../Layout/Header';
 import { makeSelectComplexes } from '../App/selectors';
 
@@ -60,6 +62,30 @@ export function Manager({ complexes, _getComplexes }) {
                 <span>{complex.name}</span>
               </div>
             ))}
+          </div>
+        </div>
+
+        <div className="row pt-5">
+          <div className="col-12 w-100 mt-5">
+            <Tab>
+              <div label="Charges">dadasdas</div>
+              <div label="Expenses">dadasdas</div>
+              <div label="Changer or add manager">
+                <div className="d-flex flex-row w-100 manager-filter pl-3 pt-4">
+                  <div className="w-50 d-flex justify-content-around">
+                    <div className="manager-filter_button p-2">
+                      All Managers
+                    </div>
+                    <div className="manager-filter_button p-2">
+                      Current Manager
+                    </div>
+                    <div className="manager-filter_button p-2">
+                      Last Managers
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Tab>
           </div>
         </div>
       </div>

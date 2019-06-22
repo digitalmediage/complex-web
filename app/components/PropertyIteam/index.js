@@ -13,6 +13,7 @@ import bathtub from '../../images/bathtub.png';
 const PropertyIteam = (props) => {
   
   const [liked, toggleLike] = useState('true');
+  const { complex } = props.data;
 
   return (
 
@@ -36,7 +37,7 @@ const PropertyIteam = (props) => {
             </span>
           </p>
           <h5>{ props.data.price ? props.data.price.$numberDecimal : null   }</h5>
-          <p className={styles.propertiesLocation}>{props.data.complex.country} , {props.data.complex.city}</p>
+          <p className={styles.propertiesLocation}>{complex ? complex.country : null} , {complex ? complex.city : null}</p>
         </div>
         <div className={styles.propertiesServices}>
           <div className={styles.serviceBox}>
