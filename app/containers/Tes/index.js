@@ -18,12 +18,9 @@ import { makeSelectComplex } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
-import {Get_COMPLEXS} from './actions';
+import { Get_COMPLEXS } from './actions';
 
-export function Tes({
-  complex,
-  clickHandler
-}) {
+export function Tes({ complex, clickHandler }) {
   useInjectReducer({ key: 'complex', reducer });
   useInjectSaga({ key: 'complex', saga });
 
@@ -34,16 +31,14 @@ export function Tes({
         <meta name="description" content="Description of Tes" />
       </Helmet>
       <div>
-      <h1> Complex List </h1>
-      { console.log(complex) }
-      {complex ? complex.map(m => (
-        <div> {m.city} </div>
-      )) : null }
+          <h1> Complex List </h1>
+          {console.log(complex)}
+        {complex ? complex.map(m => (
+          <div> {m.city} </div>
+        )) : null }
       </div>
       <input type="text" />
-      <button
-        onClick={clickHandler}
-      > click </button>
+      <button onClick={clickHandler}> click </button>
     </div>
   );
 }

@@ -1,3 +1,21 @@
 .manager-container {
     background-color: #f0eeee;
 }
+
+.complexes-list {
+    background-color: white;
+    border-radius: 20px;
+    padding:30px;
+}
+
+.complex-item {
+    border-radius: 100%;
+    border: 1px solid inherit;
+    -webkit-box-shadow: 7px 14px 29px -16px rgba(138, 130, 138, 1);
+    -moz-box-shadow: 7px 14px 29px -16px rgba(138, 130, 138, 1);
+    box-shadow: 7px 14px 29px -16px rgba(138, 130, 138, 1);
+    width:11.3rem;
+    height:11.3rem;
+    background-size: cover;
+}
+

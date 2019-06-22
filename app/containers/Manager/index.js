@@ -1,10 +1,12 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react/prop-types */
 /**
  *
  * Manager
  *
  */
 
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -16,11 +18,22 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import { getComplexes } from '../App/actions';
 import Header from '../Layout/Header';
+import { makeSelectComplexes } from '../App/selectors';
+
+import reducer from '../App/reducer';
+import saga from './saga';
 
 require('./styles.css');
 
-export function Manager({}) {
+export function Manager({ complexes, _getComplexes }) {
+  useInjectReducer({ key: 'global', reducer });
+  useInjectSaga({ key: 'manager', saga });
+
+  useEffect(() => {
+    _getComplexes();
+  }, []);
   return (
     <div className="manager-container">
       <Helmet>
@@ -29,7 +42,26 @@ export function Manager({}) {
       </Helmet>
       <Header />
       <div className="container">
-        <div className="breadcrumbs pt-4">Manager</div>
+        <div className="col-12 mb-5">
+          <div className="breadcrumbs pt-4">Manager</div>
+        </div>
+
+        <div className="row mt-5 complexes-list">
+          <div className="d-flex w-100 flex-row justify-content-around complexex-list-title">
+            {console.log('complexes')}
+            {console.log(complexes)}
+            {complexes.map(complex => (
+              <div className="d-flex flex-column justify-content-center text-center">
+                <div
+                  className="complex-item my-4"
+                  style={{ backgroundImage: `url(${complex.baner_image.path}` }}
+                />
+                <div> manager name </div>
+                <span>{complex.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -39,13 +71,16 @@ Manager.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = createStructuredSelector({});
-
 function mapDispatchToProps(dispatch) {
   return {
+    _getComplexes: () => dispatch(getComplexes()),
     dispatch,
   };
 }
+
+const mapStateToProps = createStructuredSelector({
+  complexes: makeSelectComplexes(),
+});
 
 const withConnect = connect(
   mapStateToProps,
