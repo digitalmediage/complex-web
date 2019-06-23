@@ -89,7 +89,7 @@
   justify-content: space-between;
   padding: 20px 25px;
   border-radius: 15px;
-  margin: 10px 0;
+  margin: 10px 3px;
   box-shadow: 1px 2px 3px #cfcfcf;
 }
 
@@ -147,11 +147,10 @@
 
 .whiteBoxChart {
   background-color: #fff;
-  padding: 40px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 50%;
   box-shadow: 3px 3px 10px #a3a3a3;
 }
 
@@ -172,7 +171,7 @@
 }
 
 .numberChart {
-  padding-bottom: 10px;
+  padding-bottom: 0;
 }
 
 .numberChartBlue {
@@ -201,7 +200,7 @@
 }
 
 .timeChart {
-  padding-top: 30px;
+  padding-top: 5px;
   display: flex;
 }
 
@@ -240,11 +239,6 @@
   display: flex;
 }
 
-/* tabs */
-.tabs {
-  width:100%;
-  margin: auto;
-}
 
 .complexList {
   padding: 20px;
@@ -495,27 +489,3 @@ p {
   border-radius: 0;
 }
 
-/* Tabs */
-
-.tab-list {
-  border-bottom: 1px solid #ccc;
-  padding-left: 0;
-}
-
-.tab-list-item {
-  display: inline-block;
-  list-style: none;
-  margin-bottom: -1px;
-  padding: 0.5rem 0.75rem;
-}
-
-.tab-content {
-  height:100%;
-  padding-bottom:30px;
-}
-
-.tab-list-active {
-  background-color: white;
-  border: solid #ccc;
-  border-width: 1px 1px 0 1px;
-}

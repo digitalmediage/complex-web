@@ -27,13 +27,9 @@
   margin: 0;
 }
 
-.centerBox li a{
+.centerBox  a{
   text-decoration: none;
   color: #000;
-}
-
-
-.centerBox li {
   margin: 0 15px;
   font-size: 14px;
   text-transform: capitalize;
@@ -41,19 +37,28 @@
   position: relative;
 }
 
-
-.centerBox li::after {
+.centerBox a.active::after {
   content: '';
   position: absolute;
   display: block;
-  width: 0;
+  width: 85%;
   height: 2px;
   background: #61AEEB;
   transition: width .3s;
-  bottom: -30px;
+  bottom: -24px;
 }
 
-.centerBox li:hover::after {
+.navbar-light .navbar-nav .nav-link.active{
+  background-color: transparent;
+}
+
+.navbar-light .navbar-toggler{
+  padding: 0;
+  margin-right: 30px;
+  border: 0;
+}
+
+.centerBox a:hover::after {
   width: 100%;
 }
 
