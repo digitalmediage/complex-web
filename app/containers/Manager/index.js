@@ -71,16 +71,24 @@ export function Manager({ complexes, _getComplexes }) {
               <div label="Charges">dadasdas</div>
               <div label="Expenses">dadasdas</div>
               <div label="Changer or add manager">
-                <div className="d-flex flex-row w-100 manager-filter pl-3 pt-4">
-                  <div className="w-50 d-flex justify-content-around">
-                    <div className="manager-filter_button p-2">
-                      All Managers
+                <div className="d-flex flex-column w-100">
+                  <div className="d-flex flex-row manager-filter pl-3 py-4">
+                    <div className="d-flex justify-content-around">
+                      <div className="manager-filter_button p-2">
+                        All Managers
+                      </div>
+                      <div className="manager-filter_button p-2">
+                        Current Manager
+                      </div>
+                      <div className="manager-filter_button p-2">
+                        Last Managers
+                      </div>
                     </div>
-                    <div className="manager-filter_button p-2">
-                      Current Manager
-                    </div>
-                    <div className="manager-filter_button p-2">
-                      Last Managers
+                  </div>
+
+                  <div className="row">
+                    <div className="col-12 mt-4">
+                      <div className="manager-profile-section d-flex" />
                     </div>
                   </div>
                 </div>

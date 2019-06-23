@@ -21,6 +21,29 @@
 
 .manager-filter {
     background-color: white;
+    border-radius: 20px;
+}
+
+.manager-profile-section {
+    background-color: white;
+    width:100%;
+    min-height: 300px;
+    border-radius: 20px;
+}
+
+.manager-profile-section:before {
+    position: absolute;
+    content:'';
+    width:20px;
+    top:25px;
+    left:40px;
+    height:20px;
+    border-radius: 100%;
+    background-color: #bce494;
+}
+
+.manager-filter > div {
+    width:38vw;
 }
 
 .manager-filter_button {
@@ -30,5 +53,35 @@
     height:2.3rem;
     text-align: center;
     color: gray;
+    cursor: pointer;
     font-size: 0.8rem;
+    transition: all 0.7s ease;
+}
+
+.manager-filter_button.active {
+   background-color: blue;
+   color:white;
+}
+
+.manager-filter_button:hover {
+    background-color: blue;
+    color:white;
+    transition: all 0.7s ease;
+}
+
+@media only screen and (max-width:1050px) {
+    .manager-filter>div {
+      width: 68vw;
+    }
+}
+
+@media only screen and (max-width:760px) {
+  .manager-filter > div {
+    width: 90vw;
+  }
+  .manager-filter_button {
+       width:8.1rem;
+       height:2rem;
+       font-size: 0.6rem;
+  }
 }
