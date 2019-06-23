@@ -7,6 +7,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 import styles from './styles.css';
 
 class Header extends React.Component {
@@ -22,26 +23,41 @@ class Header extends React.Component {
           <div />
           <p>En</p>
         </div>
-        <ul className={styles.centerBox}>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/complex">Complexes</Link>
-          </li>
-          <li>
-            <Link to="/property">Properties</Link>
-          </li>
-          <li>
-            <Link to="/manager">Manager</Link>
-          </li>
-          <li>
-            <a href="/">News</a>
-          </li>
-          <li>
-            <a href="/">Messages</a>
-          </li>
-        </ul>
+        <nav className="navbar navbar-expand-lg navbar-light">
+          <button
+            className={classnames('navbar-toggler')}
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="navbar-nav centerBox">
+              <Link to="/" className="nav-item text-menu nav-link active">
+                Home
+              </Link>
+              <Link className="nav-item text-menu nav-link" to="/complex">
+                Complexes
+              </Link>
+              <Link className="nav-item text-menu nav-link" to="/property">
+                Properties
+              </Link>
+              <Link className="nav-item text-menu nav-link" to="/manager">
+                Manager
+              </Link>
+              <Link className="nav-item text-menu nav-link" to="/">
+                News
+              </Link>
+              <Link className="nav-item text-menu nav-link" to="/">
+                Messages
+              </Link>
+            </div>
+          </div>
+        </nav>
         <div className={styles.rightBox}>
           <div className={styles.alert} />
           <div className={styles.profile} />
