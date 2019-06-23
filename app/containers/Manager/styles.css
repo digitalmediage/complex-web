@@ -42,6 +42,17 @@
     background-color: #bce494;
 }
 
+.manager-profile-section:after {
+  position: absolute;
+  content: '';
+  width: 20px;
+  top: 25px;
+  right: 40px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: #bce494;
+}
+
 .manager-filter > div {
     width:38vw;
 }
@@ -67,6 +78,16 @@
     background-color: blue;
     color:white;
     transition: all 0.7s ease;
+}
+
+
+.avatar-container {
+    align-self: center;
+}
+
+.manager-info {
+    border-left: 1px solid gray;
+    min-height: 130px;
 }
 
 @media only screen and (max-width:1050px) {
