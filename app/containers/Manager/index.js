@@ -21,6 +21,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { getComplexes } from '../App/actions';
 
 import Tab from '../../components/tabs/index';
+import Avatar from '../../components/Avatar';
 import Header from '../Layout/Header';
 import { makeSelectComplexes } from '../App/selectors';
 
@@ -88,7 +89,15 @@ export function Manager({ complexes, _getComplexes }) {
 
                   <div className="row">
                     <div className="col-12 mt-4">
-                      <div className="manager-profile-section d-flex" />
+                      <div className="manager-profile-section d-flex">
+                        <Avatar
+                          src={
+                            complexes[0] ? complexes[0].baner_image.path : null
+                          }
+                          width={200}
+                          height={200}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

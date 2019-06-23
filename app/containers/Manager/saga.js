@@ -12,6 +12,8 @@ import {
 } from '../App/actions';
 import { PROPERTY_REQUEST, COMPLEX_REQUEST } from '../App/constants';
 
+import { SERVER_ADDRESS, API_VERSION } from '../../variable';
+
 function request(url) {
   return axios
     .get(url)
@@ -32,7 +34,9 @@ export function* __propertyWorker() {
   try {
     // Call our request helper (see 'utils/request')
     // const complexs = yield call(request('http://localhost:8080/v1/complex'));
-    const properties = yield request('http://localhost:3000/v1/property');
+    const properties = yield request(
+      `${SERVER_ADDRESS}/${API_VERSION}/property`,
+    );
     console.log('properties yield');
     console.log(properties);
     yield put(receiveProperties(properties.data));
@@ -53,7 +57,7 @@ export function* __complexWorker() {
   try {
     // Call our request helper (see 'utils/request')
     // const complexs = yield call(request('http://localhost:8080/v1/complex'));
-    const complexes = yield request('http://localhost:8080/v1/complex');
+    const complexes = yield request(`${SERVER_ADDRESS}/${API_VERSION}/complex`);
     console.log('complexes yield');
     console.log(complexes);
     yield put(receiveComplexes(complexes.data));
