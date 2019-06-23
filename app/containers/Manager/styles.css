@@ -1,0 +1,87 @@
+.manager-container {
+    background-color: #f0eeee;
+}
+
+.complexes-list {
+    background-color: white;
+    border-radius: 20px;
+    padding:30px;
+}
+
+.complex-item {
+    border-radius: 100%;
+    border: 1px solid inherit;
+    -webkit-box-shadow: 7px 14px 29px -16px rgba(138, 130, 138, 1);
+    -moz-box-shadow: 7px 14px 29px -16px rgba(138, 130, 138, 1);
+    box-shadow: 7px 14px 29px -16px rgba(138, 130, 138, 1);
+    width:11.3rem;
+    height:11.3rem;
+    background-size: cover;
+}
+
+.manager-filter {
+    background-color: white;
+    border-radius: 20px;
+}
+
+.manager-profile-section {
+    background-color: white;
+    width:100%;
+    min-height: 300px;
+    border-radius: 20px;
+}
+
+.manager-profile-section:before {
+    position: absolute;
+    content:'';
+    width:20px;
+    top:25px;
+    left:40px;
+    height:20px;
+    border-radius: 100%;
+    background-color: #bce494;
+}
+
+.manager-filter > div {
+    width:38vw;
+}
+
+.manager-filter_button {
+    border: 1px solid gray;
+    border-radius: 25px;
+    width:10.1rem;
+    height:2.3rem;
+    text-align: center;
+    color: gray;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.7s ease;
+}
+
+.manager-filter_button.active {
+   background-color: blue;
+   color:white;
+}
+
+.manager-filter_button:hover {
+    background-color: blue;
+    color:white;
+    transition: all 0.7s ease;
+}
+
+@media only screen and (max-width:1050px) {
+    .manager-filter>div {
+      width: 68vw;
+    }
+}
+
+@media only screen and (max-width:760px) {
+  .manager-filter > div {
+    width: 90vw;
+  }
+  .manager-filter_button {
+       width:8.1rem;
+       height:2rem;
+       font-size: 0.6rem;
+  }
+}

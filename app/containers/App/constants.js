@@ -8,3 +8,14 @@
  * Follow this format:
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
+
+export const COMPLEX_REQUEST = 'boilerplate/App/COMPLEX_REQUEST';
+export const COMPLEX_RESPONSE_SUCCESS =
+  'boilerplate/App/COMPLEX_RESPONSE_SUCCESS';
+export const COMPLEX_RESPONSE_ERROR = 'boilerplate/App/COMPLEX_RESPONSE_ERROR';
+
+export const PROPERTY_REQUEST = 'boilerplate/App/PROPERTY_REQUEST';
+export const PROPERTY_RESPONSE_SUCCESS =
+  'boilerplate/App/PROPERTY_RESPONSE_SUCCESS';
+export const PROPERTY_RESPONSE_ERROR =
+  'boilerplate/App/PROPERTY_RESPONSE_ERROR';
