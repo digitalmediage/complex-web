@@ -1,8 +1,12 @@
+/* eslint-disable indent */
+/* eslint-disable react/prop-types */
 /* eslint-disable no-underscore-dangle */
 /* eslint no-underscore-dangle: "error" */
 import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import classnames from 'classnames';
+import bs from 'bs';
 import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
@@ -14,9 +18,7 @@ import reducer from './reducer';
 import saga from './saga';
 import { requestComplex } from './actions';
 
-import classnames from 'classnames';
-import bs from 'bs';
-import axios from 'axios';
+// import axios from 'axios';
 import styles from './styles.css';
 import Header from '../Layout/Header';
 import ComplexCard from '../../components/ComplexCard';
@@ -24,9 +26,14 @@ import ButtonPrimary from '../../components/Button/ButtonPrimary';
 // import properties from '../../faker/properties';
 import Error from '../../components/Errors';
 
-const Loading = () => <div className="alert success">Loading .........</div>;
+// const Loading = () => <div className="alert success">Loading .........</div>;
 
-export function Complexes({ complexes, loading, error, getComplexes }) {
+export function Complexes({
+  complexes,
+  // loading,
+  // error,
+  getComplexes,
+}) {
   useInjectReducer({ key: 'complexes', reducer });
   useInjectSaga({ key: 'complexes', saga });
 
@@ -36,7 +43,10 @@ export function Complexes({ complexes, loading, error, getComplexes }) {
 
   return (
     <Error>
-      {loading ? <Loading /> : null}
+      {/* {loading ? <Loading /> : null} */}
+      <Helmet>
+        <title> </title>
+      </Helmet>
       <section className={styles.complexContainer}>
         <Header />
         <div className={classnames(bs.container, 'complexContainer')}>
@@ -77,6 +87,7 @@ export function Complexes({ complexes, loading, error, getComplexes }) {
 }
 
 Complexes.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
   dispatch: PropTypes.func.isRequired,
 };
 

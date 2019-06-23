@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable indent */
 /* eslint-disable no-underscore-dangle */
 /* eslint no-underscore-dangle: "error" */
@@ -30,8 +31,8 @@ import reducer from '../App/reducer';
 import saga from './saga';
 
 export function Property({
-  loading,
-  error,
+  // loading,
+  // error,
   complexes,
   properties,
   _getProperties,
@@ -43,7 +44,6 @@ export function Property({
   useEffect(() => {
     _getProperties();
     _getComplexes();
-    console.log('use effect change');
   }, []);
 
   const [filterType, setFilterType] = useState('type');
@@ -72,6 +72,9 @@ export function Property({
 
   return (
     <Error>
+      <Helmet>
+        <title />
+      </Helmet>
       <section className={styles.complexContainer}>
         <Header />
         <div className={classnames(bs.container, 'complexContainer')}>
@@ -145,6 +148,7 @@ export function Property({
 }
 
 Property.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
   dispatch: PropTypes.func.isRequired,
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable prettier/prettier */
 /* eslint-disable import/named */
@@ -11,7 +12,7 @@ import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -50,9 +51,9 @@ import fakerData from '../../faker/ChartData';
 
 
 export function Home({
-  loading,
-  error,
-  complexes,
+  // loading,
+  // error,
+  // complexes,
   properties,
   _getProperties,
   _getComplexes,
@@ -114,10 +115,7 @@ export function Home({
                 </div>
                 <div className="d-flex flex-row flex-wrap" label="Properties">
                   {properties && Array.isArray(properties) ? properties.map(property => (
-                    < PropertyIteam data = {
-                      property
-                    }
-                    />
+                    <PropertyIteam data={property} />
                   )) : null }
                 </div>
               </Tab>
@@ -130,6 +128,7 @@ export function Home({
 }
 
 Home.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
   dispatch: PropTypes.func.isRequired,
 };
 

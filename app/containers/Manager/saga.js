@@ -32,7 +32,7 @@ export function* __propertyWorker() {
   try {
     // Call our request helper (see 'utils/request')
     // const complexs = yield call(request('http://localhost:8080/v1/complex'));
-    const properties = yield request('http://localhost:8080/v1/property');
+    const properties = yield request('http://localhost:3000/v1/property');
     console.log('properties yield');
     console.log(properties);
     yield put(receiveProperties(properties.data));
@@ -68,6 +68,6 @@ export function* __complexWorker() {
 export default function* propertySaga() {
   console.log('saga - properties watcher run');
   // See example in containers/HomePage/saga.js
-    //   yield takeLatest(PROPERTY_REQUEST, __propertyWorker);
+  //   yield takeLatest(PROPERTY_REQUEST, __propertyWorker);
   yield takeLatest(COMPLEX_REQUEST, __complexWorker);
 }
