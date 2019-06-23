@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-
 import Tab from './Tab';
 
 class Tabs extends React.Component {
