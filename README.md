@@ -33,7 +33,6 @@
   <dd>We support SEO (document head tags management) for search engines that support indexing of JavaScript content. (eg. Google)</dd>
 </dl>
 
-
 - _The best test setup:_ Automatically guarantee code quality and non-breaking
   changes. (Seen a react app with 100% test coverage before?)
 - _Native web app:_ Your app's new home? The home screen of your users' phones.
@@ -51,6 +50,34 @@
 4.  Run `npm run setup` in order to install dependencies and clean the git repo.<br />
     _At this point you can run `npm start` to see the example app at `http://localhost:3000`._
 5.  Run `npm run clean` to delete the example app.
+
+
+## Git Commit Messages
+
+> @skip =>  this commit just changed some dummy thing like comment
+
+> @refactor => just refactor
+
+> @dependency  => delete or add dependencies
+
+```
+
+(container-name)   // change happen in this container
+<component-name>   // change happen in this component
+
+```
+
+*** Tags ***
+
+__All tag placed in [] and put details () like this  [TAG-NAME](details ...)__
+
+```
+
+[UNSTABLE_VERSION]
+[MERGE]
+[BRANCH]
+
+```
 
 
 ## License
