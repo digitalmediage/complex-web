@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/prop-types */
 /**
@@ -6,7 +8,7 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -21,6 +23,10 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { getComplexes } from '../App/actions';
 
 import Tab from '../../components/tabs/index';
+
+import Form from '../../components/NormalInput/form';
+import Field from '../../components/NormalInput/field';
+
 import Avatar from '../../components/Avatar';
 import Header from '../Layout/Header';
 import { makeSelectComplexes } from '../App/selectors';
@@ -33,6 +39,11 @@ require('./styles.css');
 export function Manager({ complexes, _getComplexes }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'manager', saga });
+
+  const [imageFile, setImageFile] = useState(false);
+  const onSubmit = () => {
+    console.log('helllo mother fucker');
+  };
 
   useEffect(() => {
     _getComplexes();
@@ -118,22 +129,53 @@ export function Manager({ complexes, _getComplexes }) {
                   <div className="row">
                     <div className="col-12 mt-4">
                       <div className="manager-create-section flex-md-row flex-column d-flex justify-content-around">
-                        <div className="avatar-container">
-                          <Avatar
-                            src={
-                              complexes[0]
-                                ? complexes[0].baner_image.path
-                                : null
-                            }
-                            width={200}
-                            height={200}
-                          />
+                        <div
+                          onClick={() => setImageFile(!imageFile)}
+                          className="avatar-container"
+                        >
+                          {console.log(imageFile)}
+                          {console.log('imageFile')}
+                          {imageFile ? (
+                            <div className="upload-image-circle">+</div>
+                          ) : (
+                            <Avatar
+                              src={
+                                complexes[0]
+                                  ? complexes[0].baner_image.path
+                                  : null
+                              }
+                              width={200}
+                              height={200}
+                            />
+                          )}
+
+                          {/* Show AVARTA when Image Uploaded  */}
                         </div>
 
                         <div className="manager-info h-75 justify-content-center d-flex flex-column mt-5 pl-3">
-                          <div>Hamid Reza Nikoonia</div>
-                          <span>tel: 232423523</span>
-                          <span>email: hadsa@sds.dsd</span>
+                          <Form onSubmit={onSubmit}>
+                            <Field
+                              label="Mobile"
+                              type="text"
+                              validation={(component, value) => {
+                                if (!value) {
+                                  return component.setError(
+                                    'danger',
+                                    '{label} را وارد کنید',
+                                  );
+                                }
+                                if (!`${value}`.match(/^09([0-9]{9})$/)) {
+                                  return component.setError(
+                                    'danger',
+                                    '{label} معتبر نیست',
+                                  );
+                                }
+                                return component.setError(null);
+                              }}
+                              placeholder=""
+                            />
+                            <button type="submit">Hello</button>
+                          </Form>
                         </div>
 
                         <div className="align-self-end">

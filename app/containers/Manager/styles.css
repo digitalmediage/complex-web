@@ -38,6 +38,25 @@
     border-radius: 20px;
 }
 
+.upload-image-circle {
+    
+    min-width: 200px;
+    text-align: center;
+    font-size: 7.5rem;
+    color:white;
+    cursor: pointer;
+    min-height: 200px;
+    line-height: 180px;
+    background-color: gray;
+    border-radius: 100%;
+    transition:all 1s ease;
+}
+
+.upload-image-circle:hover {
+    opacity: 0.5;
+    transition:all 1s ease;
+}
+
 .manager-profile-section:before {
     position: absolute;
     content:'';
