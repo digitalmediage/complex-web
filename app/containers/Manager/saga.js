@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { call, takeLatest, put, select } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
 import axios from 'axios';
 // import { makeSelectComplexes } from './selector';
 // import { complexResult } from './actions';

@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
-import { call, takeLatest, put, select } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
 import axios from 'axios';
-import { makeSelectComplexes } from './selector';
 import { complexResult } from './actions';
 import { REQUEST_COMPLEX } from './constanst';
+import { API_VERSION, SERVER_ADDRESS } from '../../variable';
 
 function request(url) {
   return axios
@@ -23,9 +24,7 @@ export function* __ComplexResult() {
   //   const requestURL = `http://localhost:8080/v1/complex`;
 
   try {
-    // Call our request helper (see 'utils/request')
-    // const complexs = yield call(request('http://localhost:8080/v1/complex'));
-    const complexs = yield request('http://5.253.27.170:3000/v1/complex');
+    const complexs = yield request(`${SERVER_ADDRESS}/${API_VERSION}/complex`);
     console.log('complexes yield');
     console.log(complexs);
     yield put(complexResult(complexs.data));
@@ -38,6 +37,5 @@ export function* __ComplexResult() {
 // Complex Watcher - SAGA-ROOT
 export default function* tesSaga() {
   console.log('saga - complex watcher run');
-  // See example in containers/HomePage/saga.js
   yield takeLatest(REQUEST_COMPLEX, __ComplexResult);
 }

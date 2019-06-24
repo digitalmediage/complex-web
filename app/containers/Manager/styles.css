@@ -31,6 +31,13 @@
     border-radius: 20px;
 }
 
+.manager-create-section {
+    background-color: white;
+    width:100%;
+    min-height: 300px;
+    border-radius: 20px;
+}
+
 .manager-profile-section:before {
     position: absolute;
     content:'';

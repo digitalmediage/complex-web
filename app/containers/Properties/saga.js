@@ -1,9 +1,7 @@
+/* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
-import { call, takeLatest, put, select } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
 import axios from 'axios';
-// import { makeSelectComplexes } from './selector';
-// import { complexResult } from './actions';
-// import {REQUEST_COMPLEX} from './constanst';
 import {
   receiveProperties,
   propertiesError,
@@ -11,6 +9,7 @@ import {
   complexesError,
 } from '../App/actions';
 import { PROPERTY_REQUEST, COMPLEX_REQUEST } from '../App/constants';
+import { SERVER_ADDRESS, API_VERSION } from '../../variable';
 
 function request(url) {
   return axios
@@ -25,14 +24,11 @@ function request(url) {
 // Property Worker
 export function* __propertyWorker() {
   console.log('saga - properties worker run');
-  // Select username from store
-  //   const complex = yield select(makeSelectComplexes());
-  //   const requestURL = `http://localhost:8080/v1/complex`;
 
   try {
-    // Call our request helper (see 'utils/request')
-    // const complexs = yield call(request('http://localhost:8080/v1/complex'));
-    const properties = yield request('http://localhost:8080/v1/property');
+    const properties = yield request(
+      `${SERVER_ADDRESS}/${API_VERSION}/property`,
+    );
     console.log('properties yield');
     console.log(properties);
     yield put(receiveProperties(properties.data));
@@ -46,14 +42,9 @@ export function* __propertyWorker() {
 // Complex worker
 export function* __complexWorker() {
   console.log('saga - complex worker run');
-  // Select username from store
-  //   const complex = yield select(makeSelectComplexes());
-  //   const requestURL = `http://localhost:8080/v1/complex`;
 
   try {
-    // Call our request helper (see 'utils/request')
-    // const complexs = yield call(request('http://localhost:8080/v1/complex'));
-    const complexes = yield request('http://localhost:8080/v1/complex');
+    const complexes = yield request(`${SERVER_ADDRESS}/${API_VERSION}/complex`);
     console.log('complexes yield');
     console.log(complexes);
     yield put(receiveComplexes(complexes.data));
@@ -67,7 +58,6 @@ export function* __complexWorker() {
 // Complex Watcher - SAGA-ROOT
 export default function* propertySaga() {
   console.log('saga - properties watcher run');
-  // See example in containers/HomePage/saga.js
   yield takeLatest(PROPERTY_REQUEST, __propertyWorker);
   yield takeLatest(COMPLEX_REQUEST, __complexWorker);
 }

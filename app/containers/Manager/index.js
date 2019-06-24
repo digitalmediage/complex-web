@@ -44,7 +44,7 @@ export function Manager({ complexes, _getComplexes }) {
         <meta name="description" content="Description of Tes" />
       </Helmet>
       <Header />
-      <div className="container">
+      <div className="container pb-5">
         <div className="col-12 mb-5">
           <div className="breadcrumbs pt-4">Manager</div>
         </div>
@@ -114,6 +114,35 @@ export function Manager({ complexes, _getComplexes }) {
                       </div>
                     </div>
                   </div>
+
+                  <div className="row">
+                    <div className="col-12 mt-4">
+                      <div className="manager-create-section flex-md-row flex-column d-flex justify-content-around">
+                        <div className="avatar-container">
+                          <Avatar
+                            src={
+                              complexes[0]
+                                ? complexes[0].baner_image.path
+                                : null
+                            }
+                            width={200}
+                            height={200}
+                          />
+                        </div>
+
+                        <div className="manager-info h-75 justify-content-center d-flex flex-column mt-5 pl-3">
+                          <div>Hamid Reza Nikoonia</div>
+                          <span>tel: 232423523</span>
+                          <span>email: hadsa@sds.dsd</span>
+                        </div>
+
+                        <div className="align-self-end">
+                          Last Update: 29 JUN 2019 &nbsp; 12:20 PM
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Section */}
                 </div>
               </div>
             </Tab>
