@@ -304,12 +304,16 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
 import {
-  signUp
+  signUp,
+  changeEmail,
+  changePassword,
 } from '../../App/actions';
 
 import {
   makeSelectUserEmail,
   makeSelectUserPassword,
+  makeSelectLoading,
+  makeSelectError
 } from '../../App/selectors';
 
 import styles from '../SignIn/styles.css';
@@ -328,17 +332,16 @@ import saga from './saga';
 
 export function SignUp({
   putSignUp,
-  userEmail,
-  userPassword,
+  email,
+  password,
+  setPassword,
+  setEmail,
   loading,
   error,
 }) {
 
-  useInjectReducer({ key: 'complex', reducer });
-  useInjectSaga({ key: 'complex', saga });
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  useInjectReducer({ key: 'global', reducer });
+  useInjectSaga({ key: 'global', saga });
 
   const validate = (_email,_password) => {
     const emailReg = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
@@ -387,19 +390,23 @@ export function SignUp({
             </div>
             <form className={styles.loginForm}>
               { console.log('we are in Component') }
-              { loading ? console.log(loading) : null }
-              { error ? console.log(error) : null}
+              {  console.log(loading) }
+              {console.log(email)}
+              {  console.log(error)}    
               { console.log('we are in Component') }
+              {loading ? <span className="alert danger">Loading</span> : null}
               <div className={classnames(`form-group formLogin`)}>
                 {/* <label className={styles.labelInput}>Email</label> */}
                 <input
                   type="email"
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className={styles.loginInput}
                   placeholder="email"
                 />
                 <input
                   type="password"
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className={styles.loginInput}
                   placeholder="Password"
@@ -407,7 +414,7 @@ export function SignUp({
               </div>
               <button
                 type="button"
-                onClick={() => putSignUp()}
+                onClick={() => putSignUp(validate, email, password)}
                 className={styles.loginBtn} 
                 variant="primary" 
               >
@@ -429,13 +436,24 @@ SignUp.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  userEmail: makeSelectUserEmail(),
-  userPassword: makeSelectUserPassword(),
+  email: makeSelectUserEmail(),
+  password: makeSelectUserPassword(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
 });
+
 
 function mapDispatchToProps(dispatch) {
   return {
-    putSignUp: () => dispatch(signUp()),
+    setEmail: val => dispatch(changeEmail(val)),
+    setPassword: val => dispatch(changePassword(val)),
+    putSignUp: (validate, email, password) => {
+      const v = validate(email, password);
+      if(v) {
+        dispatch(signUp())
+      } else {
+        return false;
+      }},
     dispatch,
   };
 }

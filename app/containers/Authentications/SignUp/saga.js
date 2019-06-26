@@ -40,7 +40,14 @@ export function* __SignUp() {
     password: userPassword,
   };
 
+  console.log('user');
+  console.log(user);
+
   try {
+    console.log('get state beforee send');
+    console.log(typeof userEmail);
+    console.log(userEmail);
+    console.log(userPassword);
     const userRegistered = yield request(
       `${SERVER_ADDRESS}/${API_VERSION}/auth/register`,
       {
@@ -50,6 +57,12 @@ export function* __SignUp() {
     );
     console.log('complexes yield');
     console.log(userRegistered);
+    if (!userRegistered.data.data) {
+      if (userRegistered.data.code === 500) {
+        yield put(signUpError(userRegistered.data.message));
+        return;
+      }
+    }
     if (userRegistered.data.errors && !userRegistered.data.data) {
       yield put(signUpError(userRegistered.data.errors));
       return;

@@ -22,6 +22,9 @@ export const PROPERTY_RESPONSE_ERROR =
 
 // Authentication
 
+export const CHANGE_EMAIL = 'complex/App/CHANGE_EMAIL';
+export const CHANGE_PASSWORD = 'complex/App/CHANGE_PASSWORD';
+
 export const SIGN_UP_REQUEST = 'complex/App/SIGN_UP_REQUEST';
 export const SIGN_UP_RESPONSE_SUCCESS = 'complex/App/SIGN_UP_RESPONSE_SUCCESS';
 export const SIGN_UP_RESPONSE_ERROR = 'complex/App/SIGN_UP_RESPONSE_ERROR';

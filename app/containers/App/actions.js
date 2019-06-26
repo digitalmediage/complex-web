@@ -28,6 +28,8 @@ import {
   SIGN_IN_REQUEST,
   SIGN_IN_RESPONSE_SUCCESS,
   SIGN_IN_RESPONSE_ERROR,
+  CHANGE_EMAIL,
+  CHANGE_PASSWORD,
 } from './constants';
 
 /**
@@ -88,6 +90,20 @@ export function propertiesError(error) {
 }
 
 // Authentication
+
+export function changeEmail(email) {
+  return {
+    type: CHANGE_EMAIL,
+    email,
+  };
+}
+
+export function changePassword(password) {
+  return {
+    type: CHANGE_PASSWORD,
+    password,
+  };
+}
 
 export function signUp() {
   return {

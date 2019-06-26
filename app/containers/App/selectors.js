@@ -37,13 +37,13 @@ const makeSelectError = () =>
 const makeSelectUserEmail = () =>
   createSelector(
     selectGlobal,
-    homeState => homeState.error,
+    homeState => homeState.email,
   );
 
 const makeSelectUserPassword = () =>
   createSelector(
     selectGlobal,
-    homeState => homeState.error,
+    homeState => homeState.password,
   );
 
 const makeSelectLocation = () =>

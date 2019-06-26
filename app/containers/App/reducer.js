@@ -19,6 +19,8 @@ import {
   SIGN_UP_REQUEST,
   SIGN_UP_RESPONSE_SUCCESS,
   SIGN_UP_RESPONSE_ERROR,
+  CHANGE_EMAIL,
+  CHANGE_PASSWORD,
 } from './constants';
 
 // Initia Store
@@ -29,6 +31,8 @@ export const initialState = {
   complexes: [],
   properties: [],
   user: {},
+  email: '',
+  password: '',
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -62,9 +66,17 @@ const appReducer = (state = initialState, action) =>
         draft.error = action.error;
         draft.loading = false;
         break;
+      case CHANGE_EMAIL:
+        draft.email = action.email;
+        break;
+      case CHANGE_PASSWORD:
+        draft.password = action.password;
+        break;
       case SIGN_UP_REQUEST:
         draft.error = false;
         draft.loading = true;
+        // draft.email = action.email;
+        // draft.password = action.password;
         break;
       case SIGN_UP_RESPONSE_SUCCESS:
         draft.user = action.user;
