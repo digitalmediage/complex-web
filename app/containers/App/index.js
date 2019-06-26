@@ -21,6 +21,7 @@ import Properties from '../Properties';
 import Complex from '../Complex';
 import Tes from '../Tes';
 import Manager from '../Manager/Loadable';
+import EmailVerfication from '../Authentications/SignUp/emailValidation';
 
 // import GlobalStyle from '../../global-styles';
 
@@ -41,6 +42,7 @@ export default function App() {
         <Route path="/property" component={Properties} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
+        <Route path="/auth/verification" component={EmailVerfication} />
         <Route path="/forget-password" component={ForgetPassword} />
         <Route path="/forget-password" component={ForgetPassword} />
         <Route path="/manager" component={Manager} />
