@@ -46,6 +46,12 @@ const makeSelectUserPassword = () =>
     homeState => homeState.password,
   );
 
+const makeSelectresponseStatus = () =>
+  createSelector(
+    selectGlobal,
+    homeState => homeState.responseStatus,
+  );
+
 const makeSelectLocation = () =>
   createSelector(
     selectRouter,
@@ -54,6 +60,7 @@ const makeSelectLocation = () =>
 
 export {
   makeSelectLocation,
+  makeSelectresponseStatus,
   makeSelectComplexes,
   makeSelectCurrentUser,
   makeSelectProperties,

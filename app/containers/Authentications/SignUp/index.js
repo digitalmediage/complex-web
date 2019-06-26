@@ -313,7 +313,8 @@ import {
   makeSelectUserEmail,
   makeSelectUserPassword,
   makeSelectLoading,
-  makeSelectError
+  makeSelectError,
+  makeSelectresponseStatus,
 } from '../../App/selectors';
 
 import styles from '../SignIn/styles.css';
@@ -338,6 +339,7 @@ export function SignUp({
   setEmail,
   loading,
   error,
+  responseStatus,
 }) {
 
   useInjectReducer({ key: 'global', reducer });
@@ -388,12 +390,12 @@ export function SignUp({
                 alt="complex"
               />
             </div>
-            <form className={styles.loginForm}>
-              { console.log('we are in Component') }
+            {<form className={styles.loginForm}>
+              {/* { console.log('we are in Component') }
               {  console.log(loading) }
               {console.log(email)}
               {  console.log(error)}    
-              { console.log('we are in Component') }
+              { console.log('we are in Component') } */}
               {loading ? <span className="alert danger">Loading</span> : null}
               {error ? <span>ERORORR{error}</span> : null}
               <div className={classnames(`form-group formLogin`)}>
@@ -421,7 +423,7 @@ export function SignUp({
               >
               SignUp
               </button>
-            </form>
+            </form>}
           </div>
         </div>
         <Footer />
@@ -441,6 +443,7 @@ const mapStateToProps = createStructuredSelector({
   password: makeSelectUserPassword(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
+  responseStatus: makeSelectresponseStatus(),
 });
 
 

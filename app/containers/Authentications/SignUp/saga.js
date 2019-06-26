@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 import { takeLatest, put, select } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 import axios from 'axios';
 
 import { registered, signUpError } from '../../App/actions';
@@ -70,6 +71,7 @@ export function* __SignUp() {
       }
     }
     yield put(registered(userRegistered.data));
+    yield put(push('/'));
   } catch (error) {
     console.log(error.response ? error.response : error);
     console.log('error happen in sign-up  saga worker');

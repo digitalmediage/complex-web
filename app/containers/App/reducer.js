@@ -33,6 +33,7 @@ export const initialState = {
   user: {},
   email: '',
   password: '',
+  responseStatus: null,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -73,17 +74,20 @@ const appReducer = (state = initialState, action) =>
         draft.password = action.password;
         break;
       case SIGN_UP_REQUEST:
-        draft.error = false;
+        draft.error = null;
+        draft.responseStatus = false;
         draft.loading = true;
         // draft.email = action.email;
         // draft.password = action.password;
         break;
       case SIGN_UP_RESPONSE_SUCCESS:
         draft.user = action.user;
+        draft.responseStatus = true;
         draft.loading = false;
         break;
       case SIGN_UP_RESPONSE_ERROR:
         draft.loading = false;
+        draft.responseStatus = false;
         draft.error = action.error;
     }
   });
