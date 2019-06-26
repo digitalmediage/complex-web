@@ -349,6 +349,10 @@ export function SignUp({
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
 
+  const EmailVerification = () => (
+    <div> Email Verification </div>
+  );
+
 
   const validate = (_email,_password) => {
     const emailReg = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
@@ -395,7 +399,7 @@ export function SignUp({
                 alt="complex"
               />
             </div>
-            {loading === false ? <form className={styles.loginForm}>
+            {loading === false ? !responseStatus ? <form className={styles.loginForm}>
               {/* { console.log('we are in Component') }
               {  console.log(loading) }
               {console.log(email)}
@@ -427,7 +431,7 @@ export function SignUp({
               >
               SignUp
               </button>
-            </form> : <div className={styles.loaderForm}><ReactLoading delay={0} type='cylon' color="blue" height={107} width={175} /></div>
+            </form> : <EmailVerification/> : <div className={styles.loaderForm}><ReactLoading delay={0} type='cylon' color="blue" height={107} width={175} / > < /div>
             }
           </div>
         </div>

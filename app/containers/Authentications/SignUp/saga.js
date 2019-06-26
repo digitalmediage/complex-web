@@ -71,7 +71,7 @@ export function* __SignUp() {
       }
     }
     yield put(registered(userRegistered));
-    yield put(push('/'));
+    // yield put(push('/'));
   } catch (error) {
     console.log(error.response ? error.response : error);
     console.log('error happen in sign-up  saga worker');
