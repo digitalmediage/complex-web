@@ -22,6 +22,12 @@ import {
   PROPERTY_REQUEST,
   PROPERTY_RESPONSE_SUCCESS,
   PROPERTY_RESPONSE_ERROR,
+  SIGN_UP_REQUEST,
+  SIGN_UP_RESPONSE_SUCCESS,
+  SIGN_UP_RESPONSE_ERROR,
+  SIGN_IN_REQUEST,
+  SIGN_IN_RESPONSE_SUCCESS,
+  SIGN_IN_RESPONSE_ERROR,
 } from './constants';
 
 /**
@@ -77,6 +83,48 @@ export function receiveProperties(properties) {
 export function propertiesError(error) {
   return {
     type: PROPERTY_RESPONSE_ERROR,
+    error,
+  };
+}
+
+// Authentication
+
+export function signUp() {
+  return {
+    type: SIGN_UP_REQUEST,
+  };
+}
+
+export function registered(user) {
+  return {
+    type: SIGN_UP_RESPONSE_SUCCESS,
+    user,
+  };
+}
+
+export function signUpError(error) {
+  return {
+    type: SIGN_UP_RESPONSE_ERROR,
+    error,
+  };
+}
+
+export function signIn() {
+  return {
+    type: SIGN_IN_REQUEST,
+  };
+}
+
+export function signedIn(user) {
+  return {
+    type: SIGN_IN_RESPONSE_SUCCESS,
+    user,
+  };
+}
+
+export function signInError(error) {
+  return {
+    type: SIGN_IN_RESPONSE_ERROR,
     error,
   };
 }

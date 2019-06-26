@@ -161,18 +161,39 @@ export function Manager({ complexes, _getComplexes }) {
                                 if (!value) {
                                   return component.setError(
                                     'danger',
-                                    '{label} را وارد کنید',
+                                    '{label} please insert',
                                   );
                                 }
                                 if (!`${value}`.match(/^09([0-9]{9})$/)) {
                                   return component.setError(
                                     'danger',
-                                    '{label} معتبر نیست',
+                                    '{label}  Wrong',
                                   );
                                 }
                                 return component.setError(null);
                               }}
-                              placeholder=""
+                              placeholder="e.g hamid@gmail.com"
+                            />
+
+                            <Field
+                              label="Tell"
+                              type="text"
+                              validation={(component, value) => {
+                                if (!value) {
+                                  return component.setError(
+                                    'danger',
+                                    '{label} please insert',
+                                  );
+                                }
+                                if (!`${value}`.match(/^09([0-9]{9})$/)) {
+                                  return component.setError(
+                                    'danger',
+                                    '{label} Wrong',
+                                  );
+                                }
+                                return component.setError(null);
+                              }}
+                              placeholder="e.g 0912 2526  777"
                             />
                             <button type="submit">Hello</button>
                           </Form>

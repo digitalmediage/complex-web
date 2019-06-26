@@ -31,11 +31,9 @@ export function Tes({ complex, clickHandler }) {
         <meta name="description" content="Description of Tes" />
       </Helmet>
       <div>
-          <h1> Complex List </h1>
-          {console.log(complex)}
-        {complex ? complex.map(m => (
-          <div> {m.city} </div>
-        )) : null }
+        <h1> Complex List </h1>
+        {console.log(complex)}
+        {complex ? complex.map(m => <div> {m.city} </div>) : null}
       </div>
       <input type="text" />
       <button onClick={clickHandler}> click </button>

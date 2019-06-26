@@ -1,3 +1,8 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-else-return */
+/* eslint-disable eqeqeq */
+/* eslint-disable no-alert */
+/* eslint-disable no-unused-vars */
 // /* eslint-disable jsx-a11y/label-has-associated-control */
 // /* eslint-disable import/named */
 // /*
@@ -126,13 +131,188 @@
  * This is the first thing users see of our App, at the '/sign-in' route
  */
 
-import React from 'react';
+// import React from 'react';
+// import { Helmet } from 'react-helmet';
+// import axios from 'axios';
+
+// // Styles
+// import classnames from 'classnames';
+// import styles from '../SignIn/styles.css';
+
+// // Images
+// import location from '../../../images/pin.png';
+
+// // Components
+// import Footer from '../../Layout/Footer';
+// import Error from '../../../components/Errors';
+
+
+
+// class SignUp extends React.Component {
+
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       userName: '',
+//       password: '',
+//       errors: [],
+//       error: false,
+//     }
+//   }
+
+//   signUpHandler(e) {
+//     e.preventDefault();     
+//     console.log(this.state.userName);
+//     console.log(this.state.password);
+
+//     const { userName, password } = this.state;
+
+//     const user = {
+//       email: userName,
+//       password,
+//     };
+
+//     axios.post('http://localhost:8080/v1/auth/register', {
+//       email: userName,
+//       password,
+//     })
+//       .then(result => {
+//         console.log('result');
+//         console.log(result);
+
+//       })
+//       .catch(error => {
+//         console.log(error.response);
+//         console.log(error.response);
+
+//         if(error.response) {
+//           const data = error.response;
+//           if(data.data.errors && data.data.errors !== 0) {
+//             const err = [];
+//             data.data.errors.map(error => {
+//               console.log('error');
+//               console.log(error);
+//               err.push(error);
+//             });
+
+//             this.setState({
+//               errors: err,
+//             });
+
+//           } else {
+//             console.log('kir');
+//           }
+//         } else {
+//           console.log('result not exist');
+//         }
+//       })
+//   }
+
+//   setInput(event, input) {
+//     const {value} = event.target;
+
+//     if (input === 'userName') {
+//       this.setState({
+//         userName: value,
+//       });
+//     } else {
+//       this.setState({
+//         password: value,
+//       });
+//     }
+//   }
+
+//   showError(errors) {
+//     return (
+//       <div className="danger alert">
+//         {errors.messages.map(m => (
+//           <span> m </span>
+//         ))
+//         } 
+//       </div>
+//     )
+//   }
+
+//   render() {
+//     return(
+//       <Error>
+//         <article>
+//           <Helmet>
+//             <title>SignUp Page</title>
+//             <meta name="description" content="this is SignIn page" />
+//           </Helmet>
+//           {this.state.errors !== 0 ? '-' : this.showError(this.state.errors)}
+//           <div className={classnames(`signIn`)}>
+//             <h3 className={styles.loginTitle}><span className={styles.loginTitleBlue}>SignUp</span> Geo.Properties</h3>
+//             <div className={styles.login}>
+//               <div className={styles.loginImg}>
+//                 <img
+//                   className={styles.locationImg}
+//                   src={location}
+//                   alt="complex"
+//                 />
+//               </div>
+//               <form className={styles.loginForm}>
+//                 <div className={classnames(`form-group formLogin`)}>
+//                   {/* <label className={styles.labelInput}>Email</label> */}
+//                   <input
+//                     type="email"
+//                     onBlur={e => this.setInput(e, 'userName')}
+//                     className={styles.loginInput}
+//                     placeholder="email"
+//                   />
+//                   <input
+//                     type="password"
+//                     onBlur={e => this.setInput(e, 'password')}
+//                     className={styles.loginInput}
+//                     placeholder="Password"
+//                   />
+//                 </div>
+//                 <button
+//                   className={styles.loginBtn} 
+//                   variant="primary" 
+//                   onClick={(e) => this.signUpHandler(e)}
+//                 >
+//               SignUp
+//                 </button>
+//               </form>
+//             </div>
+//           </div>
+//           <Footer />
+//         </article>
+//       </Error>
+//     )
+//   }
+// }
+
+// export default SignUp;
+
+
+
+
+import React, { memo, useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import axios from 'axios';
+import { FormattedMessage } from 'react-intl';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
 
 // Styles
-import styles from '../SignIn/styles.css';
 import classnames from 'classnames';
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
+
+import {
+  signUp
+} from '../../App/actions';
+
+import {
+  makeSelectUserEmail,
+  makeSelectUserPassword,
+} from '../../App/selectors';
+
+import styles from '../SignIn/styles.css';
 
 // Images
 import location from '../../../images/pin.png';
@@ -143,142 +323,129 @@ import Error from '../../../components/Errors';
 
 
 
-class SignUp extends React.Component {
+import reducer from '../../App/reducer';
+import saga from './saga';
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      userName: '',
-      password: '',
-      errors: [],
-      error: false,
-    }
-  }
+export function SignUp({
+  putSignUp,
+  userEmail,
+  userPassword,
+  loading,
+  error,
+}) {
 
-   signUpHandler(e) {
-     e.preventDefault();     
-    console.log(this.state.userName);
-    console.log(this.state.password);
+  useInjectReducer({ key: 'complex', reducer });
+  useInjectSaga({ key: 'complex', saga });
 
-    const { userName, password } = this.state;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    const user = {
-      email: userName,
-      password: password,
-    };
+  const validate = (_email,_password) => {
+    const emailReg = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+    const passwordReg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
 
-    axios.post('http://localhost:8080/v1/auth/register', {
-      email: userName,
-      password: password,
-    })
-      .then(result => {
-        console.log('result');
-        console.log(result);
-
-      })
-      .catch(error => {
-        console.log(error.response);
-        console.log(error.response);
-
-        if(error.response) {
-          const data = error.response;
-          if(data.data.errors && data.data.errors !== 0) {
-            let err = [];
-            data.data.errors.map(error => {
-              console.log('error');
-              console.log(error);
-              err.push(error);
-            });
-
-            this.setState({
-              errors: err,
-            });
-
-          } else {
-            console.log('kir');
-          }
-        } else {
-          console.log('result not exist');
-        }
-      })
-  }
-
-    setInput(event, input) {
-    const value = event.target.value;
-
-    if (input === 'userName') {
-      this.setState({
-        userName: value,
-      });
+    if (_email.length == 0 || _password.length == 0) {
+      alert('please fill your input');
+      return false;
     } else {
-      this.setState({
-        password: value,
-      });
+      if(_email == '' || _password == '') {
+        alert('please fill form');
+        return false;
+      } 
+      if (!emailReg.test(_email)) {
+        alert('please fill correct email');
+        return false;
+      }
+
+      if (!passwordReg.test(_password)) {
+        alert('your password must at least one number, one lowercase and one uppercase letter and at least six characters');
+        return false;
+      }
+        
     }
+
+    return true;
+      
   }
 
-  showError(errors) {
-    return (
-      <div className="danger alert">
-         {errors.messages.map(m => (
-           <span> m </span>
-         ))
-         } 
-      </div>
-    )
-  }
-
-  render() {
-    return(
-      <Error>
+  return(
+    <Error>
       <article>
-      <Helmet>
-        <title>SignUp Page</title>
-        <meta name="description" content="this is SignIn page" />
-      </Helmet>
-      {this.state.errors !== 0 ? '-' : this.showError(this.state.errors)}
-      <div className={classnames(`signIn`)}>
-        <h3 className={styles.loginTitle}><span className={styles.loginTitleBlue}>SignUp</span> Geo.Properties</h3>
-        <div className={styles.login}>
-          <div className={styles.loginImg}>
-            <img
-              className={styles.locationImg}
-              src={location}
-              alt="complex"
-            />
-          </div>
-          <form className={styles.loginForm}>
-            <div className={classnames(`form-group formLogin`)}>
-              {/* <label className={styles.labelInput}>Email</label> */}
-              <input
-                type="email"
-                onBlur={e => this.setInput(e, 'userName')}
-                className={styles.loginInput}
-                placeholder="email"
-              />
-              <input
-                type="password"
-                onBlur={e => this.setInput(e, 'password')}
-                className={styles.loginInput}
-                placeholder="Password"
+        <Helmet>
+          <title>SignUp Page</title>
+          <meta name="description" content="this is SignIn page" />
+        </Helmet>
+        <div className={classnames(`signIn`)}>
+          <h3 className={styles.loginTitle}><span className={styles.loginTitleBlue}>SignUp</span> Geo.Properties</h3>
+          <div className={styles.login}>
+            <div className={styles.loginImg}>
+              <img
+                className={styles.locationImg}
+                src={location}
+                alt="complex"
               />
             </div>
-            <button
-             className={styles.loginBtn} 
-             variant="primary" 
-             onClick={(e) => this.signUpHandler(e)}
-             >
+            <form className={styles.loginForm}>
+              { console.log('we are in Component') }
+              { loading ? console.log(loading) : null }
+              { error ? console.log(error) : null}
+              { console.log('we are in Component') }
+              <div className={classnames(`form-group formLogin`)}>
+                {/* <label className={styles.labelInput}>Email</label> */}
+                <input
+                  type="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={styles.loginInput}
+                  placeholder="email"
+                />
+                <input
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  className={styles.loginInput}
+                  placeholder="Password"
+                />
+              </div>
+              <button
+                type="button"
+                onClick={() => putSignUp()}
+                className={styles.loginBtn} 
+                variant="primary" 
+              >
               SignUp
-            </button>
-          </form>
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-      <Footer />
-    </article>
+        <Footer />
+      </article>
     </Error>
-    )
-  }
+  )
+
 }
 
-export default SignUp;
 
+SignUp.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = createStructuredSelector({
+  userEmail: makeSelectUserEmail(),
+  userPassword: makeSelectUserPassword(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    putSignUp: () => dispatch(signUp()),
+    dispatch,
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(SignUp);

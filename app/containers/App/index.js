@@ -13,7 +13,7 @@ import { Helmet } from 'react-helmet';
 
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import SignIn from '../Authentications/SignIn';
-import SignUp from '../Authentications/SignUp';
+import SignUp from '../Authentications/SignUp/Loadable';
 import ForgetPassword from '../Authentications/ForgetPassword';
 import Home from '../Home';
 import Complexes from '../Complexes/Loadable';

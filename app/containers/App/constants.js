@@ -19,3 +19,13 @@ export const PROPERTY_RESPONSE_SUCCESS =
   'boilerplate/App/PROPERTY_RESPONSE_SUCCESS';
 export const PROPERTY_RESPONSE_ERROR =
   'boilerplate/App/PROPERTY_RESPONSE_ERROR';
+
+// Authentication
+
+export const SIGN_UP_REQUEST = 'complex/App/SIGN_UP_REQUEST';
+export const SIGN_UP_RESPONSE_SUCCESS = 'complex/App/SIGN_UP_RESPONSE_SUCCESS';
+export const SIGN_UP_RESPONSE_ERROR = 'complex/App/SIGN_UP_RESPONSE_ERROR';
+
+export const SIGN_IN_REQUEST = 'complex/App/SIGN_IN_REQUEST';
+export const SIGN_IN_RESPONSE_SUCCESS = 'complex/App/SIGN_IN_RESPONSE_SUCCESS';
+export const SIGN_IN_RESPONSE_ERROR = 'complex/App/SIGN_IN_RESPONSE_ERROR';

@@ -16,6 +16,9 @@ import {
   PROPERTY_REQUEST,
   PROPERTY_RESPONSE_SUCCESS,
   PROPERTY_RESPONSE_ERROR,
+  SIGN_UP_REQUEST,
+  SIGN_UP_RESPONSE_SUCCESS,
+  SIGN_UP_RESPONSE_ERROR,
 } from './constants';
 
 // Initia Store
@@ -25,6 +28,7 @@ export const initialState = {
   error: false,
   complexes: [],
   properties: [],
+  user: {},
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -58,6 +62,17 @@ const appReducer = (state = initialState, action) =>
         draft.error = action.error;
         draft.loading = false;
         break;
+      case SIGN_UP_REQUEST:
+        draft.error = false;
+        draft.loading = true;
+        break;
+      case SIGN_UP_RESPONSE_SUCCESS:
+        draft.user = action.user;
+        draft.loading = false;
+        break;
+      case SIGN_UP_RESPONSE_ERROR:
+        draft.loading = false;
+        draft.error = action.error;
     }
   });
 

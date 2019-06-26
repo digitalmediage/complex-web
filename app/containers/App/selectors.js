@@ -34,6 +34,18 @@ const makeSelectError = () =>
     homeState => homeState.error,
   );
 
+const makeSelectUserEmail = () =>
+  createSelector(
+    selectGlobal,
+    homeState => homeState.error,
+  );
+
+const makeSelectUserPassword = () =>
+  createSelector(
+    selectGlobal,
+    homeState => homeState.error,
+  );
+
 const makeSelectLocation = () =>
   createSelector(
     selectRouter,
@@ -45,6 +57,8 @@ export {
   makeSelectComplexes,
   makeSelectCurrentUser,
   makeSelectProperties,
+  makeSelectUserEmail,
+  makeSelectUserPassword,
   makeSelectLoading,
   makeSelectError,
 };
