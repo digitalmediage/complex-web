@@ -70,7 +70,7 @@ export function* __SignUp() {
         return;
       }
     }
-    yield put(registered(userRegistered.data));
+    yield put(registered(userRegistered));
     yield put(push('/'));
   } catch (error) {
     console.log(error.response ? error.response : error);

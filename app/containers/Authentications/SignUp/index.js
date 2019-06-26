@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-boolean-value */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-else-return */
 /* eslint-disable eqeqeq */
@@ -298,6 +299,9 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
+
+import ReactLoading from 'react-loading';
+
 // Styles
 import classnames from 'classnames';
 import { useInjectSaga } from 'utils/injectSaga';
@@ -345,6 +349,7 @@ export function SignUp({
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
 
+
   const validate = (_email,_password) => {
     const emailReg = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
     const passwordReg = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
@@ -390,14 +395,13 @@ export function SignUp({
                 alt="complex"
               />
             </div>
-            {<form className={styles.loginForm}>
+            {loading === false ? <form className={styles.loginForm}>
               {/* { console.log('we are in Component') }
               {  console.log(loading) }
               {console.log(email)}
               {  console.log(error)}    
               { console.log('we are in Component') } */}
-              {loading ? <span className="alert danger">Loading</span> : null}
-              {error ? <span>ERORORR{error}</span> : null}
+              {error ? <span className="mb-5">{error}</span> : null}
               <div className={classnames(`form-group formLogin`)}>
                 {/* <label className={styles.labelInput}>Email</label> */}
                 <input
@@ -423,7 +427,8 @@ export function SignUp({
               >
               SignUp
               </button>
-            </form>}
+            </form> : <div className={styles.loaderForm}><ReactLoading delay={0} type='cylon' color="blue" height={107} width={175} /></div>
+            }
           </div>
         </div>
         <Footer />

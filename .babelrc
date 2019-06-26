@@ -1,3 +1,4 @@
 {
-  "plugins": ["@babel/transform-react-jsx-source"]
+  "plugins": ["@babel/transform-react-jsx-source", "emotion"],
+
 }
