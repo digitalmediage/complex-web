@@ -395,6 +395,7 @@ export function SignUp({
               {  console.log(error)}    
               { console.log('we are in Component') }
               {loading ? <span className="alert danger">Loading</span> : null}
+              {error ? <span>ERORORR{error}</span> : null}
               <div className={classnames(`form-group formLogin`)}>
                 {/* <label className={styles.labelInput}>Email</label> */}
                 <input

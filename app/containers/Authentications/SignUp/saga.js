@@ -57,15 +57,17 @@ export function* __SignUp() {
     );
     console.log('complexes yield');
     console.log(userRegistered);
-    if (!userRegistered.data.data) {
+    if (userRegistered.data) {
       if (userRegistered.data.code === 500) {
         yield put(signUpError(userRegistered.data.message));
         return;
       }
     }
-    if (userRegistered.data.errors && !userRegistered.data.data) {
-      yield put(signUpError(userRegistered.data.errors));
-      return;
+    if (!userRegistered.user || !userRegistered.token_) {
+      if (userRegistered.data) {
+        yield put(signUpError(userRegistered.data));
+        return;
+      }
     }
     yield put(registered(userRegistered.data));
   } catch (error) {
