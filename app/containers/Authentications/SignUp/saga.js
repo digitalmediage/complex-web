@@ -70,8 +70,11 @@ export function* __SignUp() {
         return;
       }
     }
+    // we get successfully response
+
+    localStorage.setItem('token', userRegistered.token_.accessToken);
+    localStorage.setItem('user', JSON.stringify(userRegistered.user));
     yield put(registered(userRegistered));
-    // yield put(push('/'));
   } catch (error) {
     console.log(error.response ? error.response : error);
     console.log('error happen in sign-up  saga worker');

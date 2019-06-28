@@ -10,6 +10,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import PrivateRoute from './privateRoute';
 
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import SignIn from '../Authentications/SignIn';
@@ -35,17 +36,18 @@ export default function App() {
         <meta name="description" content="" />
       </Helmet>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/tes" component={Tes} />
-        <Route path="/complex/:complexId" component={Complex} />
-        <Route path="/complex" component={Complexes} />
-        <Route path="/property" component={Properties} />
+        {/* <Route exact path="/" component={Home} /> */}
+        <PrivateRoute exact path="/" component={Home} />
+        {/* <PrivateRoute path="/tes" component={Tes} /> */}
+        <PrivateRoute path="/complex/:complexId" component={Complex} />
+        <PrivateRoute path="/complex" component={Complexes} />
+        <PrivateRoute path="/property" component={Properties} />
+        <PrivateRoute path="/manager" component={Manager} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
         <Route path="/auth/verification" component={EmailVerfication} />
         <Route path="/forget-password" component={ForgetPassword} />
-        <Route path="/forget-password" component={ForgetPassword} />
-        <Route path="/manager" component={Manager} />
+        {/* <Route path="/forget-password" component={ForgetPassword} /> */}
         <Route component={NotFoundPage} />
       </Switch>
     </div>
