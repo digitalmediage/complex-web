@@ -10,15 +10,19 @@ const NewsItem = props => (
         <i className="fas fa-trash " />
       </div>
       <div className="d-flex flex-column p-3 pr-5 ">
-        <h2 className="pb-3">What is Lorem Ipsum?</h2>
-        <p>
-          {' '}
-          oum ha ever since the 1500s, when an unknown n bookive centuries, but
-          also the leap into electronic typesetting, remaining essentially
-          unchanged. It was popularised in the 1960s with the release of
-          Letraset sheets containing Lorem Ipsum passages, and more recently
-          with desktop publishing software like Aldus PageMaker includin
-        </p>
+        <h2 className="pb-3">{props.data.title}</h2>
+        <dl
+          style={{
+            lineHeight: '-40px',
+            color: 'gray',
+            opacity: '0.6',
+            fontSize: '0.8rem',
+          }}
+          className="pb-2"
+        >
+          {props.data.author}
+        </dl>
+        <p> {props.data.content}</p>
       </div>
       <div>
         <button type="button" className="btn btn-primary rounded mt-3 ml-3">

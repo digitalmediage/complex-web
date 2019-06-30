@@ -29,7 +29,7 @@ export function* __newsWorker() {
   try {
     // Call our request helper (see 'utils/request')
     // const complexs = yield call(request('http://localhost:8080/v1/complex'));
-    const news = yield request(`${SERVER_ADDRESS}/${API_VERSION}/property`);
+    const news = yield request(`${SERVER_ADDRESS}/${API_VERSION}/news`);
     console.log('news yield');
     console.log(news);
     yield put(newsReceive(news.data));
@@ -41,8 +41,8 @@ export function* __newsWorker() {
 }
 
 // Complex Watcher - SAGA-ROOT
-export default function* propertySaga() {
-  console.log('saga - properties watcher run');
+export default function* NewsSaga() {
+  console.log('saga - News watcher run');
   // See example in containers/HomePage/saga.js
   //   yield takeLatest(PROPERTY_REQUEST, __propertyWorker);
   yield takeLatest(NEWS_REQUEST, __newsWorker);

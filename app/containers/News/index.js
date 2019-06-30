@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 import React, { memo, useEffect } from 'react';
 
@@ -33,6 +34,7 @@ require('./styles.css');
 
 export function News({ news, loading, error, response_status, requestNews }) {
   useEffect(() => {
+    console.log('component did mount');
     requestNews();
   }, []);
 
@@ -46,8 +48,6 @@ export function News({ news, loading, error, response_status, requestNews }) {
       </Helmet>
       <Header />
       <div className="container pt-5">
-        {console.log('----neeews----')}
-        {console.log(news)}
         <div className="col-12 pt-5">
           <div className="d-flex pt-4 justify-content-between">
             <span className="navigate-title">News</span>
@@ -72,8 +72,9 @@ export function News({ news, loading, error, response_status, requestNews }) {
         {/* <div className="row pt-5">
             <div className="col-12"></div>
         </div> */}
-
-        <NewsItem news_image={news_image} />
+        {news
+          ? news.map(n => <NewsItem data={n} news_image={news_image} />)
+          : null}
       </div>
     </div>
   );
