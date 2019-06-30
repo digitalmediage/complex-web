@@ -4,6 +4,7 @@ import Label from './label';
 import Hint from './hint';
 
 import eye from './image/eye.svg';
+import search from './image/search.svg';
 
 class Field extends Input {
   constructor(props) {
@@ -18,7 +19,7 @@ class Field extends Input {
     type: 'text',
     placeholder: '',
     hint: '\u00a0',
-    dir: 'rtl',
+    dir: 'ltr',
   };
 
   renderHint() {
@@ -42,7 +43,7 @@ class Field extends Input {
           label={props.label}
           errorMessage={this.errorMessage()}
         />
-        <div className="d-flex relative">
+        <div className={`d-flex relative ${this.props.classname || ''}`}>
           <input
             className="form-control font-size-8 p-2"
             value={this.state.value}
@@ -55,10 +56,10 @@ class Field extends Input {
                 : undefined,
               ...(props.eng
                 ? {
-                    fontWeight: 500,
-                    // fontFamily: 'sans-serif',
-                  textAlign: 'left',
-                  }
+                  fontWeight: 500,
+                  // fontFamily: 'sans-serif',
+                    textAlign: 'left',
+                }
                 : {}),
             }}
             onBlur={e => {
@@ -96,6 +97,12 @@ class Field extends Input {
               }
               className="absolutemv pointer bg-white"
               style={{ right: '15px' }}
+            />
+          ) : null}
+          {props.search ? (
+            <img
+              src={search}
+              className="absolutemv search-icon-svg pointer bg-white"
             />
           ) : null}
           {props.prepend ? (

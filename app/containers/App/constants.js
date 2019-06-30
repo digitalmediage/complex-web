@@ -32,3 +32,7 @@ export const SIGN_UP_RESPONSE_ERROR = 'complex/App/SIGN_UP_RESPONSE_ERROR';
 export const SIGN_IN_REQUEST = 'complex/App/SIGN_IN_REQUEST';
 export const SIGN_IN_RESPONSE_SUCCESS = 'complex/App/SIGN_IN_RESPONSE_SUCCESS';
 export const SIGN_IN_RESPONSE_ERROR = 'complex/App/SIGN_IN_RESPONSE_ERROR';
+
+export const NEWS_ERROR = 'complex/App/NEWS_ERROR';
+export const NEWS_RECEIVE = 'complex/App/NEWS_RECEIVE';
+export const NEWS_REQUEST = 'complex/App/NEWS_REQUEST';

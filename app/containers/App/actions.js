@@ -30,6 +30,9 @@ import {
   SIGN_IN_RESPONSE_ERROR,
   CHANGE_EMAIL,
   CHANGE_PASSWORD,
+  NEWS_REQUEST,
+  NEWS_RECEIVE,
+  NEWS_ERROR,
 } from './constants';
 
 /**
@@ -141,6 +144,26 @@ export function signedIn(user) {
 export function signInError(error) {
   return {
     type: SIGN_IN_RESPONSE_ERROR,
+    error,
+  };
+}
+
+export function newsRequest() {
+  return {
+    type: NEWS_REQUEST,
+  };
+}
+
+export function newsReceive(news) {
+  return {
+    type: NEWS_RECEIVE,
+    news,
+  };
+}
+
+export function newsError(error) {
+  return {
+    type: NEWS_ERROR,
     error,
   };
 }

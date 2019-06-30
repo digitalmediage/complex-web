@@ -21,6 +21,9 @@ import {
   SIGN_UP_RESPONSE_ERROR,
   CHANGE_EMAIL,
   CHANGE_PASSWORD,
+  NEWS_REQUEST,
+  NEWS_RECEIVE,
+  NEWS_ERROR,
 } from './constants';
 
 // Initia Store
@@ -34,6 +37,7 @@ export const initialState = {
   email: '',
   password: '',
   responseStatus: null,
+  news: [],
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -89,6 +93,21 @@ const appReducer = (state = initialState, action) =>
         draft.loading = false;
         draft.responseStatus = false;
         draft.error = action.error;
+        break;
+      case NEWS_ERROR:
+        draft.error = action.error;
+        draft.responseStatus = true;
+        draft.loading = false;
+        break;
+      case NEWS_RECEIVE:
+        draft.loading = false;
+        draft.news = action.news;
+        draft.responseStatus = false;
+        break;
+      case NEWS_REQUEST:
+        draft.loading = true;
+        draft.responseStatus = false;
+        draft.error = false;
     }
   });
 

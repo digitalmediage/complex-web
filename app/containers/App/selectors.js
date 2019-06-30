@@ -52,14 +52,28 @@ const makeSelectresponseStatus = () =>
     homeState => homeState.responseStatus,
   );
 
+const makeSelectUser = () =>
+  createSelector(
+    selectGlobal,
+    homeState => homeState.user,
+  );
+
 const makeSelectLocation = () =>
   createSelector(
     selectRouter,
     routerState => routerState.location,
   );
 
+const makeSelectNews = () =>
+  createSelector(
+    selectGlobal,
+    homeState => homeState.news,
+  );
+
 export {
+  makeSelectNews,
   makeSelectLocation,
+  makeSelectUser,
   makeSelectresponseStatus,
   makeSelectComplexes,
   makeSelectCurrentUser,

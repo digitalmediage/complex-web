@@ -10,9 +10,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import PrivateRoute from './privateRoute';
 
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import SignIn from '../Authentications/SignIn';
 import SignUp from '../Authentications/SignUp/Loadable';
 import ForgetPassword from '../Authentications/ForgetPassword';
@@ -20,6 +20,7 @@ import Home from '../Home';
 import Complexes from '../Complexes/Loadable';
 import Properties from '../Properties';
 import Complex from '../Complex';
+import News from '../News/Loadable';
 import Tes from '../Tes';
 import Manager from '../Manager/Loadable';
 import EmailVerfication from '../Authentications/SignUp/emailValidation';
@@ -43,6 +44,7 @@ export default function App() {
         <PrivateRoute path="/complex" component={Complexes} />
         <PrivateRoute path="/property" component={Properties} />
         <PrivateRoute path="/manager" component={Manager} />
+        <PrivateRoute path="/news" component={News} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
         <Route path="/auth/verification" component={EmailVerfication} />
