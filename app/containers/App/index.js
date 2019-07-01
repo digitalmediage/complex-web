@@ -24,6 +24,7 @@ import News from '../News/Loadable';
 import Tes from '../Tes';
 import Manager from '../Manager/Loadable';
 import EmailVerfication from '../Authentications/SignUp/emailValidation';
+import SpecificNews from '../News/Editor/Loadable';
 
 // import GlobalStyle from '../../global-styles';
 
@@ -44,6 +45,7 @@ export default function App() {
         <PrivateRoute path="/complex" component={Complexes} />
         <PrivateRoute path="/property" component={Properties} />
         <PrivateRoute path="/manager" component={Manager} />
+        <PrivateRoute path="/news/:newsId" component={SpecificNews} />
         <PrivateRoute path="/news" component={News} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />

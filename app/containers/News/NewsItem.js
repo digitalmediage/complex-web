@@ -1,5 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NewsItem = props => (
   <div className="row no-gutters mt-5" style={{ backgroundColor: '#fff' }}>
@@ -25,9 +27,11 @@ const NewsItem = props => (
         <p> {props.data.content}</p>
       </div>
       <div>
-        <button type="button" className="btn btn-primary rounded mt-3 ml-3">
-          see more
-        </button>
+        <Link to={`/news/${props.data._id}`}>
+          <button type="button" className="btn btn-primary rounded mt-3 ml-3">
+            see more
+          </button>
+        </Link>
       </div>
     </div>
     <div className="col-md-6  d-flex">
