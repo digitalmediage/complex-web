@@ -34,6 +34,7 @@ import Tab from '../../components/tabs/index';
 import ComplexItem from '../../components/ComplexItem';
 import PropertyIteam from '../../components/PropertyIteam';
 import Error from '../../components/Errors';
+import ErrorUI from '../../components/Errors/ErrorUI';
 
 import {
   makeSelectComplexes,
@@ -60,10 +61,12 @@ export function Home({
   _getProperties,
   _getComplexes,
   _getNotification,
+  notification,
 }) {
 
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'home', saga });
+  
 
   useEffect(() => {
     _getNotification();
@@ -78,12 +81,12 @@ export function Home({
           <meta name="description" content="this is Home page" />
         </Helmet>
         <Header />
-        {responseStatus ===  false ? <div className="error_">Sorry Some Errors Happen  <span>Please Refresh Page And Try Again  </span></div> : null}
+        {responseStatus ===  false ? <ErrorUI/> : null}
         <div className={bs.container}>
           <div className="home_fluid_container" />
           <div className={bs.row}>
             <div className="col-md-8 pt-5">
-              <Notifications />
+              <Notifications  />
             </div>
 
             <div className={classNames(bs['col-md-4'], bs['pt-5'])}>

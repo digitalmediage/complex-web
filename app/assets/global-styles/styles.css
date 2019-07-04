@@ -57,6 +57,7 @@ a:hover {
   position: fixed;
   width:100vw;
   height:25vh;
+  min-height: 13  0px;
   background-color:rgba(236, 24, 24, 0.8);
   text-align: center;
   padding-top:25px;
