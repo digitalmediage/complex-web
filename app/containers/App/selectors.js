@@ -4,6 +4,12 @@ import { initialState } from './reducer';
 const selectRouter = state => state.router;
 const selectGlobal = state => state.global || initialState;
 
+const makeSelectNotification = () =>
+  createSelector(
+    selectGlobal,
+    homeState => homeState.notification,
+  );
+
 const makeSelectCurrentUser = () =>
   createSelector(
     selectGlobal,
@@ -71,6 +77,7 @@ const makeSelectNews = () =>
   );
 
 export {
+  makeSelectNotification,
   makeSelectNews,
   makeSelectLocation,
   makeSelectUser,

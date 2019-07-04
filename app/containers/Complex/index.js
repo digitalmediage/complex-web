@@ -1,19 +1,60 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, {memo} from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+// import { FormattedMessage } from 'react-intl';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
+import { useInjectReducer } from 'utils/injectReducer';
+
+
+// Styles
 import classnames from 'classnames';
 import bs from 'bs';
+import reducer from '../App/reducer';
+import {
+  makeSelectComplexes,
+  makeSelectError,
+  makeSelectLoading,
+} from '../App/selectors';
 import styles from './styles.css';
+
+// Components
 import Header from '../Layout/Header';
 import building from '../../images/building.png';
 import map from '../../images/map.png';
 import PropertyIteam from '../../components/PropertyIteam';
 import Error from '../../components/Errors';
 
-export default function Complex() {
+export function Complex({
+  loading,
+  complexes,
+  error,
+  match
+
+}) {
+
+  let data = [];
+
+  if (complexes) {
+    data = complexes.find(n => n._id === match.params.complexId);
+    console.log(data);
+    console.log(data);
+    console.log('data');
+  }
+
+  useInjectReducer({ key: 'global', reducer });
   return (
     <Error>
+      <Helmet>
+        <title>Complex {data.name}</title>
+        <meta name="description" content="this is Complex page" />
+      </Helmet>
       <section className={styles.complexContainer}>
+      
         <Header />
         <div className={classnames(bs.container)}>
           <div className={classnames(bs.row, bs['pt-4'])}>
@@ -24,7 +65,7 @@ export default function Complex() {
                   bs['justify-content-between'],
                 )}
               >
-                <div className="breadcrumbs">complexes</div>
+                <Link to="/complex"><div className="breadcrumbs">complexes</div></Link>
               </div>
             </div>
           </div>
@@ -112,7 +153,7 @@ export default function Complex() {
                   </div>
                   <div className={classnames("form-group", "formArea")}>
                     <label className={styles.labelInput}>Description</label>
-                    <textarea fullWidth readOnly className="form-control" id="exampleFormControlTextarea1" rows="3">
+                    <textarea readOnly className="form-control" id="exampleFormControlTextarea1" rows="3">
                       Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lore
                     </textarea>
                     {/* <textarea className={classnames("form-control","inputStyle")} id="exampleFormControlTextarea1" rows="3"></textarea> */}
@@ -136,10 +177,10 @@ export default function Complex() {
                     <a href="/" className={styles.editManager}>Edit Manager</a>
                   </div>
                   <div className="d-flex flex-row flex-wrap" label="Properties">
+                    {/* <PropertyIteam />
                     <PropertyIteam />
                     <PropertyIteam />
-                    <PropertyIteam />
-                    <PropertyIteam />
+                    <PropertyIteam /> */}
                   </div>
                   {/* edit form btn */}
                   {/* <div className={styles.btnFormBox}>
@@ -170,3 +211,31 @@ export default function Complex() {
     </Error>
   );
 }
+
+
+Complex.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
+  dispatch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = createStructuredSelector({
+  complexes: makeSelectComplexes(),
+  error: makeSelectError(),
+  loading: makeSelectLoading(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(Complex);

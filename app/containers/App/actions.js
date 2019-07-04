@@ -33,7 +33,48 @@ import {
   NEWS_REQUEST,
   NEWS_RECEIVE,
   NEWS_ERROR,
+  NOTIFICATION_REQUEST,
+  NOTIFICATION_RESPONSE_SUCCESS,
+  NOTIFICATION_RESPONSE_ERROR,
 } from './constants';
+
+/**
+ * get the complexes, this action starts the request saga
+ *
+ * @return {object} An action object with a type of COMPLEX_REQUEST
+ */
+export function getNotification() {
+  return {
+    type: NOTIFICATION_REQUEST,
+  };
+}
+
+/**
+ * response complexes, this action are loaded by the request saga
+ *
+ * @return {object} An action object with a type of COMPLEX_RESPONSE_SUCCESS
+ */
+export function receiveNotifications(notification) {
+  return {
+    type: NOTIFICATION_RESPONSE_SUCCESS,
+    notification,
+  };
+}
+
+/**
+ * Dispatched when loading the Response fails
+ *
+ * @param  {object} error The error
+ *
+ * @return {object} An action object with a type of COMPLEX_RESPONSE_ERROR
+ */
+export function notificationsError(error) {
+  return {
+    type: NOTIFICATION_RESPONSE_ERROR,
+    error,
+  };
+}
+
 
 /**
  * get the complexes, this action starts the request saga

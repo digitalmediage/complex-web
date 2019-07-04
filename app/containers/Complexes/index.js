@@ -13,10 +13,14 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
-import { makeSelectComplexes, makeSelectLoading } from './selector';
-import reducer from './reducer';
+import {
+  makeSelectComplexes,
+  makeSelectLoading,
+  makeSelectError,
+} from '../App/selectors';
+import reducer from '../App/reducer';
 import saga from './saga';
-import { requestComplex } from './actions';
+import { getComplexes } from '../App/actions';
 
 // import axios from 'axios';
 import styles from './styles.css';
@@ -32,13 +36,13 @@ export function Complexes({
   complexes,
   // loading,
   // error,
-  getComplexes,
+  __getComplexes,
 }) {
-  useInjectReducer({ key: 'complexes', reducer });
+  useInjectReducer({ key: 'global ', reducer });
   useInjectSaga({ key: 'complexes', saga });
 
   useEffect(() => {
-    getComplexes();
+    __getComplexes();
   }, []);
 
   return (
@@ -93,7 +97,7 @@ Complexes.propTypes = {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getComplexes: () => dispatch(requestComplex()),
+    __getComplexes: () => dispatch(getComplexes()),
     dispatch,
   };
 }
@@ -101,6 +105,7 @@ function mapDispatchToProps(dispatch) {
 const mapStateToProps = createStructuredSelector({
   complexes: makeSelectComplexes(),
   loading: makeSelectLoading(),
+  error: makeSelectError(),
 });
 
 const withConnect = connect(

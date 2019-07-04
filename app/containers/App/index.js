@@ -16,7 +16,7 @@ import PrivateRoute from './privateRoute';
 import SignIn from '../Authentications/SignIn';
 import SignUp from '../Authentications/SignUp/Loadable';
 import ForgetPassword from '../Authentications/ForgetPassword';
-import Home from '../Home';
+import Home from '../Home/Loadable';
 import Complexes from '../Complexes/Loadable';
 import Properties from '../Properties';
 import Complex from '../Complex';

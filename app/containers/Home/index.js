@@ -24,7 +24,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import bs from 'bs';
 import classNames from 'classnames';
-import saga from "../Properties/saga";
+import saga from "./saga";
 import reducer from '../App/reducer';
 // import globalStyle from '../../assets/global-styles/bootstrap.min.css';
 import Header from '../Layout/Header/index';
@@ -40,9 +40,11 @@ import {
   makeSelectProperties,
   makeSelectError,
   makeSelectLoading,
+  makeSelectNotification,
+  makeSelectresponseStatus,
 } from '../App/selectors';
 
-import { getProperties, getComplexes } from '../App/actions';
+import { getProperties, getComplexes, getNotification } from '../App/actions';
 
 // Fake data
 import fakerData from '../../faker/ChartData';
@@ -52,17 +54,19 @@ import fakerData from '../../faker/ChartData';
 
 export function Home({
   // loading,
-  // error,
-  // complexes,
+  error,
+  responseStatus,
   properties,
   _getProperties,
   _getComplexes,
+  _getNotification,
 }) {
 
   useInjectReducer({ key: 'global', reducer });
-  useInjectSaga({ key: 'global', saga });
+  useInjectSaga({ key: 'home', saga });
 
   useEffect(() => {
+    _getNotification();
     _getProperties();
     _getComplexes();
   }, []);
@@ -74,9 +78,11 @@ export function Home({
           <meta name="description" content="this is Home page" />
         </Helmet>
         <Header />
+        {responseStatus ===  false ? <div className="error_">Sorry Some Errors Happen  <span>Please Refresh Page And Try Again  </span></div> : null}
         <div className={bs.container}>
+          <div className="home_fluid_container" />
           <div className={bs.row}>
-            <div className={bs['col-md-8']}>
+            <div className="col-md-8 pt-5">
               <Notifications />
             </div>
 
@@ -88,6 +94,7 @@ export function Home({
                 monthBalance="343"
                 fakerData={fakerData()}
                 color="red"
+                status={false}
               />
               <Chart
                 title="Sold"
@@ -135,14 +142,17 @@ Home.propTypes = {
 const mapStateToProps = createStructuredSelector({
   complexes: makeSelectComplexes(),
   properties: makeSelectProperties(),
+  notification: makeSelectNotification(),
   error: makeSelectError(),
   loading: makeSelectLoading(),
+  responseStatus: makeSelectresponseStatus(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     _getProperties: () => dispatch(getProperties()),
     _getComplexes: () => dispatch(getComplexes()),
+    _getNotification: () => dispatch(getNotification()),
     dispatch,
   };
 }
