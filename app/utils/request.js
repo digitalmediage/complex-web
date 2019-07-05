@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-else-return */
 import axios from 'axios';
 
@@ -16,14 +17,19 @@ function checkToken(token) {
   }
 }
 
-const request = (path, token = null) => {
+const request = (token = null) => {
+    console.log('request fn run');
   const _token = checkToken(token);
+  console.log('token from checkToken');
+  console.log(_token);
+  console.log('token from checkToken');
 
-  return axios.create({
+  const Request = axios.create({
     baseURL: `${SERVER_ADDRESS}/${API_VERSION}`,
     timeout: 1000,
     headers: { Authorization: 'Bearer ' + _token },
   });
+  return Request;
 };
 
 export default request;

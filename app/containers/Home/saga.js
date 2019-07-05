@@ -51,7 +51,9 @@ export function* __complexWorker() {
   console.log('saga - complex worker run');
 
   try {
-    const complexes = yield publickRequest(`${SERVER_ADDRESS}/${API_VERSION}/complex`);
+    const complexes = yield publickRequest(
+      `${SERVER_ADDRESS}/${API_VERSION}/complex`,
+    );
     console.log('complexes yield');
     console.log(complexes);
     yield put(receiveComplexes(complexes.data));
@@ -66,6 +68,7 @@ export function* __notificationWorker() {
   console.log('saga - notification worker run');
   try {
     const user = yield makeSelectUser();
+    let __Notifications = null;
     console.log('token on state');
     console.log(user);
     let token = null;
@@ -73,25 +76,26 @@ export function* __notificationWorker() {
       token = user.token;
     }
 
-    const notificationRequest = request(token);
-    const notifications = notificationRequest
+    const notificationRequest = request(null);
+    const notifications = yield notificationRequest
       .get('notification')
       .then(response => {
-        return response;
+          console.log('response Succsess JJJJJJ');
+        __Notifications = response;
       })
       .catch(error => {
-        return error;
+        __Notifications = error;
       });
 
     console.log('notification yield');
-    console.log(notifications);
+    console.log(__Notifications);
 
-    if (notifications && notifications.data) {
-      yield put(receiveComplexes(notifications.data));
+    if (__Notifications && __Notifications.data) {
+      yield put(receiveComplexes(__Notifications.data));
     }
 
-    if (notifications && !notifications.data) {
-      yield put(complexesError(notifications.response));
+    if (__Notifications && !__Notifications.data) {
+      yield put(complexesError(__Notifications.response));
     }
   } catch (err) {
     console.log(err);
