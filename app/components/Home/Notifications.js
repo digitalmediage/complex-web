@@ -39,6 +39,7 @@ class Notifications extends React.Component {
 
   render() {
     const { weekDays, selectedDay } = this.state;
+    const { data } = this.props;
     return (
       <div className={styles.news}>
         <div className={styles.date}>
@@ -63,14 +64,18 @@ class Notifications extends React.Component {
           </ul>
         </div>
         <div className={styles.dateInfBox}>
-          {NotificationsData.map(n => (
+        {console.log(data)}
+        {
+          console.log('kirooooooooo')
+        }
+          {/* {data.map(n => (
             <NotificationBox
-              status={n.status}
+              status={n.id}
               title={n.title}
-              desc={n.desc}
-              date={n.date}
+              desc={n.content}
+              date={n.createdAt}
             />
-          ))}
+          ))} */}
         </div>
       </div>
     );

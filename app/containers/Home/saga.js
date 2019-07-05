@@ -99,8 +99,8 @@ export function* __notificationWorker() {
       if (responseStatus == 403 || responseStatus == 401) {
         yield put(push('/sign-up'));
         yield put(notificationsError('Please Sign Up'));
+        return;
       }
-      
     }
 
     if (__Notifications && __Notifications.data) {
@@ -109,7 +109,7 @@ export function* __notificationWorker() {
     }
 
     if (__Notifications && !__Notifications.data) {
-      yield put(notificationsError(__Notifications.response));
+      yield put(notificationsError('Internal Server Error'));
     }
   } catch (err) {
     console.log(err);

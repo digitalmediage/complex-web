@@ -82,17 +82,11 @@ export function Home({
         </Helmet>
         <Header />
         {responseStatus ===  false ? <ErrorUI/> : null}
-        {
-          console.log(notification)
-        }
-        {
-          console.log('n--------------otification')
-        }
         <div className={bs.container}>
           <div className="home_fluid_container" />
           <div className={bs.row}>
             <div className="col-md-8 pt-5">
-              <Notifications  />
+              <Notifications data={notification.data}  />
             </div>
 
             <div className={classNames(bs['col-md-4'], bs['pt-5'])}>
