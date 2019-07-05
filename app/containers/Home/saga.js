@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
@@ -18,7 +19,7 @@ import {
 } from '../App/constants';
 import { SERVER_ADDRESS, API_VERSION } from '../../variable';
 import checkError from '../../utils/checkError';
-import { push } from 'connected-react-router'
+import { push } from 'connected-react-router';
 
 function publickRequest(url) {
   return axios
@@ -82,7 +83,7 @@ export function* __notificationWorker() {
     const notifications = yield notificationRequest
       .get('notification')
       .then(response => {
-          console.log('response Succsess JJJJJJ');
+        console.log('response Succsess JJJJJJ');
         __Notifications = response;
       })
       .catch(error => {
@@ -90,17 +91,19 @@ export function* __notificationWorker() {
       });
 
     console.log('notification yield');
-    console.log(__Notifications.response);
+    console.log(__Notifications);
     const responseStatus = checkError(__Notifications);
     if (responseStatus) {
-         if (responseStatus == 403) {
-             yield put(push('/sign-up'));
-             yield put(complexesError('Please Sign In First'));
-         }
-         return;
+      if (responseStatus == 403 || responseStatus == 401) {
+        yield put(push('/sign-up'));
+        yield put(complexesError('Please Sign Up'));
+      }
+      return;
     }
 
     if (__Notifications && __Notifications.data) {
+        console.log('we are hehe');
+        console.log(__Notifications);
       yield put(receiveComplexes(__Notifications.data));
     }
 
