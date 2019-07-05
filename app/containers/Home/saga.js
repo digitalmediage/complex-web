@@ -10,6 +10,8 @@ import {
   propertiesError,
   receiveComplexes,
   complexesError,
+  receiveNotifications,
+  notificationsError,
 } from '../App/actions';
 import { makeSelectUser } from '../App/selectors';
 import {
@@ -70,16 +72,16 @@ export function* __complexWorker() {
 export function* __notificationWorker() {
   console.log('saga - notification worker run');
   try {
-    const user = yield makeSelectUser();
-    let __Notifications = null;
-    console.log('token on state');
-    console.log(user);
-    let token = null;
-    if (user.token) {
-      token = user.token;
-    }
+    // const user = yield makeSelectUser();
+    // console.log('token on state');
+    // console.log(user);
+    // let token = null;
+    // if (user.token) {
+    //   token = user.token;
+    // }
 
-    const notificationRequest = request(null);
+    let __Notifications = null;
+    const notificationRequest = request(__Notifications);
     const notifications = yield notificationRequest
       .get('notification')
       .then(response => {
@@ -96,23 +98,22 @@ export function* __notificationWorker() {
     if (responseStatus) {
       if (responseStatus == 403 || responseStatus == 401) {
         yield put(push('/sign-up'));
-        yield put(complexesError('Please Sign Up'));
+        yield put(notificationsError('Please Sign Up'));
       }
-      return;
+      
     }
 
     if (__Notifications && __Notifications.data) {
-        console.log('we are hehe');
-        console.log(__Notifications);
-      yield put(receiveComplexes(__Notifications.data));
+        console.log('__Notifications   suck my desck');
+      yield put(receiveNotifications(__Notifications.data));
     }
 
     if (__Notifications && !__Notifications.data) {
-      yield put(complexesError(__Notifications.response));
+      yield put(notificationsError(__Notifications.response));
     }
   } catch (err) {
     console.log(err);
-    yield put(complexesError(err));
+    yield put(notificationsError(err));
     console.log('erroor happen in saga worker');
   }
 }

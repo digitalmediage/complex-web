@@ -36,6 +36,7 @@ export const initialState = {
   error: false,
   complexes: [],
   properties: [],
+  notification: [],
   user: {},
   email: '',
   password: '',

@@ -65,13 +65,10 @@ export function Home({
 }) {
 
   useInjectReducer({ key: 'global', reducer });
-  useInjectSaga({ key: 'home', saga });
+  useInjectSaga({ key: 'global', saga });
   
 
   useEffect(() => {
-    if (error && error == 403) {
-      console.log('FFFFUUUUCKKKCKCKCKYOYOY');
-    }
     _getNotification();
     _getProperties();
     _getComplexes();
@@ -85,6 +82,12 @@ export function Home({
         </Helmet>
         <Header />
         {responseStatus ===  false ? <ErrorUI/> : null}
+        {
+          console.log(notification)
+        }
+        {
+          console.log('n--------------otification')
+        }
         <div className={bs.container}>
           <div className="home_fluid_container" />
           <div className={bs.row}>

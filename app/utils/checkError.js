@@ -1,7 +1,12 @@
 /* eslint-disable eqeqeq */
 export default function(response) {
   const r = response.response;
-  //   if (!r) return false;
+  if (!r) return false;
+  // if(response.data) {
+  //     if (response.data.data) {
+  //         return false
+  //     }
+  // }
 
   if (r.status == 403) {
     if (r.data) {
