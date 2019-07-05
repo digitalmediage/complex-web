@@ -6,15 +6,11 @@ import { API_VERSION, SERVER_ADDRESS } from '../variable';
 
 function checkToken(token) {
   let tokenStorage = null;
-  if (!token) {
-    tokenStorage = localStorage.getItem('token') && null;
+  if (token === null) {
+    tokenStorage = localStorage.getItem('token');
+    return tokenStorage;
   }
-
-  if (tokenStorage) {
-    return token;
-  } else {
     return '';
-  }
 }
 
 const request = (token = null) => {

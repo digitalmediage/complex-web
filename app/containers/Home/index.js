@@ -69,6 +69,9 @@ export function Home({
   
 
   useEffect(() => {
+    if (error && error == 403) {
+      console.log('FFFFUUUUCKKKCKCKCKYOYOY');
+    }
     _getNotification();
     _getProperties();
     _getComplexes();

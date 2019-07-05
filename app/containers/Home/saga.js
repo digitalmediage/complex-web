@@ -17,6 +17,8 @@ import {
   NOTIFICATION_REQUEST,
 } from '../App/constants';
 import { SERVER_ADDRESS, API_VERSION } from '../../variable';
+import checkError from '../../utils/checkError';
+import { push } from 'connected-react-router'
 
 function publickRequest(url) {
   return axios
@@ -88,7 +90,15 @@ export function* __notificationWorker() {
       });
 
     console.log('notification yield');
-    console.log(__Notifications);
+    console.log(__Notifications.response);
+    const responseStatus = checkError(__Notifications);
+    if (responseStatus) {
+         if (responseStatus == 403) {
+             yield put(push('/sign-up'));
+             yield put(complexesError('Please Sign In First'));
+         }
+         return;
+    }
 
     if (__Notifications && __Notifications.data) {
       yield put(receiveComplexes(__Notifications.data));
