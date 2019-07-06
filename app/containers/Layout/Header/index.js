@@ -34,7 +34,6 @@ export function Header({}) {
       <div className={styles.leftBox}>
         <div />
         <p>En</p>
-        {console.log('uuuuserx')}
       </div>
       <nav className="navbar navbar-expand-lg navbar-light">
         <button
@@ -75,7 +74,14 @@ export function Header({}) {
       <div className={styles.rightBox}>
         <div className={styles.alert} />
         {user ? (
-          <div className={styles.profile} />
+          <div className={styles.profile}>
+            <ul id="profile-dropdown">
+              <li>Profile</li>
+              <li>
+                <Link to="/sign-up">Sign Out</Link>
+              </li>
+            </ul>
+          </div>
         ) : (
           <Link className="mt-2 btn btn-primary" to="/sign-up">
             Sign Up

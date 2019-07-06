@@ -77,6 +77,52 @@
   margin: 0 12px;
 }
 
+
+
 .rightBox {
   display: flex;
 }
+
+#profile-dropdown {
+  position: absolute;
+  list-style: none;
+  z-index: 999999;
+  display: none;
+  width:140px;
+  right:20px;
+  top:65px;
+  height:100px;
+  color:white;
+  background-color: #61AEEB;
+  transition:all 1s ease;
+}
+
+#profile-dropdown > li {
+  color:white;
+  width: 100%;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding:10px;
+  border-bottom: 1px solid  white;
+}
+
+#profile-dropdown > li:hover {
+  opacity:0.7;
+}
+
+#profile-dropdown> li:last-child {
+  border-bottom: none;
+}
+
+.profile:hover #profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  transition:all 1s ease; 
+}
+
+ul {
+  padding:0;
+}
+
