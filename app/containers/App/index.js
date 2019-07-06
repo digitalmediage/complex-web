@@ -25,7 +25,7 @@ import Tes from '../Tes';
 import Manager from '../Manager/Loadable';
 import EmailVerfication from '../Authentications/SignUp/emailValidation';
 import SpecificNews from '../News/Editor/Loadable';
-
+import Authorization from '../Authentications/Authorization';
 // import GlobalStyle from '../../global-styles';
 
 export default function App() {
@@ -39,7 +39,11 @@ export default function App() {
       </Helmet>
       <Switch>
         {/* <Route exact path="/" component={Home} /> */}
-        <PrivateRoute exact path="/" component={Home} />
+        <PrivateRoute
+          exact
+          path="/"
+          component={Authorization(Home, ['user', 'admin'])}
+        />
         {/* <PrivateRoute path="/tes" component={Tes} /> */}
         <PrivateRoute path="/complex/:complexId" component={Complex} />
         <PrivateRoute path="/complex" component={Complexes} />
