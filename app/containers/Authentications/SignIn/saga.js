@@ -84,7 +84,7 @@ export function* __SignIn() {
     }
     // we get successfully response
 
-    localStorage.setItem('token', userRegistered.token_.accessToken);
+    localStorage.setItem('token', userRegistered.token.accessToken);
     localStorage.setItem('user', JSON.stringify(userRegistered.user));
     yield put(signedIn(userRegistered));
   } catch (error) {

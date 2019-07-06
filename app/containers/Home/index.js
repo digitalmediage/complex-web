@@ -90,7 +90,7 @@ export function Home({
             {
               console.log(notification.data)
             }
-              <Notifications data={notification.data}  />
+              <Notifications data={notification ? notification.data : null}  />
             </div>
 
             <div className={classNames(bs['col-md-4'], bs['pt-5'])}>

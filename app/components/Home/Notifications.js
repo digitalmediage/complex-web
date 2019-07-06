@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -39,7 +40,10 @@ class Notifications extends React.Component {
 
   render() {
     const { weekDays, selectedDay } = this.state;
-    const { data } = this.props;
+    let { data } = this.props;
+    if (data === undefined) {
+      data = [];
+    }
     return (
       <div className={styles.news}>
         <div className={styles.date}>
@@ -64,18 +68,11 @@ class Notifications extends React.Component {
           </ul>
         </div>
         <div className={styles.dateInfBox}>
+        {console.log('boxoxooxoxoxoxoox')}
         {console.log(data)}
-        {
-          console.log('kirooooooooo')
-        }
-          {/* {data.map(n => (
-            <NotificationBox
-              status={n.id}
-              title={n.title}
-              desc={n.content}
-              date={n.createdAt}
-            />
-          ))} */}
+          {data.map(n => (
+            <NotificationBox key={n.id} data={n} />
+          ))}
         </div>
       </div>
     );

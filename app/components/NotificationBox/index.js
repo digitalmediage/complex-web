@@ -5,12 +5,12 @@ import styles from '../../containers/Home/styles.css';
 const index = props => (
   <div className={styles.dateBox}>
     <div className={styles.dateTitleBox}>
-      <p className={styles.reserved}>{props.status}</p>
-      <p className={styles.dateTitle}>{props.title}</p>
-      <p className={styles.secondTitle}>{props.desc}</p>
+      {props.data.status ? <p className={styles.reserved}>{props.data.status}</p> : null}
+      <p className={styles.dateTitle}>{props.data.title}</p>
+      <p className={styles.secondTitle}>{props.data.content}</p>
     </div>
     <div className={styles.dateText}>
-      <p>{props.date}</p>
+      <p>{props.data.createdAt}</p>
     </div>
   </div>
 );
