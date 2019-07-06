@@ -86,6 +86,10 @@ export function Home({
           <div className="home_fluid_container" />
           <div className={bs.row}>
             <div className="col-md-8 pt-5">
+            {console.log('kire khahahahahahha__________')}
+            {
+              console.log(notification.data)
+            }
               <Notifications data={notification.data}  />
             </div>
 

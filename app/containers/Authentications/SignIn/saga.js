@@ -11,11 +11,11 @@ import {
 import axios from 'axios';
 
 import {
-  registered,
-  signUpError
+  signedIn,
+  signInError
 } from '../../App/actions';
 import {
-  SIGN_UP_REQUEST
+  SIGN_IN_REQUEST
 } from '../../App/constants';
 
 import {
@@ -42,11 +42,9 @@ function request(url, user) {
 }
 
 // Complex Worker
-export function* __SignUp() {
-  console.log('saga - sign-up worker run');
-  // Select username from store
-  //   const complex = yield select(makeSelectComplexes());
-  //   const requestURL = `http://localhost:8080/v1/complex`;
+export function* __SignIn() {
+  console.log('saga - sign-in worker run');
+
   const userEmail = yield select(makeSelectUserEmail());
   const userPassword = yield select(makeSelectUserPassword());
 
@@ -64,7 +62,8 @@ export function* __SignUp() {
     console.log(userEmail);
     console.log(userPassword);
     const userRegistered = yield request(
-      `${SERVER_ADDRESS}/${API_VERSION}/auth/register`, {
+      `${SERVER_ADDRESS}/${API_VERSION}/auth/login`,
+      {
         email: userEmail,
         password: userPassword,
       },
@@ -73,13 +72,13 @@ export function* __SignUp() {
     console.log(userRegistered);
     if (userRegistered.data) {
       if (userRegistered.data.code === 500) {
-        yield put(signUpError(userRegistered.data.message));
+        yield put(signInError(userRegistered.data.message));
         return;
       }
     }
     if (!userRegistered.user || !userRegistered.token_) {
       if (userRegistered.data) {
-        yield put(signUpError(userRegistered.data));
+        yield put(signInError(userRegistered.data));
         return;
       }
     }
@@ -87,7 +86,7 @@ export function* __SignUp() {
 
     localStorage.setItem('token', userRegistered.token_.accessToken);
     localStorage.setItem('user', JSON.stringify(userRegistered.user));
-    yield put(registered(userRegistered));
+    yield put(signedIn(userRegistered));
   } catch (error) {
     console.log(error.response ? error.response : error);
     console.log('error happen in sign-up  saga worker');
@@ -97,5 +96,5 @@ export function* __SignUp() {
 // Complex Watcher - SAGA-ROOT
 export default function* signUpSaga() {
   console.log('saga - sign-up watcher run');
-  yield takeLatest(SIGN_UP_REQUEST, __SignUp);
+  yield takeLatest(SIGN_IN_REQUEST, __SignIn);
 }

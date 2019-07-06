@@ -6,15 +6,58 @@
  *
  * This is the first thing users see of our App, at the '/sign-in' route
  */
-
-import React from 'react';
+import React, { memo, useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import classnames from 'classnames';
+import { FormattedMessage } from 'react-intl';
+import { createStructuredSelector } from 'reselect';
+import { compose } from 'redux';
 import styles from './styles.css';
+
+// Components 
 import location from '../../../images/pin.png';
+import ReactLoading from 'react-loading';
 import Footer from '../../Layout/Footer';
 
-export default function SignIn() {
+// Utility
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
+import classnames from 'classnames';
+import validate from '../../../utils/Validations/userValidate';
+
+
+// State
+import {
+  makeSelectUserEmail,
+  makeSelectUserPassword,
+  makeSelectLoading,
+  makeSelectError,
+  makeSelectresponseStatus,
+} from '../../App/selectors';
+
+import reducer from '../../App/reducer';
+import saga from './saga';
+import {
+  signIn,
+  changeEmail,
+  changePassword,
+} from '../../App/actions';
+
+export function SignIn({
+putSignIn,
+email,
+password,
+setPassword,
+setEmail,
+loading,
+error,
+responseStatus,
+}) {
+
+    useInjectReducer({ key: 'global', reducer });
+    useInjectSaga({ key: 'global', saga });
+
   return (
     <article>
       <Helmet>
@@ -35,17 +78,27 @@ export default function SignIn() {
             <div className={classnames(`form-group formLogin`)}>
               {/* <label className={styles.labelInput}>Email</label> */}
               <input
-                type="email"
-                className={styles.loginInput}
-                placeholder="Email"
+                 type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={styles.loginInput}
+                  placeholder="email"
+                
               />
               <input
                 type="password"
-                className={styles.loginInput}
-                placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className={styles.loginInput}
+                  placeholder="Password"
               />
             </div>
-            <button className={styles.loginBtn} variant="primary" type="submit">
+            <button
+            type="button"
+                onClick={() => putSignIn(validate, email, password)}
+                className={styles.loginBtn} 
+                variant="primary"
+            >
               login
             </button>
             <a href='/forget-password' className={styles.forgotText}>Forgot password?</a>
@@ -60,3 +113,42 @@ export default function SignIn() {
     </article>
   );
 }
+
+SignIn.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = createStructuredSelector({
+  email: makeSelectUserEmail(),
+  password: makeSelectUserPassword(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+  responseStatus: makeSelectresponseStatus(),
+});
+
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setEmail: val => dispatch(changeEmail(val)),
+    setPassword: val => dispatch(changePassword(val)),
+    putSignIn: (validate, email, password) => {
+      const v = validate(email, password);
+      if (v) {
+        dispatch(signIn())
+      } else {
+        return false;
+      }
+    },
+    dispatch,
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(SignIn);
