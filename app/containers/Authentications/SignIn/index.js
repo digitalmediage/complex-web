@@ -6,7 +6,7 @@
  *
  * This is the first thing users see of our App, at the '/sign-in' route
  */
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -14,6 +14,11 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import styles from './styles.css';
+import 'react-toastify/dist/ReactToastify.css';
+import {
+  ToastContainer,
+  toast
+} from 'react-toastify';
 
 // Components 
 import location from '../../../images/pin.png';
@@ -44,6 +49,7 @@ import {
   changePassword,
 } from '../../App/actions';
 
+
 export function SignIn({
 putSignIn,
 email,
@@ -58,6 +64,21 @@ responseStatus,
     useInjectReducer({ key: 'global', reducer });
     useInjectSaga({ key: 'global', saga });
 
+    useEffect(() => {
+    }, []);
+
+      const notify = () => {
+        const toastId = 19;
+         toast.update(toastId, {
+           render: "New content",
+           type: toast.TYPE.INFO,
+           autoClose: 5000
+         });
+        toast("Wow so easy !", {
+          toastId:19,
+        });
+      };
+
   return (
     <article>
       <Helmet>
@@ -65,6 +86,7 @@ responseStatus,
         <meta name="description" content="this is SignIn page" />
       </Helmet>
       <div className={classnames(`signIn`)}>
+      <ToastContainer position='bottom-left' />
         <h3 className={styles.loginTitle}><span className={styles.loginTitleBlue}>Login</span> Geo.Properties</h3>
         <div className={styles.login}>
           <div className={styles.loginImg}>
@@ -95,7 +117,8 @@ responseStatus,
             </div>
             <button
             type="button"
-                onClick={() => putSignIn(validate, email, password)}
+                // onClick={() => putSignIn(validate, email, password)}
+                onClick={notify}
                 className={styles.loginBtn} 
                 variant="primary"
             >

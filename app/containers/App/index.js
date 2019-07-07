@@ -12,6 +12,7 @@ import { Switch, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import PrivateRoute from './privateRoute';
+import { toast } from 'react-toastify';
 
 import SignIn from '../Authentications/SignIn';
 import SignUp from '../Authentications/SignUp/Loadable';
@@ -27,6 +28,11 @@ import EmailVerfication from '../Authentications/SignUp/emailValidation';
 import SpecificNews from '../News/Editor/Loadable';
 import Authorization from '../Authentications/Authorization';
 // import GlobalStyle from '../../global-styles';
+
+toast.configure({
+  autoClose: 8000,
+  draggable: true,
+});
 
 export default function App() {
   return (
