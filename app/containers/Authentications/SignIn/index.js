@@ -117,8 +117,7 @@ responseStatus,
             </div>
             <button
             type="button"
-                // onClick={() => putSignIn(validate, email, password)}
-                onClick={notify}
+                onClick={() => putSignIn(validate, email, password)}
                 className={styles.loginBtn} 
                 variant="primary"
             >
@@ -155,6 +154,7 @@ function mapDispatchToProps(dispatch) {
     setEmail: val => dispatch(changeEmail(val)),
     setPassword: val => dispatch(changePassword(val)),
     putSignIn: (validate, email, password) => {
+      toast("Wow so easy !");
       const v = validate(email, password);
       if (v) {
         dispatch(signIn())
