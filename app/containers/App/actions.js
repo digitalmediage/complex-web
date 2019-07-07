@@ -36,6 +36,9 @@ import {
   NOTIFICATION_REQUEST,
   NOTIFICATION_RESPONSE_SUCCESS,
   NOTIFICATION_RESPONSE_ERROR,
+  SIGN_OUT_REQUEST,
+  SIGN_OUT_RESPONSE_ERROR,
+  SIGN_OUT_RESPONSE_SUCCESS,
 } from './constants';
 
 /**
@@ -188,6 +191,22 @@ export function signInError(error) {
     error,
   };
 }
+
+//
+
+export function signOut() {
+  return {
+    type: SIGN_OUT_REQUEST,
+  };
+}
+
+export function signOuted(res) {
+  return {
+    type: SIGN_OUT_RESPONSE_SUCCESS,
+    res,
+  };
+}
+
 
 export function newsRequest() {
   return {

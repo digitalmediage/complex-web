@@ -27,6 +27,9 @@ import {
   NOTIFICATION_REQUEST,
   NOTIFICATION_RESPONSE_SUCCESS,
   NOTIFICATION_RESPONSE_ERROR,
+  SIGN_OUT_REQUEST,
+  SIGN_OUT_RESPONSE_SUCCESS,
+  SIGN_OUT_RESPONSE_ERROR,
 } from './constants';
 
 // Initia Store
@@ -125,6 +128,20 @@ const appReducer = (state = initialState, action) =>
         break;
       case NOTIFICATION_RESPONSE_ERROR:
         draft.loading = false;
+        draft.error = action.error;
+        break;
+      case SIGN_OUT_REQUEST:
+        draft.loading = true;
+        draft.error = false;
+        break;
+      case SIGN_OUT_RESPONSE_SUCCESS:
+        draft.loading = false;
+        draft.user = null;
+        draft.responseStatus = true;
+        break;
+      case SIGN_OUT_RESPONSE_ERROR:
+        draft.loading = false;
+        draft.responseStatus = false;
         draft.error = action.error;
     }
   });

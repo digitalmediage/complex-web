@@ -3,8 +3,8 @@
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 import { takeLatest, put } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 import axios from 'axios';
-import request from '../../utils/request';
 import {
   receiveProperties,
   propertiesError,
@@ -13,7 +13,8 @@ import {
   receiveNotifications,
   notificationsError,
 } from '../App/actions';
-import { makeSelectUser } from '../App/selectors';
+// import { makeSelectUser } from '../App/selectors';
+
 import {
   PROPERTY_REQUEST,
   COMPLEX_REQUEST,
@@ -21,7 +22,7 @@ import {
 } from '../App/constants';
 import { SERVER_ADDRESS, API_VERSION } from '../../variable';
 import checkError from '../../utils/checkError';
-import { push } from 'connected-react-router';
+import request from '../../utils/request';
 
 function publickRequest(url) {
   return axios

@@ -1,22 +1,11 @@
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
-import {
-  takeLatest,
-  put,
-  select
-} from 'redux-saga/effects';
-import {
-  push
-} from 'connected-react-router';
+import { takeLatest, put, select } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 import axios from 'axios';
 
-import {
-  signedIn,
-  signInError
-} from '../../App/actions';
-import {
-  SIGN_IN_REQUEST
-} from '../../App/constants';
+import { signedIn, signInError } from '../../App/actions';
+import { SIGN_IN_REQUEST } from '../../App/constants';
 
 import {
   makeSelectUserEmail,
@@ -24,10 +13,7 @@ import {
 } from '../../App/selectors';
 // import { complexResult } from './actions';
 // import { REQUEST_COMPLEX } from './constanst';
-import {
-  API_VERSION,
-  SERVER_ADDRESS
-} from '../../../variable';
+import { API_VERSION, SERVER_ADDRESS } from '../../../variable';
 
 function request(url, user) {
   return axios
@@ -87,6 +73,7 @@ export function* __SignIn() {
     localStorage.setItem('token', userRegistered.token.accessToken);
     localStorage.setItem('user', JSON.stringify(userRegistered.user));
     yield put(signedIn(userRegistered));
+    yield put(push('/'));
   } catch (error) {
     console.log(error.response ? error.response : error);
     console.log('error happen in sign-up  saga worker');

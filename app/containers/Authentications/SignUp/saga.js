@@ -1,22 +1,11 @@
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
-import {
-  takeLatest,
-  put,
-  select
-} from 'redux-saga/effects';
-import {
-  push
-} from 'connected-react-router';
+import { takeLatest, put, select } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 import axios from 'axios';
 
-import {
-  registered,
-  signUpError
-} from '../../App/actions';
-import {
-  SIGN_UP_REQUEST
-} from '../../App/constants';
+import { registered, signUpError } from '../../App/actions';
+import { SIGN_UP_REQUEST } from '../../App/constants';
 
 import {
   makeSelectUserEmail,
@@ -24,10 +13,7 @@ import {
 } from '../../App/selectors';
 // import { complexResult } from './actions';
 // import { REQUEST_COMPLEX } from './constanst';
-import {
-  API_VERSION,
-  SERVER_ADDRESS
-} from '../../../variable';
+import { API_VERSION, SERVER_ADDRESS } from '../../../variable';
 
 function request(url, user) {
   return axios
@@ -64,7 +50,8 @@ export function* __SignUp() {
     console.log(userEmail);
     console.log(userPassword);
     const userRegistered = yield request(
-      `${SERVER_ADDRESS}/${API_VERSION}/auth/register`, {
+      `${SERVER_ADDRESS}/${API_VERSION}/auth/register`,
+      {
         email: userEmail,
         password: userPassword,
       },

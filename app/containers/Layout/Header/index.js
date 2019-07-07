@@ -6,25 +6,25 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-// import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import { makeSelectUser } from '../../App/selectors';
+import { signOut } from '../../App/actions';
 import reducer from '../../App/reducer';
+import saga from './saga';
 
 import styles from './styles.css';
 
-export function Header({}) {
-  useInjectReducer({
-    key: 'global',
-    reducer,
-  });
+export function Header({ __signOut }) {
+  useInjectReducer({ key: 'global', reducer });
+  useInjectSaga({ key: 'header', saga });
 
   let user = localStorage.getItem('user');
   user = JSON.parse(user);
@@ -77,9 +77,7 @@ export function Header({}) {
           <div className={styles.profile}>
             <ul id="profile-dropdown">
               <li>Profile</li>
-              <li>
-                <Link to="/sign-up">Sign Out</Link>
-              </li>
+              <li onClick={__signOut}> Sign Out </li>
             </ul>
           </div>
         ) : (
@@ -98,6 +96,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
+    __signOut: () => dispatch(signOut()),
     dispatch,
   };
 }
