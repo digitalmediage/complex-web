@@ -21,12 +21,18 @@ const Authorization = (WrappedComponent, allowedRoles) => {
 
     componentDidMount() {
       const currentUserRoles = localStorage.getItem('user');
-      const currentUserRolesJSON = JSON.parse(currentUserRoles);
-      console.log(currentUserRolesJSON.role);
-      console.log(currentUserRolesJSON.role);
-      this.setState({
-        user: currentUserRolesJSON.role,
-      });
+      if (currentUserRoles !== null && currentUserRoles) {
+        const currentUserRolesJSON = JSON.parse(currentUserRoles);
+        // console.log(currentUserRolesJSON.role);
+        // console.log(currentUserRolesJSON.role);
+        this.setState({
+          user: currentUserRolesJSON.role,
+        });
+      } else {
+        this.setState({
+          user: 'user',
+        });
+      }
     }
 
     render() {
