@@ -86,17 +86,15 @@ export function* __notificationWorker() {
     const notifications = yield notificationRequest
       .get('notification')
       .then(response => {
-        console.log('response Succsess JJJJJJ');
-        __Notifications = response;
+        return response;
       })
       .catch(error => {
-        console.log('response Succsess ERROOOOOORR');
-        __Notifications = error;
+        return error;
       });
 
     console.log('notification yield');
-    console.log(__Notifications);
-    const responseStatus = checkError(__Notifications);
+    console.log(notifications);
+    const responseStatus = checkError(notifications);
     if (responseStatus) {
       if (responseStatus == 403 || responseStatus == 401) {
         yield put(push('/sign-up'));
@@ -105,12 +103,12 @@ export function* __notificationWorker() {
       }
     }
 
-    if (__Notifications && __Notifications.data) {
-        console.log('__Notifications   suck my desck');
-      yield put(receiveNotifications(__Notifications.data));
+    if (notifications && notifications.data) {
+      console.log('__Notifications succsesfully action');
+      yield put(receiveNotifications(notifications.data));
     }
 
-    if (__Notifications && !__Notifications.data) {
+    if (notifications && !notifications.data) {
       yield put(notificationsError('Internal Server Error'));
     }
   } catch (err) {
