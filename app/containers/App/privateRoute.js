@@ -5,7 +5,7 @@ import { Route, Redirect } from 'react-router-dom';
 const userVerified = () => {
   const token = localStorage.getItem('token');
   const verify = localStorage.getItem('verified');
-  if (token || verify) {
+  if (token && verify) {
     return true;
   }
 
@@ -15,12 +15,8 @@ const userVerified = () => {
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props => 
-      userVerified ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="sign-in" />
-      )
+    render={props =>
+      userVerified() ? <Component {...props} /> : <Redirect to="sign-in" />
     }
   />
 );

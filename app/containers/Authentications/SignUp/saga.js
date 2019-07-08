@@ -96,6 +96,7 @@ export function* __SignUp() {
     toast('Your Account created Successfully ');
     toast('Please Check Your Email Address');
     yield put(registered(userRegistered));
+    // yield put(push('/'));
   } catch (error) {
     console.log(error.response ? error.response : error);
     console.log('error happen in sign-up  saga worker');

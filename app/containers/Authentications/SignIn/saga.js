@@ -56,7 +56,7 @@ export function* __SignIn() {
         password: userPassword,
       },
     );
-    console.log('complexes yield');
+    console.log('user logIn yield');
     console.log(userRegistered);
     if (userRegistered.data) {
       if (userRegistered.data.code === 500) {
@@ -105,8 +105,13 @@ export function* __SignIn() {
     // we get successfully response
 
     localStorage.setItem('token', userRegistered.token.accessToken);
+    localStorage.setItem('verified', userRegistered.user.isVerified);
     localStorage.setItem('user', JSON.stringify(userRegistered.user));
+    
+    console.log(userRegistered.user.isVerified);
+    console.log('After action signedIn');
     yield put(signedIn(userRegistered));
+    
     yield put(push('/'));
   } catch (error) {
     console.log(error.response ? error.response : error);

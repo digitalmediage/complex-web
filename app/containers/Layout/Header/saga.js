@@ -37,6 +37,7 @@ export function* __SignOut() {
 
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('verified');
     yield put(signOuted());
     yield put(push('/sign-in'));
   } catch (error) {
