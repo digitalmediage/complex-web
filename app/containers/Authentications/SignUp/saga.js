@@ -7,8 +7,13 @@ import { push } from 'connected-react-router';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import { registered, signUpError } from '../../App/actions';
-import { SIGN_UP_REQUEST } from '../../App/constants';
+import {
+  registered,
+  signUpError,
+  receiveUser,
+  getUserError,
+} from '../../App/actions';
+import { SIGN_UP_REQUEST, USER_PROFILE_REQUEST } from '../../App/constants';
 import checkError from '../../../utils/checkError';
 
 import {
@@ -18,6 +23,7 @@ import {
 // import { complexResult } from './actions';
 // import { REQUEST_COMPLEX } from './constanst';
 import { API_VERSION, SERVER_ADDRESS } from '../../../variable';
+import privateRequest from '../../../utils/request';
 
 function request(url, user) {
   return axios
@@ -29,6 +35,60 @@ function request(url, user) {
       console.log(error.response);
       return error.response;
     });
+}
+
+export function* __getUser() {
+  console.log('saga - sign-up worker run');
+
+  try {
+    const _token = localStorage.getItem('token') && null;
+    const getUserRequest = privateRequest(_token);
+    console.log('get user request');
+    console.log(getUserRequest);
+    const userProfile = yield getUserRequest
+      .get('users/profile')
+      .then(response => {
+        return response;
+      })
+      .catch(error => {
+        console.log('erorrororo in promise');
+        console.log(error);
+        return error;
+      });
+
+    console.log(userProfile);
+    console.log('user get from vvvvvv');
+
+    const responseStatus = checkError(userProfile);
+    if (responseStatus) {
+      if (responseStatus.status && responseStatus.message) {
+        yield put(signUpError(responseStatus.message));
+        toast(responseStatus.message, {
+          toastId: 'sign-up',
+        });
+        return;
+      } else if (responseStatus === true) {
+        yield put(signUpError(responseStatus.message));
+        toast('Internal Server Error', {
+          toastId: 'sign-up',
+        });
+        return;
+      }
+    }
+
+    // if (!userRegistered.user || !userRegistered.token_) {
+    //   if (userRegistered.data) {
+    //     yield put(signUpError(userRegistered.data));
+    //     toast('Internal Server Error', {
+    //       toastId: 'sign-up',
+    //     });
+    //     return;
+    //   }
+    // }
+  } catch (error) {
+    console.log(error);
+    console.log('error Happen in getUser GeneratorSaga');
+  }
 }
 
 // Complex Worker
@@ -107,4 +167,5 @@ export function* __SignUp() {
 export default function* signUpSaga() {
   console.log('saga - sign-up watcher run');
   yield takeLatest(SIGN_UP_REQUEST, __SignUp);
+  yield takeLatest(USER_PROFILE_REQUEST, __getUser);
 }

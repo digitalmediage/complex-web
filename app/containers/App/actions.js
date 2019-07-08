@@ -39,6 +39,9 @@ import {
   SIGN_OUT_REQUEST,
   SIGN_OUT_RESPONSE_ERROR,
   SIGN_OUT_RESPONSE_SUCCESS,
+  USER_PROFILE_REQUEST,
+  USER_PROFILE_RESPONSE_SUCCESS,
+  USER_PROFILE_RESPONSE_ERROR,
 } from './constants';
 
 /**
@@ -193,6 +196,26 @@ export function signInError(error) {
 }
 
 //
+
+export function getUser() {
+  return {
+    type: USER_PROFILE_REQUEST,
+  }
+}
+
+export function receiveUser(user) {
+  return {
+    type: USER_PROFILE_RESPONSE_SUCCESS,
+    user,
+  }
+}
+
+export function getUserError(error) {
+  return {
+    type: USER_PROFILE_RESPONSE_ERROR,
+    error,
+  }
+}
 
 export function signOut() {
   return {

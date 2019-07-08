@@ -18,7 +18,12 @@ import classnames from 'classnames';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
-import { signUp, changeEmail, changePassword } from '../../App/actions';
+import {
+  signUp,
+  changeEmail,
+  changePassword,
+  getUser,
+} from '../../App/actions';
 
 import {
   makeSelectUserEmail,
@@ -26,12 +31,14 @@ import {
   makeSelectLoading,
   makeSelectError,
   makeSelectresponseStatus,
+  makeSelectUser,
 } from '../../App/selectors';
 
 import styles from '../SignIn/styles.css';
 
 // Images
 import location from '../../../images/pin.png';
+import done from '../../../images/done.png';
 
 // Components
 import Footer from '../../Layout/Footer';
@@ -52,11 +59,26 @@ export function SignUp({
   loading,
   error,
   responseStatus,
+  user,
+  checkUser,
 }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
 
-  const EmailVerification = () => <div> Email Verification </div>;
+  const EmailVerification = (props) => {
+    return ( 
+    <div className="loginForm"> 
+    <div className="d-flex flex-column">
+      <img className="email_verify_img" src={done} alt='done' />
+      { props.userName ? <h5> Hi {props.userName} </h5> : null }
+      <h6 className="email_vefify_title">Please Check your Email for Verification </h6>
+      <button onClick={props.checkForVerify} className="btn btn-success mt-2"> Verified </button>
+    </div>
+    
+    
+     </div>
+     );
+  }
 
   return (
     <Error>
@@ -107,7 +129,7 @@ export function SignUp({
                   </button>
                 </form>
               ) : (
-                <EmailVerification />
+                <EmailVerification checkForVerify={checkUser} userName={user.user.name || null} />
               )
             ) : (
               <div className={styles.loaderForm}>
@@ -138,12 +160,14 @@ const mapStateToProps = createStructuredSelector({
   loading: makeSelectLoading(),
   error: makeSelectError(),
   responseStatus: makeSelectresponseStatus(),
+  user: makeSelectUser(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     setEmail: val => dispatch(changeEmail(val)),
     setPassword: val => dispatch(changePassword(val)),
+    checkUser: () => dispatch(getUser()),
     putSignUp: (validate, email, password) => {
       const v = validate(email, password);
       if (v) {

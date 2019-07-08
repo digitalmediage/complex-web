@@ -121,3 +121,19 @@
   font-size: 12px;
   font-weight: 500;
 }
+
+
+.email_vefify_title {
+  text-align: center;
+  font-size: 0.8rem;
+  color:gray;
+}
+
+.email_verify_img {
+     width: 100%;
+     max-width: 110px;
+     max-height: 110px;
+     height: auto;
+     align-self: center;
+     margin-bottom: 30px;
+}

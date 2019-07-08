@@ -38,6 +38,12 @@ export const SIGN_OUT_RESPONSE_SUCCESS =
   'complex/App/SIGN_OUT_RESPONSE_SUCCESS';
 export const SIGN_OUT_RESPONSE_ERROR = 'complex/App/SIGN_OUT_RESPONSE_ERROR';
 
+export const USER_PROFILE_REQUEST = 'complex/App/USER_PROFILE_REQUEST';
+export const USER_PROFILE_RESPONSE_SUCCESS =
+  'complex/App/USER_PROFILE_RESPONSE_SUCCESS';
+export const USER_PROFILE_RESPONSE_ERROR =
+  'complex/App/USER_PROFILE_RESPONSE_ERROR';
+
 export const NEWS_ERROR = 'complex/App/NEWS_ERROR';
 export const NEWS_RECEIVE = 'complex/App/NEWS_RECEIVE';
 export const NEWS_REQUEST = 'complex/App/NEWS_REQUEST';

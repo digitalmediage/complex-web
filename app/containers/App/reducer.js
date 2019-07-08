@@ -33,6 +33,9 @@ import {
   SIGN_OUT_REQUEST,
   SIGN_OUT_RESPONSE_SUCCESS,
   SIGN_OUT_RESPONSE_ERROR,
+  USER_PROFILE_REQUEST,
+  USER_PROFILE_RESPONSE_ERROR,
+  USER_PROFILE_RESPONSE_SUCCESS,
 } from './constants';
 
 // Initia Store
@@ -161,6 +164,18 @@ const appReducer = (state = initialState, action) =>
         draft.loading = false;
         draft.error = action.error;
         draft.responseStatus = false;
+        break;
+      case USER_PROFILE_REQUEST:
+        draft.loadin = true;
+        draft.error = false;
+        break;
+      case USER_PROFILE_RESPONSE_SUCCESS:
+        draft.loading = false;
+        draft.user = action.user;
+        break;
+      case USER_PROFILE_RESPONSE_ERROR:
+        draft.loading = false;
+        draft.error = action.error;
         break;
     }
   });
