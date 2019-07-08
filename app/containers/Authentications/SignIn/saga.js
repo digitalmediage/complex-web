@@ -1,8 +1,10 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 import { takeLatest, put, select } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 
 import { signedIn, signInError } from '../../App/actions';
 import { SIGN_IN_REQUEST } from '../../App/constants';
@@ -59,6 +61,38 @@ export function* __SignIn() {
     if (userRegistered.data) {
       if (userRegistered.data.code === 500) {
         yield put(signInError(userRegistered.data.message));
+        return;
+      }
+
+      if (userRegistered.data.code === 401) {
+        toast(
+          userRegistered.data.message
+            ? userRegistered.data.message
+            : 'Internal Server Error',
+          {
+            toastId: 'sign-in',
+          },
+        );
+        yield put(signInError(userRegistered.data.message));
+        return;
+      }
+
+      if (userRegistered.status == 409) {
+        toast(
+          userRegistered.data.message
+            ? userRegistered.data.message
+            : 'Internal Server Error',
+          {
+            toastId: 'sign-in',
+          },
+        );
+        yield put(
+          signInError(
+            userRegistered.data.message
+              ? userRegistered.data.message
+              : 'Internal Server Error',
+          ),
+        );
         return;
       }
     }

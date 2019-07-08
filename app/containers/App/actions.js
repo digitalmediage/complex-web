@@ -200,13 +200,11 @@ export function signOut() {
   };
 }
 
-export function signOuted(res) {
+export function signOuted() {
   return {
     type: SIGN_OUT_RESPONSE_SUCCESS,
-    res,
   };
 }
-
 
 export function newsRequest() {
   return {

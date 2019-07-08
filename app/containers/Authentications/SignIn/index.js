@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable react/prop-types */
 /* eslint-disable prettier/prettier */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable import/named */
@@ -10,26 +12,30 @@ import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
+// import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import styles from './styles.css';
-import 'react-toastify/dist/ReactToastify.css';
+import classnames from 'classnames';
+import ReactLoading from 'react-loading';
 import {
   ToastContainer,
   toast
 } from 'react-toastify';
 
-// Components 
-import location from '../../../images/pin.png';
-import ReactLoading from 'react-loading';
-import Footer from '../../Layout/Footer';
-
 // Utility
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import classnames from 'classnames';
 import validate from '../../../utils/Validations/userValidate';
+
+
+import styles from './styles.css';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+// Components 
+import location from '../../../images/pin.png';
+import Footer from '../../Layout/Footer';
+
 
 
 // State
@@ -51,33 +57,20 @@ import {
 
 
 export function SignIn({
-putSignIn,
-email,
-password,
-setPassword,
-setEmail,
-loading,
-error,
-responseStatus,
+  putSignIn,
+  email,
+  password,
+  setPassword,
+  setEmail,
+  loading,
+  error,
+  responseStatus,
 }) {
 
-    useInjectReducer({ key: 'global', reducer });
-    useInjectSaga({ key: 'global', saga });
+  useInjectReducer({ key: 'global', reducer });
+  useInjectSaga({ key: 'global', saga });
 
-    useEffect(() => {
-    }, []);
 
-      const notify = () => {
-        const toastId = 19;
-         toast.update(toastId, {
-           render: "New content",
-           type: toast.TYPE.INFO,
-           autoClose: 5000
-         });
-        toast("Wow so easy !", {
-          toastId:19,
-        });
-      };
 
   return (
     <article>
@@ -86,7 +79,7 @@ responseStatus,
         <meta name="description" content="this is SignIn page" />
       </Helmet>
       <div className={classnames(`signIn`)}>
-      <ToastContainer position='bottom-left' />
+        <ToastContainer position='bottom-left' />
         <h3 className={styles.loginTitle}><span className={styles.loginTitleBlue}>Login</span> Geo.Properties</h3>
         <div className={styles.login}>
           <div className={styles.loginImg}>
@@ -100,26 +93,26 @@ responseStatus,
             <div className={classnames(`form-group formLogin`)}>
               {/* <label className={styles.labelInput}>Email</label> */}
               <input
-                 type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className={styles.loginInput}
-                  placeholder="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={styles.loginInput}
+                placeholder="email"
                 
               />
               <input
                 type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className={styles.loginInput}
-                  placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className={styles.loginInput}
+                placeholder="Password"
               />
             </div>
             <button
-            type="button"
-                onClick={() => putSignIn(validate, email, password)}
-                className={styles.loginBtn} 
-                variant="primary"
+              type="button"
+              onClick={() => putSignIn(validate, email, password)}
+              className={styles.loginBtn} 
+              variant="primary"
             >
               login
             </button>
@@ -137,6 +130,7 @@ responseStatus,
 }
 
 SignIn.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
   dispatch: PropTypes.func.isRequired,
 };
 
@@ -154,7 +148,6 @@ function mapDispatchToProps(dispatch) {
     setEmail: val => dispatch(changeEmail(val)),
     setPassword: val => dispatch(changePassword(val)),
     putSignIn: (validate, email, password) => {
-      toast("Wow so easy !");
       const v = validate(email, password);
       if (v) {
         dispatch(signIn())

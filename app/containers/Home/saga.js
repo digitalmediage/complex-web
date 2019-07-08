@@ -90,6 +90,7 @@ export function* __notificationWorker() {
         __Notifications = response;
       })
       .catch(error => {
+        console.log('response Succsess ERROOOOOORR');
         __Notifications = error;
       });
 

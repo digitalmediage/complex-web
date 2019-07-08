@@ -19,6 +19,9 @@ import {
   SIGN_UP_REQUEST,
   SIGN_UP_RESPONSE_SUCCESS,
   SIGN_UP_RESPONSE_ERROR,
+  SIGN_IN_REQUEST,
+  SIGN_IN_RESPONSE_SUCCESS,
+  SIGN_IN_RESPONSE_ERROR,
   CHANGE_EMAIL,
   CHANGE_PASSWORD,
   NEWS_REQUEST,
@@ -143,6 +146,22 @@ const appReducer = (state = initialState, action) =>
         draft.loading = false;
         draft.responseStatus = false;
         draft.error = action.error;
+        break;
+      case SIGN_IN_REQUEST:
+        draft.loading = true;
+        draft.error = false;
+        draft.responseStatus = false;
+        break;
+      case SIGN_IN_RESPONSE_SUCCESS:
+        draft.loading = false;
+        draft.user = action.user;
+        draft.responseStatus = true;
+        break;
+      case SIGN_IN_RESPONSE_ERROR:
+        draft.loading = false;
+        draft.error = action.error;
+        draft.responseStatus = false;
+        break;
     }
   });
 
