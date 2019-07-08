@@ -1,11 +1,15 @@
+/* eslint-disable no-else-return */
+/* eslint-disable eqeqeq */
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 import { takeLatest, put, select } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 
 import { registered, signUpError } from '../../App/actions';
 import { SIGN_UP_REQUEST } from '../../App/constants';
+import checkError from '../../../utils/checkError';
 
 import {
   makeSelectUserEmail,
@@ -58,15 +62,30 @@ export function* __SignUp() {
     );
     console.log('complexes yield');
     console.log(userRegistered);
-    if (userRegistered.data) {
-      if (userRegistered.data.code === 500) {
-        yield put(signUpError(userRegistered.data.message));
+
+    const responseStatus = checkError(userRegistered);
+    if (responseStatus) {
+      if (responseStatus.status && responseStatus.message) {
+        yield put(signUpError(responseStatus.message));
+        toast(responseStatus.message, {
+          toastId: 'sign-up',
+        });
+        return;
+      } else if (responseStatus === true) {
+        yield put(signUpError(responseStatus.message));
+        toast('Internal Server Error', {
+          toastId: 'sign-up',
+        });
         return;
       }
     }
+
     if (!userRegistered.user || !userRegistered.token_) {
       if (userRegistered.data) {
         yield put(signUpError(userRegistered.data));
+        toast('Internal Server Error', {
+          toastId: 'sign-up',
+        });
         return;
       }
     }
@@ -74,6 +93,8 @@ export function* __SignUp() {
 
     localStorage.setItem('token', userRegistered.token_.accessToken);
     localStorage.setItem('user', JSON.stringify(userRegistered.user));
+    toast('Your Account created Successfully ');
+    toast('Please Check Your Email Address');
     yield put(registered(userRegistered));
   } catch (error) {
     console.log(error.response ? error.response : error);

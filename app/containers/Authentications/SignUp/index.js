@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -5,7 +6,10 @@ import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-
+import {
+  ToastContainer,
+  toast
+} from 'react-toastify';
 
 import ReactLoading from 'react-loading';
 
@@ -14,11 +18,7 @@ import classnames from 'classnames';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 
-import {
-  signUp,
-  changeEmail,
-  changePassword,
-} from '../../App/actions';
+import { signUp, changeEmail, changePassword } from '../../App/actions';
 
 import {
   makeSelectUserEmail,
@@ -40,7 +40,6 @@ import Error from '../../../components/Errors';
 // Utility
 import validate from '../../../utils/Validations/userValidate';
 
-
 import reducer from '../../App/reducer';
 import saga from './saga';
 
@@ -54,16 +53,12 @@ export function SignUp({
   error,
   responseStatus,
 }) {
-
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
 
-  const EmailVerification = () => (
-    <div> Email Verification </div>
-  );
+  const EmailVerification = () => <div> Email Verification </div>;
 
-
-  return(
+  return (
     <Error>
       <article>
         <Helmet>
@@ -71,7 +66,10 @@ export function SignUp({
           <meta name="description" content="this is SignIn page" />
         </Helmet>
         <div className={classnames(`signIn`)}>
-          <h3 className={styles.loginTitle}><span className={styles.loginTitleBlue}>SignUp</span> Geo.Properties</h3>
+          <ToastContainer position="bottom-left" />
+          <h3 className={styles.loginTitle}>
+            <span className={styles.loginTitleBlue}>SignUp</span> Geo.Properties
+          </h3>
           <div className={styles.login}>
             <div className={styles.loginImg}>
               <img
@@ -80,49 +78,55 @@ export function SignUp({
                 alt="complex"
               />
             </div>
-            {loading === false ? !responseStatus ? <form className={styles.loginForm}>
-              {/* { console.log('we are in Component') }
-              {  console.log(loading) }
-              {console.log(email)}
-              {  console.log(error)}    
-              { console.log('we are in Component') } */}
-              {error ? <span className="mb-5">{error}</span> : null}
-              <div className={classnames(`form-group formLogin`)}>
-                {/* <label className={styles.labelInput}>Email</label> */}
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className={styles.loginInput}
-                  placeholder="email"
-                />
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className={styles.loginInput}
-                  placeholder="Password"
-                />
+            {loading === false ? (
+              !responseStatus ? (
+                <form className={styles.loginForm}>
+                  <div className={classnames(`form-group formLogin`)}>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      className={styles.loginInput}
+                      placeholder="email"
+                    />
+                    <input
+                      type="password"
+                      value={password}
+                      onChange={e => setPassword(e.target.value)}
+                      className={styles.loginInput}
+                      placeholder="Password"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => putSignUp(validate, email, password)}
+                    className={styles.loginBtn}
+                    variant="primary"
+                  >
+                    SignUp
+                  </button>
+                </form>
+              ) : (
+                <EmailVerification />
+              )
+            ) : (
+              <div className={styles.loaderForm}>
+                <ReactLoading
+                  delay={0}
+                  type="cylon"
+                  color="blue"
+                  height={107}
+                  width={175}
+                />{' '}
               </div>
-              <button
-                type="button"
-                onClick={() => putSignUp(validate, email, password)}
-                className={styles.loginBtn} 
-                variant="primary" 
-              >
-              SignUp
-              </button>
-            </form> : <EmailVerification/> : <div className={styles.loaderForm}><ReactLoading delay={0} type='cylon' color="blue" height={107} width={175} / > </div>
-            }
+            )}
           </div>
         </div>
         <Footer />
       </article>
     </Error>
-  )
-
+  );
 }
-
 
 SignUp.propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -136,18 +140,18 @@ const mapStateToProps = createStructuredSelector({
   responseStatus: makeSelectresponseStatus(),
 });
 
-
 function mapDispatchToProps(dispatch) {
   return {
     setEmail: val => dispatch(changeEmail(val)),
     setPassword: val => dispatch(changePassword(val)),
     putSignUp: (validate, email, password) => {
       const v = validate(email, password);
-      if(v) {
-        dispatch(signUp())
+      if (v) {
+        dispatch(signUp());
       } else {
         return false;
-      }},
+      }
+    },
     dispatch,
   };
 }

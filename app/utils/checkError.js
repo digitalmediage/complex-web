@@ -1,26 +1,38 @@
 /* eslint-disable eqeqeq */
+
+const checkForStatus = response => {
+  if (response.data) {
+    if (response.data.code) {
+      return {
+        status: response.data.code,
+        message: response.data.message,
+      };
+    }
+  }
+};
+
 export default function(response) {
   const r = response.response;
-  if (!r) return false;
+  if (!r) {
+    const responseStatus = checkForStatus(response);
+    return responseStatus;
+  }
   // if(response.data) {
   //     if (response.data.data) {
   //         return false
   //     }
   // }
 
-  if (r.status == 403) {
-    if (r.data) {
-      console.log(r.data);
-      console.log(r.data);
-      console.log(r.data);
-      console.log(r.status);
-      return '403';
-    }
+  if (r.status) {
+    return {
+      status: r.status,
+      message: '',
+    };
   }
 
-  if (r.data.code == 401) {
-    return '401';
+  if (!r.data) {
+    return true;
   }
 
-  return true;
+  return false;
 }
