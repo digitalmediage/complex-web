@@ -92,12 +92,13 @@ export function* __notificationWorker() {
         return error;
       });
 
-    console.log('notification yield');
-    console.log(notifications);
+    console.log(notifications.response);
     const responseStatus = checkError(notifications);
+    console.log('notification yield');
+    console.log(responseStatus);
     if (responseStatus) {
-      if (responseStatus == 403 || responseStatus == 401) {
-        yield put(push('/sign-up'));
+      if (responseStatus.status == 403 || responseStatus.status == 401) {
+        yield put(push('/sign-in'));
         yield put(notificationsError('Please Sign Up'));
         return;
       }

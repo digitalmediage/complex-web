@@ -22,8 +22,8 @@ import Complexes from '../Complexes/Loadable';
 import Properties from '../Properties';
 import Complex from '../Complex';
 import News from '../News/Loadable';
-import Tes from '../Tes';
 import Manager from '../Manager/Loadable';
+import TokenConfirmation from '../TokenConfirmation';
 import EmailVerfication from '../Authentications/SignUp/emailValidation';
 import SpecificNews from '../News/Editor/Loadable';
 import Authorization from '../Authentications/Authorization';
@@ -57,6 +57,7 @@ export default function App() {
         <PrivateRoute path="/manager" component={Manager} />
         <PrivateRoute path="/news/:newsId" component={SpecificNews} />
         <PrivateRoute path="/news" component={News} />
+        <Route path="/token-confirmation" component={TokenConfirmation} />
         <Route path="/sign-in" component={SignIn} />
         <Route path="/sign-up" component={SignUp} />
         <Route path="/auth/verification" component={EmailVerfication} />
