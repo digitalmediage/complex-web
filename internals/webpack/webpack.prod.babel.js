@@ -3,7 +3,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const OfflinePlugin = require('offline-plugin');
-const { HashedModuleIdsPlugin } = require('webpack');
+const {
+  HashedModuleIdsPlugin
+} = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
@@ -68,7 +70,7 @@ module.exports = require('./webpack.base.babel')({
   plugins: [
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
-      template: 'index.html',
+      template: 'app/index.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -123,8 +125,7 @@ module.exports = require('./webpack.base.babel')({
       theme_color: '#b1624d',
       inject: true,
       ios: true,
-      icons: [
-        {
+      icons: [{
           src: path.resolve('app/images/icon-512x512.png'),
           sizes: [72, 96, 128, 144, 192, 384, 512],
         },
