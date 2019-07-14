@@ -7,11 +7,8 @@ const TokenConfirmation = () => {
     const user = localStorage.getItem('user');
     if (!user) {
       window.location.replace('http://localhost:3000/login');
+      consle.log('sanaz');
     }
-    console.log(user);
-    console.log(user);
-    console.log('-----------user--------');
-    console.log(user);
     
   }, []);
   return <div>your Account Verified Token</div>;
