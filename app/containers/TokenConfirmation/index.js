@@ -4,7 +4,15 @@ import { push } from 'connected-react-router';
 
 const TokenConfirmation = () => {
   useEffect(() => {
-    window.location.replace('http://localhost:3000');
+    const user = localStorage.getItem('user');
+    if (!user) {
+      window.location.replace('http://localhost:3000/login');
+    }
+    console.log(user);
+    console.log(user);
+    console.log('-----------user--------');
+    console.log(user);
+    
   }, []);
   return <div>your Account Verified Token</div>;
 };
