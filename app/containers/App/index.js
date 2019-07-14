@@ -37,10 +37,7 @@ toast.configure({
 export default function App() {
   return (
     <div>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
+      <Helmet titleTemplate="%s - Complex" defaultTitle=" Complex">
         <meta name="description" content="" />
       </Helmet>
       <Switch>
