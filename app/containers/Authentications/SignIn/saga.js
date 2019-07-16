@@ -107,11 +107,9 @@ export function* __SignIn() {
     localStorage.setItem('token', userRegistered.token.accessToken);
     localStorage.setItem('verified', userRegistered.user.isVerified);
     localStorage.setItem('user', JSON.stringify(userRegistered.user));
-    
     console.log(userRegistered.user.isVerified);
     console.log('After action signedIn');
     yield put(signedIn(userRegistered));
-    
     yield put(push('/'));
   } catch (error) {
     console.log(error.response ? error.response : error);
