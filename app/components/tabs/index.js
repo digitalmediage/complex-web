@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import Tab from './Tab';
+require('./styles.css');
 
 class Tabs extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class Tabs extends React.Component {
 
     return (
       <div className="tabs">
-        <ol className="tab-list">
+        <ol className="tab-list d-flex">
           {children.map(child => {
             const { label } = child.props;
 

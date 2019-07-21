@@ -16,6 +16,7 @@
   text-transform: uppercase;
 }
 
+
 .card .card-image {
   position: relative;
   max-height: 240px;
@@ -110,10 +111,20 @@
 }
 
 .card-properties_img {
-    width: 4.2rem;
-    height:4.2rem;
+    max-width: 4.2rem;
+    height:100%;
     margin-bottom:7px;
     margin-right:6px;
+}
+
+.add-property {
+  height: 4.2rem;
+  width:4.2rem;
+  background-color: gray;
+  color: white;
+  text-align: center;
+  font-weight: bolder;
+  font-size: 1.2rem;
 }
 
 .card-container {

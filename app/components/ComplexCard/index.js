@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-return-assign */
 /* eslint-disable array-callback-return */
@@ -119,6 +120,9 @@ class ComplexCard extends React.Component {
             {/* Complex properties */}
             <div className="d-flex pt-5 pl-5 textLite">Properties</div>
             <div className="d-flex pt-3 flex-wrap pl-4 flex-row">
+            {
+              properties.properties.length == 0 ? <div className="d-flex justify-content-center add-property"><span>+</span></div> : null
+            }
               {properties.properties.map(_property => (
                 <div
                   key={_property._id}

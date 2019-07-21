@@ -1,0 +1,8 @@
+.notification-empty {
+    width:100%;
+    align-items: center;
+    min-height: 280px;
+    color:gray;
+    font-size: 0.9rem;
+    background-color: azure;
+}

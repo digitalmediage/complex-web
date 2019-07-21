@@ -7,7 +7,19 @@
   display: inline-block;
   list-style: none;
   margin-bottom: -1px;
+  outline: none !important;
+  outline-width: 0;
   padding: 0.5rem 0.75rem;
+}
+
+.tab-list-item:focus {
+  outline: none;
+  outline-width: 0;
+}
+
+.tab-list-item::selection {
+  outline: none;
+  outline-width: 0;
 }
 
 .tab-content {

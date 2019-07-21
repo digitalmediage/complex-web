@@ -16,12 +16,11 @@
 .news {
   background-color: #fff;
   border-radius: 30px;
-  min-height: 400px;
+  min-height: 550px;
   padding: 20px 40px;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 .date {

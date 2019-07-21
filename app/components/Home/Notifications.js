@@ -6,6 +6,7 @@ import React from 'react';
 
 import getCurrentWeek from '../../utils/helper/GetCurrentWeek';
 import NotificationBox from '../NotificationBox';
+import EmptyNotifications from './EmptyNotifications';
 
 // Fake Data
 import NotificationsData from '../../faker/Notifications';
@@ -68,15 +69,19 @@ class Notifications extends React.Component {
           </ul>
         </div>
         <div className={styles.dateInfBox}>
-        {console.log('boxoxooxoxoxoxoox')}
-        {console.log(data)}
-          {data.map(n => (
-            <NotificationBox key={n.id} data={n} />
-          ))}
+          {data.length !== 0 ? (
+            data.map(n => <NotificationBox key={n.id} data={n} />)
+          ) : (
+            <EmptyNotifications />
+          )}
         </div>
       </div>
     );
   }
 }
+
+Notifications.defaultProps = {
+  data: [],
+};
 
 export default Notifications;
