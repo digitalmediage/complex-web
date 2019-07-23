@@ -1,15 +1,12 @@
 /* eslint-disable no-nested-ternary */
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import {
-  ToastContainer,
-  toast
-} from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 import ReactLoading from 'react-loading';
 
@@ -62,23 +59,35 @@ export function SignUp({
   user,
   checkUser,
 }) {
+  useEffect(() => {
+    if (user.verified) {
+      console.log(user.verified);
+      console.log(user.verified);
+      console.log('user.verified');
+    }
+        console.log(user.verified);
+        console.log(user.verified);
+        console.log('user.verified');
+  }, []);
+
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
 
-  const EmailVerification = (props) => {
-    return ( 
-    <div className="loginForm"> 
-    <div className="d-flex flex-column">
-      <img className="email_verify_img" src={done} alt='done' />
-      { props.userName ? <h5> Hi {props.userName} </h5> : null }
-      <h6 className="email_vefify_title">Please Check your Email for Verification </h6>
-      <button onClick={props.checkForVerify} className="btn btn-success mt-2"> Verified </button>
+  const EmailVerification = props => (
+    <div className="loginForm">
+      <div className="d-flex flex-column">
+        <img className="email_verify_img" src={done} alt="done" />
+        {props.userName ? <h5> Hi {props.userName} </h5> : null}
+        <h6 className="email_vefify_title">
+          Please Check your Email for Verification{' '}
+        </h6>
+        <button onClick={props.checkForVerify} className="btn btn-success mt-2">
+          {' '}
+          Verified{' '}
+        </button>
+      </div>
     </div>
-    
-    
-     </div>
-     );
-  }
+  );
 
   return (
     <Error>
@@ -129,7 +138,10 @@ export function SignUp({
                   </button>
                 </form>
               ) : (
-                <EmailVerification checkForVerify={checkUser} userName={user.user.name || null} />
+                <EmailVerification
+                  checkForVerify={checkUser}
+                  userName={user.user.name || null}
+                />
               )
             ) : (
               <div className={styles.loaderForm}>

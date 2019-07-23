@@ -38,7 +38,7 @@ function request(url, user) {
 }
 
 export function* __getUser() {
-  console.log('saga - sign-up worker run');
+  console.log('saga - sign-up(get user profile) worker run');
 
   try {
     const _token = localStorage.getItem('token') && null;
@@ -47,9 +47,7 @@ export function* __getUser() {
     console.log(getUserRequest);
     const userProfile = yield getUserRequest
       .get('users/profile')
-      .then(response => {
-        return response;
-      })
+      .then(response => response)
       .catch(error => {
         console.log('erorrororo in promise');
         console.log(error);
@@ -73,6 +71,13 @@ export function* __getUser() {
           toastId: 'sign-up',
         });
         return;
+      }
+    } else if (userProfile.data) {
+      console.log('______-----____');
+      console.log(userProfile.data);
+      if (userProfile.data.isVerified) {
+        localStorage.setItem('verified', true);
+        window.location.replace('http://localhost:3000');
       }
     }
 
