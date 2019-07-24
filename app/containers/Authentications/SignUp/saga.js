@@ -73,8 +73,6 @@ export function* __getUser() {
         return;
       }
     } else if (userProfile.data) {
-      console.log('______-----____');
-      console.log(userProfile.data);
       if (userProfile.data.isVerified) {
         localStorage.setItem('verified', true);
         window.location.replace('http://localhost:3000');

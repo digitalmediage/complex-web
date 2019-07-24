@@ -33,13 +33,12 @@ import NewsItem from './NewsItem';
 require('./styles.css');
 
 export function News({ news, loading, error, response_status, requestNews }) {
+  useInjectReducer({ key: 'global', reducer });
+  useInjectSaga({ key: 'news', saga });
   useEffect(() => {
     console.log('component did mount');
     requestNews();
   }, []);
-
-  useInjectReducer({ key: 'global', reducer });
-  useInjectSaga({ key: 'news', saga });
 
   return (
     <div className="news-container pb-5">
